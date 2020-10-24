@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Vikle.UI;
+using Vikle.UI.Views.Login.Welcome;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +17,7 @@ namespace Vikle
             HotReloader.Current.Run(this); 
 #endif
 
-            MainPage = new MainPage();
+            MainPage = new WelcomeView();
         }
 
         protected override void OnStart()

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             x:Class="Vikle.UI.Views.Login.Welcome.WelcomeVikleView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid
+        x:Name="MainPanel"
+        BackgroundColor="{StaticResource BlueStrongColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="*" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0"
+               Source="{local:ImageResource Vikle.UI.Images.welcome_vikle.png}"
+               TranslationY="50" />
+        <StackLayout
+            x:Name="InfoPanel"
+            Padding="0,100,0,0"
+            Grid.Row="1"
+            VerticalOptions="Start"
+            TranslationY="0">
+            <Label
+                Text="Welcome to Vikle!"
+                Style="{StaticResource WelcomeTitle}" />
+            <Label
+                Style="{StaticResource WelcomeInfo}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Your workshop helper" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label
+                Style="{StaticResource WelcomeInfo}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Swipe to see what can you do with this app" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </Grid>
+</ContentView>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="Vikle.UI.Resources">
+    <Color
+        x:Key="BlueStrongColor">#00296B</Color>
+    <Color
+        x:Key="BlueMediumColor">#003F88</Color>
+    <Color
+        x:Key="BlueSoftColor">#00509D</Color>
+    <Color
+        x:Key="YellowStrongColor">#FDC500</Color>
+    <Color
+        x:Key="YellowSoftColor">#FFD500</Color>
+            
+    <Style
+        TargetType="Label"
+        x:Key="WelcomeTitle">
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="FontSize"
+            Value="24" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource YellowStrongColor}" />
+        <Setter
+            Property="Margin"
+            Value="0, 0, 0, 6" />
+    </Style>
+
+    <Style
+        TargetType="Label"
+        x:Key="WelcomeInfo">
+        <Setter
+            Property="FontSize"
+            Value="16" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource YellowStrongColor}" />
+        <Setter
+            Property="Margin"
+            Value="48, 0" />
+        <Setter
+            Property="HorizontalTextAlignment"
+            Value="Center" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="CenterAndExpand" />
+    </Style>
+</ResourceDictionary>

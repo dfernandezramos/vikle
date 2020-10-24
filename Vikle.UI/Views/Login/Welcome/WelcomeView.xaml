@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Vikle.UI.Views.Login.Welcome.WelcomeView"
+    xmlns:local="clr-namespace:Vikle.UI"
+    xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+    BackgroundColor="{StaticResource BlueStrongColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="150"/>
+                <RowDefinition
+                    Height="*" />
+                <RowDefinition
+                    Height="Auto" />
+                <RowDefinition
+                    Height="100">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0" BackgroundColor="#00296B">
+                <Image
+                    Source="{local:ImageResource Vikle.UI.Images.logo.png}" Margin="50,50,50,0"/>
+            </Grid>
+            <carousel:CarouselViewControl
+                x:Name="Carousel"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Orientation="Horizontal"
+                Position="0"
+                ShowIndicators="True"
+                CurrentPageIndicatorTintColor="{StaticResource YellowStrongColor}"
+                IndicatorsTintColor="{StaticResource BlueSoftColor}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand" />
+            <Grid
+                Grid.Row="2"
+                Padding="12"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="EndAndExpand"/>
+            <Grid
+                Grid.Row="3"
+                Padding="20" BackgroundColor="#00296B">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            TextColor="{StaticResource BlueMediumColor}"
+                            Text="Login"
+                            BorderColor="{StaticResource YellowStrongColor}"
+                            BackgroundColor="{StaticResource YellowStrongColor}" />
+                    <Button Grid.Column="1"
+                            TextColor="{StaticResource BlueMediumColor}"
+                            Text="Sing up"
+                            BorderColor="{StaticResource BlueSoftColor}"
+                            BackgroundColor="White" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

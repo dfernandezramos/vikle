@@ -108,6 +108,7 @@
         <Reference Include="Xamarin.iOS" />
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
         <PackageReference Include="Xamarin.Forms" Version="4.4.0.991640" />
         <PackageReference Include="Xamarin.HotReload" Version="2.0.14" />
     </ItemGroup>

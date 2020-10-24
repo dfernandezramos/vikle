@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
+        <PackageReference Include="Xamarin.Forms" Version="4.4.0.991640" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="ResourcesDictionary.xaml.cs" />
+      <Compile Update="Views\Login\Welcome\WelcomeDates.xaml.cs">
+        <DependentUpon>WelcomeDates.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Login\Welcome\WelcomeHistory.xaml.cs">
+        <DependentUpon>WelcomeHistoryView.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="UIResources.xaml.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Images\logo.png" />
+      <EmbeddedResource Include="Images\logo.png" />
+      <None Remove="Images\vikle_logo.png" />
+      <EmbeddedResource Include="Images\vikle_logo.png" />
+      <None Remove="Images\welcome_dates.png" />
+      <EmbeddedResource Include="Images\welcome_dates.png" />
+      <None Remove="Images\welcome_detail.png" />
+      <EmbeddedResource Include="Images\welcome_detail.png" />
+      <None Remove="Images\welcome_history.png" />
+      <EmbeddedResource Include="Images\welcome_history.png" />
+      <None Remove="Images\welcome_status.png" />
+      <EmbeddedResource Include="Images\welcome_status.png" />
+      <None Remove="Images\welcome_vikle.png" />
+      <EmbeddedResource Include="Images\welcome_vikle.png" />
+    </ItemGroup>
+</Project>
