@@ -64,6 +64,7 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0"
                             TextColor="{StaticResource BlueMediumColor}"
+                            FontAttributes="Bold"
                             Text="Login"
                             BorderColor="{StaticResource YellowStrongColor}"
                             BackgroundColor="{StaticResource YellowStrongColor}" />
