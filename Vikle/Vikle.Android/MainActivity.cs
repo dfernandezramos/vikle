@@ -8,6 +8,9 @@ using Android.OS;
 
 namespace Vikle.Android
 {
+    /// <summary>
+    /// This class defines the MainActivity class for the Android application.
+    /// </summary>
     [Activity(Label = "Vikle", Theme = "@style/MainTheme", MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity

@@ -3,6 +3,9 @@ using Xamarin.Forms.Xaml;
 
 namespace Vikle.UI.Views.Login.Welcome
 {
+    /// <summary>
+    /// This class contains the definition of the Welcome view.
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WelcomeView : ContentPage
     {
