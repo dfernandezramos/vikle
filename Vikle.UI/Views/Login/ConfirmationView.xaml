@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             x:Class="Vikle.UI.Views.Login.ConfirmationView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="150"/>
+                <RowDefinition
+                    Height="*" />
+                <RowDefinition
+                    Height="100">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0" BackgroundColor="#00296B">
+                <Image
+                    Source="{local:ImageResource Vikle.UI.Images.logo.png}"
+                    Margin="50,50,50,0"/>
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                BackgroundColor="{StaticResource BlueStrongColor}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="75" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0"
+                           Source="{local:ImageResource Vikle.UI.Images.successful.png}"
+                           TranslationY="50" />
+                    <Label Grid.Row="1"
+                           Text="Reset successful!"
+                           Padding="0,50,0,0"
+                           Style="{StaticResource WelcomeTitle}" />
+                    <Label Grid.Row="2"
+                        Style="{StaticResource WelcomeInfo}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="If the provided address exists, we will send you a password recover e-mail" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+            </Grid>
+            <Grid
+                Grid.Row="2"
+                Padding="20" BackgroundColor="#00296B">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            TextColor="{StaticResource BlueMediumColor}"
+                            FontAttributes="Bold"
+                            Text="Login"
+                            BorderColor="{StaticResource YellowStrongColor}"
+                            BackgroundColor="{StaticResource YellowStrongColor}" />
+                    <Button Grid.Column="1"
+                            TextColor="{StaticResource BlueMediumColor}"
+                            Text="Sing up"
+                            BorderColor="{StaticResource BlueSoftColor}"
+                            BackgroundColor="White" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
