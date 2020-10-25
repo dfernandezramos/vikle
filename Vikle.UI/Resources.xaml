@@ -53,4 +53,17 @@
             Property="HorizontalOptions"
             Value="CenterAndExpand" />
     </Style>
+    
+    <Style
+        TargetType="Entry"
+        x:Key="LoginEntry">
+        <Setter Property="BackgroundColor"
+                Value="White" />
+        <Setter Property="HorizontalTextAlignment"
+                Value="Center" />
+        <Setter Property="TextColor"
+                Value="{StaticResource BlueStrongColor}" />
+        <Setter Property="PlaceholderColor"
+                Value="{StaticResource BlueSoftColor}" />
+    </Style>
 </ResourceDictionary>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             x:Class="Vikle.UI.Views.Login.SignUpView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="150"/>
+                <RowDefinition
+                    Height="*" />
+                <RowDefinition
+                    Height="100">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0" BackgroundColor="#00296B">
+                <Image
+                    Source="{local:ImageResource Vikle.UI.Images.logo.png}"
+                    Margin="50,50,50,0"/>
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                BackgroundColor="{StaticResource BlueStrongColor}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0"
+                           Text="Sign up"
+                           Padding="0,50,0,0"
+                           Style="{StaticResource WelcomeTitle}" />
+                    <Label Grid.Row="1"
+                           Margin="50, 25, 50,0"
+                           Text="All fields are mandatory*"
+                           HorizontalTextAlignment="Center"
+                           TextColor="Red"
+                           FontAttributes="Bold"
+                           IsVisible="False" />
+                    <ScrollView Grid.Row="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="75" />
+                                <RowDefinition Height="75" />
+                                <RowDefinition Height="75" />
+                                <RowDefinition Height="75" />
+                                <RowDefinition Height="75" />
+                                <RowDefinition Height="75" />
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+                            <Entry Grid.Row="0"
+                                   Placeholder="Name*"
+                                   Margin="50, 25, 50,0"
+                                   Keyboard="Text"
+                                   Style="{StaticResource LoginEntry}" />
+                            <Entry Grid.Row="1"
+                                   Placeholder="Surname*"
+                                   Margin="50, 25, 50,0"
+                                   Keyboard="Text"
+                                   Style="{StaticResource LoginEntry}" />
+                            <Entry Grid.Row="2"
+                                   Placeholder="Phone number*"
+                                   Margin="50, 25, 50,0"
+                                   Keyboard="Telephone"
+                                   Style="{StaticResource LoginEntry}" />
+                            <Entry Grid.Row="3"
+                                   Placeholder="E-mail*"
+                                   Margin="50, 25, 50,0"
+                                   Keyboard="Email"
+                                   Style="{StaticResource LoginEntry}" />
+                            <Entry Grid.Row="4"
+                                   Placeholder="Password*"
+                                   IsPassword="True"
+                                   Margin="50, 25, 50,0"
+                                   Style="{StaticResource LoginEntry}" />
+                            <Entry Grid.Row="5"
+                                   Placeholder="Repeat password*"
+                                   IsPassword="True"
+                                   Margin="50, 25, 50,0"
+                                   Style="{StaticResource LoginEntry}" />
+                        </Grid>
+                    </ScrollView>
+                </Grid>
+            </Grid>
+            <Grid
+                Grid.Row="2"
+                Padding="20" BackgroundColor="#00296B">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            TextColor="{StaticResource BlueMediumColor}"
+                            FontAttributes="Bold"
+                            Text="Confirm"
+                            BorderColor="{StaticResource YellowStrongColor}"
+                            BackgroundColor="{StaticResource YellowStrongColor}" />
+                    <Button Grid.Column="1"
+                            TextColor="{StaticResource BlueMediumColor}"
+                            Text="Go back"
+                            BorderColor="{StaticResource BlueSoftColor}"
+                            BackgroundColor="White" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
