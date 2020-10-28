@@ -19,6 +19,14 @@
         <DependentUpon>WelcomeHistoryView.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\ShellTitleView.xaml.cs">
+        <DependentUpon>ShellTitleView.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Worker\WorkerAppShell.xaml.cs">
+        <DependentUpon>WorkerAppShell.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -42,5 +50,11 @@
       <EmbeddedResource Include="Images\welcome_vikle.png" />
       <None Remove="Images\successful.png" />
       <EmbeddedResource Include="Images\successful.png" />
+      <None Remove="Images\home.png" />
+      <EmbeddedResource Include="Images\home.png" />
+      <None Remove="Images\car.png" />
+      <EmbeddedResource Include="Images\car.png" />
+      <None Remove="Images\logout.png" />
+      <EmbeddedResource Include="Images\logout.png" />
     </ItemGroup>
 </Project>
