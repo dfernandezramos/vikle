@@ -1,15 +1,15 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Vikle.UI.Views.Worker
+namespace Vikle.UI.Views.Client
 {
     /// <summary>
-    /// This class contains the definition of the worker side reparations view.
+    /// This class contains the definition for the client's vehicles view.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WSReparationsView : ContentPage
+    public partial class VehiclesView : ContentPage
     {
-        public WSReparationsView()
+        public VehiclesView()
         {
             InitializeComponent();
             TitleView.Title = Title;
