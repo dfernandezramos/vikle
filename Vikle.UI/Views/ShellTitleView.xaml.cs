@@ -1,5 +1,8 @@
 namespace Vikle.UI.Views
 {
+    /// <summary>
+    /// This class contains the TitleView definition for every page inside a shell application.
+    /// </summary>
     public partial class ShellTitleView
     {
         public ShellTitleView()

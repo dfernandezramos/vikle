@@ -21,7 +21,7 @@
        <!-- Template each FlyoutItem -->
        <Shell.ItemTemplate>
               <DataTemplate>
-                     <views:ItemTemplate/>
+                     <views:FlyoutItemTemplate/>
               </DataTemplate>
        </Shell.ItemTemplate>
        

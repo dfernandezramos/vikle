@@ -1,4 +1,4 @@
-﻿using Vikle.UI.Views.Login.Welcome;
+﻿using Vikle.UI.Views.Worker;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +19,7 @@ namespace Vikle
             HotReloader.Current.Run(this); 
 #endif
 
-            MainPage = new WelcomeView();
+            MainPage = new WorkerAppShell();
         }
 
         /// <summary>
