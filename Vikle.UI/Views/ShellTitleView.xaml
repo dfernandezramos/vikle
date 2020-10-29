@@ -22,6 +22,7 @@
                x:Name="TitleLabel"
                VerticalOptions="Center"
                HorizontalOptions="Center"
+               Padding="0,0,22,0"
                FontSize="22"
                FontAttributes="Bold"
                TextColor="{StaticResource YellowStrongColor}"/>
