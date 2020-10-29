@@ -16,7 +16,7 @@
             <ColumnDefinition
                 Width="*"/>
             <ColumnDefinition
-                Width="50"/>
+                Width="25"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Column="0"
                x:Name="TitleLabel"
@@ -28,7 +28,7 @@
         <ImageButton Grid.Column="1"
                      x:Name="Button"
                      Command="{Binding HomePageCommand}"
-                     BackgroundColor="{StaticResource BlueStrongColor}"
+                     BackgroundColor="Transparent"
                      Source="{local:ImageResource Vikle.UI.Images.home.png}" />
     </Grid>
 </ContentView>
