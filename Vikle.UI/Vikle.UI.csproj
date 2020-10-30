@@ -51,10 +51,26 @@
       <None Remove="Images\successful.png" />
       <EmbeddedResource Include="Images\successful.png" />
       <None Remove="Images\home.png" />
-      <EmbeddedResource Include="Images\home.png" />
       <None Remove="Images\car.png" />
-      <EmbeddedResource Include="Images\car.png" />
       <None Remove="Images\logout.png" />
       <EmbeddedResource Include="Images\logout.png" />
+      <None Remove="Images\small_line.png" />
+      <EmbeddedResource Include="Images\small_line.png" />
+      <None Remove="Images\empty_dot.png" />
+      <None Remove="Images\dot.png" />
+      <EmbeddedResource Include="Images\dot.png" />
+      <None Remove="Images\calendar.png" />
+      <EmbeddedResource Include="Images\calendar.png" />
+      <None Remove="Images\line.png" />
+      <EmbeddedResource Include="Images\line.png" />
+      <None Remove="Images\long_line.png" />
+      <EmbeddedResource Include="Images\long_line.png" />
+      <None Remove="Images\dot_green.png" />
+      <EmbeddedResource Include="Images\dot_green.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Images\car.png" />
+      <EmbeddedResource Include="Images\home.png" />
     </ItemGroup>
 </Project>
