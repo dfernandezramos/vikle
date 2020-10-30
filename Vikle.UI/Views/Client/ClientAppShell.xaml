@@ -37,6 +37,7 @@
                 Shell.BackgroundColor="{StaticResource BlueStrongColor}"
                 Shell.ForegroundColor="{StaticResource YellowStrongColor}"
                 Shell.TitleColor="{StaticResource YellowStrongColor}"
+                Shell.TabBarBackgroundColor="{StaticResource BlueMediumColor}"
                 Shell.UnselectedColor="{StaticResource YellowSoftColor}">
         <ShellContent Title="Vehicles"
                       Icon="{local:ImageResource Vikle.UI.Images.car.png}">
