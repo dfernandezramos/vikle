@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
              xmlns:views="clr-namespace:Vikle.UI.Views"
-             x:Class="Vikle.UI.Views.Worker.WSReparationDetailView">
+             x:Class="Vikle.UI.Views.Worker.WSReparationDetailView"
+             Title="Reparation">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,8 +18,79 @@
     </Shell.TitleView>
     
     <ContentPage.Content>
-        <Grid RowSpacing="0" ColumnSpacing="0">
-            
-        </Grid>
+        <StackLayout>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="75" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0"
+                       Padding="50,50,0,0"
+                       Style="{StaticResource BlueLabel}"
+                       Text="Plate n.:"/>
+                <Entry Grid.Row="0" Grid.Column="1"
+                       Margin="20,50,20,0"
+                       Style="{StaticResource VikleEntry}"
+                       Placeholder="Plate number"/>
+                <Label Grid.Row="1" Grid.Column="0"
+                       Padding="50,30,0,0"
+                       Style="{StaticResource BlueLabel}"
+                       Text="Status:"/>
+                <Picker Grid.Row="1" Grid.Column="1"
+                        Margin="20,30,20,0"
+                        Style="{StaticResource ViklePicker}"
+                        x:Name="StatusPicker"/>
+                <Label Grid.Row="2" Grid.Column="0"
+                       Padding="50,30,0,0"
+                       Style="{StaticResource BlueLabel}"
+                       Text="Reason:"/>
+                <Picker Grid.Row="2" Grid.Column="1"
+                       Margin="20,30,20,0"
+                       Style="{StaticResource ViklePicker}"
+                       x:Name="ReasonPicker"/>
+                <Label Grid.Row="3" Grid.Column="0"
+                       Padding="50,30,0,0"
+                       Style="{StaticResource BlueLabel}"
+                       Text="Date:"/>
+                <DatePicker Grid.Row="3" Grid.Column="1"
+                       Margin="20,30,20,0"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource VikleDatePicker}"/>
+            </Grid>
+            <Grid RowSpacing="40">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0"
+                        Style="{StaticResource YellowButton}"
+                        Margin="0,50,0,0"
+                        HorizontalOptions="Center"
+                        WidthRequest="200"
+                        HeightRequest="75"
+                        Text="Continue"/>
+                <Button Grid.Row="1"
+                        Style="{StaticResource WhiteButton}"
+                        BorderWidth="1"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="200"
+                        HeightRequest="75"
+                        IsVisible="False"
+                        Text="Contact owner"/>
+            </Grid>
+            <Label HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   TextDecorations="Underline"
+                   TextColor="{StaticResource BlueStrongColor}"
+                   FontAttributes="Bold"
+                   Text="Cancel"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

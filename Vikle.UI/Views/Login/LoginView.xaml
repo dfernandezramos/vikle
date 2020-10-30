@@ -82,16 +82,11 @@
                             Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0"
-                            TextColor="{StaticResource BlueMediumColor}"
-                            FontAttributes="Bold"
-                            Text="Continue"
-                            BorderColor="{StaticResource YellowStrongColor}"
-                            BackgroundColor="{StaticResource YellowStrongColor}" />
+                            Style="{StaticResource YellowButton}"
+                            Text="Continue"/>
                     <Button Grid.Column="1"
-                            TextColor="{StaticResource BlueMediumColor}"
-                            Text="Sing up"
-                            BorderColor="{StaticResource BlueSoftColor}"
-                            BackgroundColor="White" />
+                            Style="{StaticResource WhiteButton}"
+                            Text="Sing up"/>
                 </Grid>
             </Grid>
         </Grid>

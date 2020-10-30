@@ -33,7 +33,7 @@
             Property="Margin"
             Value="0, 0, 0, 6" />
     </Style>
-
+    
     <Style
         TargetType="Label"
         x:Key="WelcomeInfo">
@@ -65,5 +65,67 @@
                 Value="{StaticResource BlueStrongColor}" />
         <Setter Property="PlaceholderColor"
                 Value="{StaticResource BlueSoftColor}" />
+    </Style>
+    <Style
+        TargetType="DatePicker"
+        x:Key="VikleDatePicker">
+        <Setter Property="BackgroundColor"
+                Value="White" />
+        <Setter Property="HorizontalOptions"
+                Value="CenterAndExpand" />
+        <Setter Property="TextColor"
+                Value="{StaticResource BlueStrongColor}" />
+    </Style>
+    <Style
+        TargetType="Picker"
+        x:Key="ViklePicker">
+        <Setter Property="BackgroundColor"
+                Value="White" />
+        <Setter Property="TextColor"
+                Value="{StaticResource BlueStrongColor}" />
+    </Style>
+    <Style
+        TargetType="Label"
+        x:Key="BlueLabel">
+        <Setter
+            Property="FontSize"
+            Value="18" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource BlueStrongColor}" />
+        <Setter
+            Property="VerticalTextAlignment"
+            Value="Center" />
+    </Style>
+    
+    <Style
+        TargetType="Button"
+        x:Key="YellowButton">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource BlueMediumColor}" />
+        <Setter
+            Property="BorderColor"
+            Value="{StaticResource YellowStrongColor}" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource YellowStrongColor}" />
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+    </Style>
+    
+    <Style
+        TargetType="Button"
+        x:Key="WhiteButton">
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource BlueMediumColor}" />
+        <Setter
+            Property="BorderColor"
+            Value="{StaticResource BlueSoftColor}" />
+        <Setter
+            Property="BackgroundColor"
+            Value="White" />
     </Style>
 </ResourceDictionary>
