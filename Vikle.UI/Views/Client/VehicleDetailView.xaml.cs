@@ -4,6 +4,9 @@ using Xamarin.Forms.Xaml;
 
 namespace Vikle.UI.Views.Client
 {
+    /// <summary>
+    /// This class contains the definition for the vehicle detail view.
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VehicleDetailView : ContentPage
     {
