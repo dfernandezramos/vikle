@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             xmlns:views="clr-namespace:Vikle.UI.Views"
+             x:Class="Vikle.UI.Views.Client.DateDetailView"
+             Title="New Date">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Shell.TitleView>
+        <views:ShellTitleView x:Name="TitleView"/>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Date details:"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource BlueStrongColor}"
+                   FontSize="Large"
+                   Padding="50,50,0,10"/>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="75" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0"
+                       Padding="50,30,0,0"
+                       Style="{StaticResource BlueLabel}"
+                       Text="Vehicle:"/>
+                <Picker Grid.Row="0" Grid.Column="1"
+                        Margin="20,30,20,0"
+                        Style="{StaticResource ViklePicker}"
+                        x:Name="VehiclePicker"/>
+                <Label Grid.Row="1" Grid.Column="0"
+                       Padding="50,30,0,0"
+                       Style="{StaticResource BlueLabel}"
+                       Text="Date:"/>
+                <DatePicker Grid.Row="1" Grid.Column="1"
+                            Margin="20,30,20,0"
+                            HorizontalOptions="CenterAndExpand"
+                            Style="{StaticResource VikleDatePicker}"/>
+                <Label Grid.Row="2" Grid.Column="0"
+                       Padding="50,30,0,0"
+                       Style="{StaticResource BlueLabel}"
+                       Text="Reason:"/>
+                <Picker Grid.Row="2" Grid.Column="1"
+                        Margin="20,30,20,0"
+                        Style="{StaticResource ViklePicker}"
+                        x:Name="ReasonPicker"/>
+            </Grid>
+            <Grid RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0"
+                        Style="{StaticResource YellowButton}"
+                        Margin="0,50,0,0"
+                        HorizontalOptions="Center"
+                        WidthRequest="200"
+                        HeightRequest="75"
+                        Text="Continue"/>
+                <Label Grid.Row="1" HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextDecorations="Underline"
+                       TextColor="{StaticResource BlueStrongColor}"
+                       FontAttributes="Bold"
+                       Text="Cancel"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
