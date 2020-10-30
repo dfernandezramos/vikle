@@ -47,12 +47,12 @@
                            Placeholder="E-mail"
                            Margin="50, 25, 50,0"
                            Keyboard="Email"
-                           Style="{StaticResource LoginEntry}" />
+                           Style="{StaticResource VikleEntry}" />
                     <Entry Grid.Row="2"
                            Placeholder="Password"
                            IsPassword="True"
                            Margin="50, 25, 50,0"
-                           Style="{StaticResource LoginEntry}" />
+                           Style="{StaticResource VikleEntry}" />
                     <Label Grid.Row="3"
                            Margin="50, 25, 50,0"
                            Text="Incorrect login"

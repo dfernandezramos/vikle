@@ -56,7 +56,7 @@
     
     <Style
         TargetType="Entry"
-        x:Key="LoginEntry">
+        x:Key="VikleEntry">
         <Setter Property="BackgroundColor"
                 Value="White" />
         <Setter Property="HorizontalTextAlignment"
