@@ -83,10 +83,10 @@
                                Padding="50,30,0,0"
                                Style="{StaticResource BlueLabel}"
                                Text="Year:"/>
-                        <DatePicker Grid.Row="3" Grid.Column="1"
-                               Margin="20,30,20,0"
-                               HorizontalOptions="CenterAndExpand"
-                               Style="{StaticResource VikleDatePicker}"/>
+                        <Picker Grid.Row="3" Grid.Column="1"
+                                Margin="20,30,20,0"
+                                Style="{StaticResource ViklePicker}"
+                                x:Name="YearPicker"/>
                         <Label Grid.Row="4" Grid.Column="0"
                                Padding="50,30,0,0"
                                Style="{StaticResource BlueLabel}"
