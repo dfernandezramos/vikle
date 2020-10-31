@@ -67,6 +67,8 @@
       <EmbeddedResource Include="Images\long_line.png" />
       <None Remove="Images\dot_green.png" />
       <EmbeddedResource Include="Images\dot_green.png" />
+      <None Remove="Images\telephone.png" />
+      <EmbeddedResource Include="Images\telephone.png" />
     </ItemGroup>
 
     <ItemGroup>

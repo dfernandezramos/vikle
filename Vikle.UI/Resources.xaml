@@ -128,4 +128,21 @@
             Property="BackgroundColor"
             Value="White" />
     </Style>
+    
+    <Style
+        TargetType="Label"
+        x:Key="BigYellowLabel">
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="FontSize"
+            Value="28" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource YellowStrongColor}" />
+        <Setter
+            Property="Margin"
+            Value="20, 0, 0, 6" />
+    </Style>
 </ResourceDictionary>
