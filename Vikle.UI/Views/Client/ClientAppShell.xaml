@@ -43,6 +43,10 @@
                       Icon="{local:ImageResource Vikle.UI.Images.car.png}">
             <clientviews:VehiclesView />
         </ShellContent>
+        <ShellContent Title="Dates"
+                      Icon="{local:ImageResource Vikle.UI.Images.calendar.png}">
+            <clientviews:DatesView />
+        </ShellContent>
     </FlyoutItem>
 
     <MenuItem Text="Log out"
