@@ -145,4 +145,29 @@
             Property="Margin"
             Value="20, 0, 0, 6" />
     </Style>
+    
+    <Style
+        TargetType="Label"
+        x:Key="MediumYellowLabel">
+        <Setter
+            Property="FontAttributes"
+            Value="Bold" />
+        <Setter
+            Property="FontSize"
+            Value="22" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource YellowStrongColor}" />
+    </Style>
+    
+    <Style
+        TargetType="Label"
+        x:Key="MediumThinYellowLabel">
+        <Setter
+            Property="FontSize"
+            Value="22" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource YellowStrongColor}" />
+    </Style>
 </ResourceDictionary>

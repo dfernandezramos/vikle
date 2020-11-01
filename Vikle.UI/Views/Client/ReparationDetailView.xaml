@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             xmlns:views="clr-namespace:Vikle.UI.Views"
+             x:Class="Vikle.UI.Views.Client.ReparationDetailView"
+             Title="Reparation">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Shell.TitleView>
+        <views:ShellTitleView x:Name="TitleView"/>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid HeightRequest="200"
+                  RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                          ColumnSpacing="0"
+                          BackgroundColor="{StaticResource BlueMediumColor}"
+                          HeightRequest="0"
+                          Padding="20,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Text="Vehicle:"
+                               Style="{StaticResource MediumYellowLabel}"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Row="1" Grid.Column="0"
+                               Text="Date:"
+                               Style="{StaticResource MediumYellowLabel}"/>
+                        <Label Grid.Row="0" Grid.Column="1"
+                               Text="1234 ABC"
+                               Style="{StaticResource MediumThinYellowLabel}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"/>
+                        <Label Grid.Row="1" Grid.Column="1"
+                               Text="24 MAY 2020"
+                               Style="{StaticResource MediumThinYellowLabel}"
+                               HorizontalOptions="Start"/>
+                    </Grid>
+                <Grid Grid.Row="1" ColumnSpacing="0"
+                      BackgroundColor="{StaticResource BlueSoftColor}"
+                      HeightRequest="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <views:ReparationElementStatus Grid.Column="0"/>
+                    <views:ReparationElementStatus Grid.Column="1"/>
+                    <views:ReparationElementStatus Grid.Column="2"/>
+                    <views:ReparationElementStatus Grid.Column="3"/>
+                    <views:ReparationElementStatus Grid.Column="4"/>
+                    <views:ReparationElementStatus Grid.Column="5"/>
+                </Grid>
+            </Grid>
+            <StackLayout>
+                <Label Text="Reparation details:"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource BlueStrongColor}"
+                       FontSize="Large"
+                       Padding="50,20,0,20"/>
+                <ScrollView>
+                    <!-- REPARATION EXPLANATIONS HERE -->
+                </ScrollView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
