@@ -16,8 +16,34 @@
     <Shell.TitleView>
         <views:ShellTitleView x:Name="TitleView"/>
     </Shell.TitleView>
-
+    
     <ContentPage.Content>
-
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <views:NewCollectionItem Grid.Row="0"
+                                     Margin="25,25,25,0"
+                                     HorizontalOptions="FillAndExpand"
+                                     VerticalOptions="FillAndExpand"/>
+            <Label Grid.Row="1" Text="Registered vehicles:"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource BlueStrongColor}"
+                   FontSize="Large"
+                   Padding="40,40,0,0"/>
+            <CollectionView Grid.Row="2" Margin="25,0,25,25" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                            SelectionMode="None" ItemsSource="{Binding Vehicles}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <views:CollectionItem/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
