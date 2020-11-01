@@ -18,6 +18,7 @@ namespace Vikle
 #if DEBUG
             HotReloader.Current.Run(this); 
 #endif
+            Device.SetFlags(new string[] { "Expander_Experimental" });
 
             MainPage = new WorkerAppShell();
         }
