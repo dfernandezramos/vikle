@@ -12,12 +12,20 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid VerticalOptions="StartAndExpand"
+              HorizontalOptions="FillAndExpand"
+              BackgroundColor="{StaticResource YellowSoftColor}">
+            <!-- https://stackoverflow.com/questions/62930599/how-to-add-on-click-event-on-collection-view-of-xamarin-forms -->
+            <!-- <Grid.GestureRecognizers> -->
+            <!--     <TapGestureRecognizer  Command="{Binding Source={x:Reference CurrentPage}, Path=BindingContext.ClickCommand}" /> -->
+            <!-- </Grid.GestureRecognizers> -->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <BoxView BackgroundColor="{Binding Color}" WidthRequest="3" HorizontalOptions="Start"
+            <BoxView BackgroundColor="{Binding Color}"
+                     WidthRequest="3"
+                     HorizontalOptions="Start"
                      VerticalOptions="FillAndExpand"/>    
             <Expander Grid.Column="1">
                 <Expander.Header>
@@ -27,17 +35,33 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="3.5*"/>
                         </Grid.ColumnDefinitions>
-                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                            <Label Text="{Binding Date, StringFormat='{0:dd}'}" TextColor="Black" FontSize="27" 
+                        <StackLayout HorizontalOptions="Center"
+                                     VerticalOptions="Center">
+                            <Label Text="{Binding Date, StringFormat='{0:dd}'}"
+                                   TextColor="{StaticResource BlueMediumColor}"
+                                   FontSize="27" 
                                    HorizontalOptions="Center"/>
-                            <Label Text="{Binding Date, StringFormat='{0:MMMM}'}" TextColor="Black" FontSize="10" 
-                                   HorizontalOptions="Center" Margin="0,-10,0,0"/>
+                            <Label Text="{Binding Date, StringFormat='{0:MMMM}'}"
+                                   TextColor="{StaticResource BlueMediumColor}"
+                                   FontSize="10" 
+                                   HorizontalOptions="Center"
+                                   Margin="0,-10,0,0"/>
                         </StackLayout>
-                        <BoxView Grid.Column="1" BackgroundColor="#F2F4F8" WidthRequest="1" HorizontalOptions="Start" 
+                        <BoxView Grid.Column="1"
+                                 BackgroundColor="White" WidthRequest="1"
+                                 HorizontalOptions="Start" 
                                  VerticalOptions="FillAndExpand"/>
-                        <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="20">
-                            <Label Text="{Binding Topic}" TextColor="Black" FontSize="15"/>
-                            <Label Text="{Binding Duration}" TextColor="#2F3246" FontSize="12" Margin="0,-10,0,0"/>
+                        <StackLayout Grid.Column="2"
+                                     HorizontalOptions="Start"
+                                     VerticalOptions="Center"
+                                     Margin="20">
+                            <Label Text="{Binding Topic}"
+                                   TextColor="{StaticResource BlueMediumColor}"
+                                   FontSize="15"/>
+                            <Label Text="{Binding Duration}"
+                                   TextColor="{StaticResource BlueMediumColor}"
+                                   FontSize="12"
+                                   Margin="0,-10,0,0"/>
                         </StackLayout>
                     </Grid>
                 </Expander.Header>
@@ -47,20 +71,32 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="3.5*"/>
                     </Grid.ColumnDefinitions>
-                    <BoxView Grid.Column="1" BackgroundColor="#F2F4F8" WidthRequest="1" HorizontalOptions="Start" 
+                    <BoxView Grid.Column="1"
+                             BackgroundColor="White"
+                             WidthRequest="1"
+                             HorizontalOptions="Start" 
                              VerticalOptions="FillAndExpand"/>
-                    <StackLayout Grid.Column="2" Spacing="10">
-                        <Label Text="SPEAKERS" TextColor="Black" Opacity="0.5" FontSize="10" Margin="20,0"/>
-                        <StackLayout BindableLayout.ItemsSource="{Binding Speakers}" HorizontalOptions="Start" VerticalOptions="Center" Margin="20,0,0,20">
+                    <StackLayout Grid.Column="2"
+                                 Spacing="10">
+                        <Label Text="SPEAKERS"
+                               TextColor="{StaticResource BlueMediumColor}"
+                               Opacity="0.5" FontSize="10"
+                               Margin="20,0"/>
+                        <StackLayout BindableLayout.ItemsSource="{Binding Speakers}"
+                                     HorizontalOptions="Start"
+                                     VerticalOptions="Center"
+                                     Margin="20,0,0,20">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <Label TextColor="#2F3246" FontSize="12">
+                                    <Label TextColor="{StaticResource BlueMediumColor}"
+                                           FontSize="12">
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <FormattedString.Spans>
                                                     <Span Text="{Binding Time}"/>
                                                     <Span Text=" - "/>
-                                                    <Span Text="{Binding Name}" FontAttributes="Bold"/>
+                                                    <Span Text="{Binding Name}"
+                                                          FontAttributes="Bold"/>
                                                 </FormattedString.Spans>
                                             </FormattedString>
                                         </Label.FormattedText>

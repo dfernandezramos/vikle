@@ -27,6 +27,10 @@
         <DependentUpon>WorkerAppShell.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\NewCollectionItem.xaml.cs">
+        <DependentUpon>NewCollectionItem.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -69,6 +73,8 @@
       <EmbeddedResource Include="Images\dot_green.png" />
       <None Remove="Images\telephone.png" />
       <EmbeddedResource Include="Images\telephone.png" />
+      <None Remove="Images\plus.png" />
+      <EmbeddedResource Include="Images\plus.png" />
     </ItemGroup>
 
     <ItemGroup>
