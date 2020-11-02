@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             x:Class="Vikle.UI.Views.NewCollectionItem">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid VerticalOptions="StartAndExpand"
+              HorizontalOptions="FillAndExpand"
+              BackgroundColor="{StaticResource YellowSoftColor}">
+            <!-- https://stackoverflow.com/questions/62930599/how-to-add-on-click-event-on-collection-view-of-xamarin-forms -->
+            <!-- <Grid.GestureRecognizers> -->
+            <!--     <TapGestureRecognizer  Command="{Binding Source={x:Reference CurrentPage}, Path=BindingContext.ClickCommand}" /> -->
+            <!-- </Grid.GestureRecognizers> -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <BoxView BackgroundColor="{Binding Color}"
+                     WidthRequest="3"
+                     HorizontalOptions="Start"
+                     VerticalOptions="FillAndExpand"/>    
+            <Grid Grid.Column="1" HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="3.5*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+                    <ImageButton BackgroundColor="Transparent"
+                                 Aspect="AspectFill"
+                        Source="{local:ImageResource Vikle.UI.Images.plus.png}"/>
+                </StackLayout>
+                <BoxView Grid.Column="1"
+                         BackgroundColor="#F2F4F8"
+                         WidthRequest="1"
+                         HorizontalOptions="Start" 
+                         VerticalOptions="FillAndExpand"/>
+                <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="20">
+                    <Label Text="New reparation"
+                           TextColor="{StaticResource BlueMediumColor}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           Margin="0,-4,0,0"/>
+                    <Label Text="Tap here to add"
+                           TextColor="{StaticResource BlueMediumColor}"
+                           FontSize="12"
+                           Margin="0,-8,0,0"/>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

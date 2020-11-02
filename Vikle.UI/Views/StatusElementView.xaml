@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             x:Class="Vikle.UI.Views.StatusElementView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid Grid.Column="0"
+              RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="1"
+                       Grid.Column="1"
+                       Source="{local:ImageResource Vikle.UI.Images.dot_green.png}"/>
+            </Grid>
+            <Image Grid.Row="1"
+                   Source="{local:ImageResource Vikle.UI.Images.small_line.png}"
+                   Aspect="Fill"/>
+            <Label Grid.Row="2"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource YellowStrongColor}"
+                   HorizontalOptions="CenterAndExpand"
+                   Text="Pending"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

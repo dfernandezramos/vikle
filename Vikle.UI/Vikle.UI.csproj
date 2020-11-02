@@ -6,7 +6,7 @@
 
     <ItemGroup>
         <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
-        <PackageReference Include="Xamarin.Forms" Version="4.4.0.991640" />
+        <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
     </ItemGroup>
 
     <ItemGroup>
@@ -17,6 +17,18 @@
       </Compile>
       <Compile Update="Views\Login\Welcome\WelcomeHistory.xaml.cs">
         <DependentUpon>WelcomeHistoryView.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\ShellTitleView.xaml.cs">
+        <DependentUpon>ShellTitleView.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Worker\WorkerAppShell.xaml.cs">
+        <DependentUpon>WorkerAppShell.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\NewCollectionItem.xaml.cs">
+        <DependentUpon>NewCollectionItem.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
@@ -42,5 +54,31 @@
       <EmbeddedResource Include="Images\welcome_vikle.png" />
       <None Remove="Images\successful.png" />
       <EmbeddedResource Include="Images\successful.png" />
+      <None Remove="Images\home.png" />
+      <None Remove="Images\car.png" />
+      <None Remove="Images\logout.png" />
+      <EmbeddedResource Include="Images\logout.png" />
+      <None Remove="Images\small_line.png" />
+      <EmbeddedResource Include="Images\small_line.png" />
+      <None Remove="Images\empty_dot.png" />
+      <None Remove="Images\dot.png" />
+      <EmbeddedResource Include="Images\dot.png" />
+      <None Remove="Images\calendar.png" />
+      <EmbeddedResource Include="Images\calendar.png" />
+      <None Remove="Images\line.png" />
+      <EmbeddedResource Include="Images\line.png" />
+      <None Remove="Images\long_line.png" />
+      <EmbeddedResource Include="Images\long_line.png" />
+      <None Remove="Images\dot_green.png" />
+      <EmbeddedResource Include="Images\dot_green.png" />
+      <None Remove="Images\telephone.png" />
+      <EmbeddedResource Include="Images\telephone.png" />
+      <None Remove="Images\plus.png" />
+      <EmbeddedResource Include="Images\plus.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Images\car.png" />
+      <EmbeddedResource Include="Images\home.png" />
     </ItemGroup>
 </Project>

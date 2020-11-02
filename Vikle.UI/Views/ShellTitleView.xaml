@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             x:Class="Vikle.UI.Views.ShellTitleView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid RowSpacing="0" ColumnSpacing="0" Padding="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="*"/>
+            <ColumnDefinition
+                Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0"
+               x:Name="TitleLabel"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Padding="0,0,22,0"
+               FontSize="22"
+               FontAttributes="Bold"
+               TextColor="{StaticResource YellowStrongColor}"/>
+        <ImageButton Grid.Column="1"
+                     x:Name="Button"
+                     Command="{Binding HomePageCommand}"
+                     BackgroundColor="Transparent"
+                     Source="{local:ImageResource Vikle.UI.Images.home.png}" />
+    </Grid>
+</ContentView>

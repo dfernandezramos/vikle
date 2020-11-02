@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             xmlns:views="clr-namespace:Vikle.UI.Views"
+             xmlns:clientviews="clr-namespace:Vikle.UI.Views.Client"
+             x:Class="Vikle.UI.Views.Client.ClientAppShell"
+             FlyoutBackgroundColor="{StaticResource BlueMediumColor}">
+    <Shell.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Shell.Resources>
+    <Shell.FlyoutHeader>
+        <views:VikleFlyoutHeader/>
+    </Shell.FlyoutHeader>
+
+    <!-- Template each FlyoutItem -->
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <views:FlyoutItemTemplate/>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <!-- Template each MenuItem -->
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <views:MenuItemTemplate/>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    <FlyoutItem Title="Worker"
+                FlyoutDisplayOptions="AsMultipleItems"
+                Shell.BackgroundColor="{StaticResource BlueStrongColor}"
+                Shell.ForegroundColor="{StaticResource YellowStrongColor}"
+                Shell.TitleColor="{StaticResource YellowStrongColor}"
+                Shell.TabBarBackgroundColor="{StaticResource BlueMediumColor}"
+                Shell.UnselectedColor="{StaticResource YellowSoftColor}">
+        <ShellContent Title="Vehicles"
+                      Icon="{local:ImageResource Vikle.UI.Images.car.png}">
+            <clientviews:VehiclesView />
+        </ShellContent>
+        <ShellContent Title="Dates"
+                      Icon="{local:ImageResource Vikle.UI.Images.calendar.png}">
+            <clientviews:DatesView />
+        </ShellContent>
+    </FlyoutItem>
+
+    <MenuItem Text="Log out"
+              IconImageSource="{local:ImageResource Vikle.UI.Images.logout.png}"
+              Command="{Binding RandomPageCommand}" />
+</Shell>

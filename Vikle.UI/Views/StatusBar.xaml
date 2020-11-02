@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             xmlns:views="clr-namespace:Vikle.UI.Views"
+             x:Class="Vikle.UI.Views.StatusBar">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0"
+                         BackgroundColor="{StaticResource BlueSoftColor}"/>
+            <Image Grid.Row="0"
+                   Source="{local:ImageResource Vikle.UI.Images.long_line.png}"
+                   Margin="0,0,0,32"
+                   Aspect="Fill"/>
+            <Grid Grid.Row="0"
+                  RowSpacing="0" ColumnSpacing="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <views:StatusElementView Grid.Column="0"/>
+                <views:StatusElementView Grid.Column="1"/>
+                <views:StatusElementView Grid.Column="2"/>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

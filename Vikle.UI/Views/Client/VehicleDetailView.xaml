@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             xmlns:views="clr-namespace:Vikle.UI.Views"
+             x:Class="Vikle.UI.Views.Client.VehicleDetailView"
+             Title="Vehicle">
+     <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Shell.TitleView>
+        <views:ShellTitleView x:Name="TitleView"/>
+    </Shell.TitleView>
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0"
+                        BackgroundColor="{StaticResource BlueSoftColor}">
+                <StackLayout BackgroundColor="White">
+                    <views:StatusBar/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1"
+                                Margin="0,30,20,0"
+                                Style="{StaticResource WhiteButton}"
+                                BorderWidth="1"
+                                Text="History"/>
+                    </Grid>
+                    <Label Text="Vehicle details:"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource BlueStrongColor}"
+                           FontSize="Large"
+                           Padding="50,20,0,10"/>
+                    <Grid RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="75" />
+                            <RowDefinition Height="75" />
+                            <RowDefinition Height="75" />
+                            <RowDefinition Height="75" />
+                            <RowDefinition Height="75" />
+                            <RowDefinition Height="75" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Padding="50,30,0,0"
+                               Style="{StaticResource BlueLabel}"
+                               Text="Plate n.:"/>
+                        <Entry Grid.Row="0" Grid.Column="1"
+                               Margin="20,30,20,0"
+                               Style="{StaticResource VikleEntry}"
+                               Placeholder="Plate number"/>
+                        <Label Grid.Row="1" Grid.Column="0"
+                               Padding="50,30,0,0"
+                               Style="{StaticResource BlueLabel}"
+                               Text="Model:"/>
+                        <Entry Grid.Row="1" Grid.Column="1"
+                               Margin="20,30,20,0"
+                               Style="{StaticResource VikleEntry}"
+                               Placeholder="Model"/>
+                        <Label Grid.Row="2" Grid.Column="0"
+                               Padding="50,30,0,0"
+                               Style="{StaticResource BlueLabel}"
+                               Text="Type:"/>
+                        <Picker Grid.Row="2" Grid.Column="1"
+                               Margin="20,30,20,0"
+                               Style="{StaticResource ViklePicker}"
+                               x:Name="TypePicker"/>
+                        <Label Grid.Row="3" Grid.Column="0"
+                               Padding="50,30,0,0"
+                               Style="{StaticResource BlueLabel}"
+                               Text="Year:"/>
+                        <Picker Grid.Row="3" Grid.Column="1"
+                                Margin="20,30,20,0"
+                                Style="{StaticResource ViklePicker}"
+                                x:Name="YearPicker"/>
+                        <Label Grid.Row="4" Grid.Column="0"
+                               Padding="50,30,0,0"
+                               Style="{StaticResource BlueLabel}"
+                               Text="Last TBDS:"/>
+                        <DatePicker Grid.Row="4" Grid.Column="1"
+                                    Margin="20,30,20,0"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Style="{StaticResource VikleDatePicker}"/>
+                        <Label Grid.Row="5" Grid.Column="0"
+                               Padding="50,30,0,0"
+                               Style="{StaticResource BlueLabel}"
+                               Text="Last ITV:"/>
+                        <DatePicker Grid.Row="5" Grid.Column="1"
+                                    Margin="20,30,20,0"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Style="{StaticResource VikleDatePicker}"/>
+                    </Grid>
+                    <Grid RowSpacing="40">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0"
+                                Style="{StaticResource YellowButton}"
+                                Margin="0,50,0,0"
+                                HorizontalOptions="Center"
+                                WidthRequest="200"
+                                HeightRequest="75"
+                                IsVisible="True"
+                                Text="Confirm"/>
+                    </Grid>
+                    <Label HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextDecorations="Underline"
+                           TextColor="{StaticResource BlueStrongColor}"
+                           FontAttributes="Bold"
+                           Margin="0,30,0,50"
+                           Text="Cancel"/>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

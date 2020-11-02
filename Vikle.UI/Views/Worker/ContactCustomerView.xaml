@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vikle.UI.Views.Worker.ContactCustomerView"
+             xmlns:local="clr-namespace:Vikle.UI"
+             xmlns:views="clr-namespace:Vikle.UI.Views"
+             Title="Contact">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Shell.TitleView>
+        <views:ShellTitleView x:Name="TitleView"/>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="220" />
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0">
+                    <StackLayout BackgroundColor="{StaticResource BlueSoftColor}" HeightRequest="190">
+                        <Label Text="David"
+                               Style="{StaticResource BigYellowLabel}"
+                               Margin="20,40,0,0"/>
+                        <Label Text="Fernández Ramos"
+                               Style="{StaticResource BigYellowLabel}"/>
+                    </StackLayout>
+                </StackLayout>
+                <Grid Grid.Row="0"
+                      Margin="0,140,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="95" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ImageButton Grid.Row="0"
+                           Grid.Column="1"
+                           BackgroundColor="Transparent"
+                           Source="{local:ImageResource Vikle.UI.Images.telephone.png}" Aspect="AspectFill"/>
+                </Grid>
+            </Grid>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="75" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0"
+                       Padding="50,20,0,0"
+                       Style="{StaticResource BlueLabel}"
+                       FontAttributes="Bold"
+                       Text="Phone:" IsVisible="True"/>
+                <Label Grid.Row="0" Grid.Column="1"
+                       Margin="20,20,20,0"
+                       Style="{StaticResource BlueLabel}"
+                       Text="123 456 789"/>
+                <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource BlueSoftColor}" Margin="-80,19,50,0"/>
+                <Label Grid.Row="2" Grid.Column="0"
+                       Padding="50,20,0,0"
+                       Style="{StaticResource BlueLabel}"
+                       FontAttributes="Bold"
+                       Text="E-mail:" IsVisible="True"/>
+                <Label Grid.Row="2" Grid.Column="1"
+                       Margin="20,20,20,0"
+                       Style="{StaticResource BlueLabel}"
+                       Text="email@email.com"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

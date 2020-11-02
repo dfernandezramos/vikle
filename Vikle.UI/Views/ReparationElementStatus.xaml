@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vikle.UI"
+             x:Class="Vikle.UI.Views.ReparationElementStatus">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0"
+                   Source="{local:ImageResource Vikle.UI.Images.dot.png}" />
+            <Label Grid.Row="1"
+                   Text="element"
+                   TextColor="{StaticResource YellowStrongColor}"
+                   HorizontalOptions="CenterAndExpand"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
