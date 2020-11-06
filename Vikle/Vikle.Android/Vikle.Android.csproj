@@ -75,6 +75,14 @@
         <AndroidResource Include="Resources\values\colors.xml" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\Vikle.Core\Vikle.Core.csproj">
+          <Project>{6196f002-1468-4cc9-8a4d-8b28212ef703}</Project>
+          <Name>Vikle.Core</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Vikle.UI\Vikle.UI.csproj">
+          <Project>{8409eee1-0320-4b8e-863e-c636b71f50a9}</Project>
+          <Name>Vikle.UI</Name>
+        </ProjectReference>
         <ProjectReference Include="..\Vikle\Vikle.csproj">
             <Project>{8F230DE8-DE29-4E9B-B254-A7C080AD7510}</Project>
             <Name>Vikle</Name>
