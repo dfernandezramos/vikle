@@ -14,7 +14,7 @@
         <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-        <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+        <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
         <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -26,6 +26,7 @@
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
         <AndroidLinkMode>None</AndroidLinkMode>
+        <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <DebugSymbols>true</DebugSymbols>
@@ -43,9 +44,12 @@
         <Reference Include="System.Core" />
         <Reference Include="System.Xml.Linq" />
         <Reference Include="System.Xml" />
+        <Reference Include="Mono.Android.Export" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
+        <PackageReference Include="Xamarin.AndroidX.MediaRouter" Version="1.2.0" />
+        <PackageReference Include="Xamarin.AndroidX.Palette" Version="1.0.0.5" />
         <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
         <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
         <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
