@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Vikle.UI.Views.Login.Welcome.WelcomeView"
-    xmlns:local="clr-namespace:Vikle.UI"
-    xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
-    BackgroundColor="{StaticResource BlueStrongColor}">
+<views:MvxContentPage x:TypeArguments="viewModels:WelcomeVM"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:Vikle.Core.ViewModels;assembly=Vikle.Core"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      x:Class="Vikle.UI.Views.Login.Welcome.WelcomeView"
+                      xmlns:local="clr-namespace:Vikle.UI"
+                      xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+                      BackgroundColor="{StaticResource BlueStrongColor}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -77,4 +79,4 @@
             </Grid>
         </Grid>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

@@ -110,9 +110,17 @@
     <ItemGroup>
         <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
         <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
-        <PackageReference Include="Xamarin.HotReload" Version="2.0.14" />
+        <PackageReference Include="Xamarin.HotReload" Version="2.0.15" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\Vikle.Core\Vikle.Core.csproj">
+          <Project>{6196f002-1468-4cc9-8a4d-8b28212ef703}</Project>
+          <Name>Vikle.Core</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Vikle.UI\Vikle.UI.csproj">
+          <Project>{8409eee1-0320-4b8e-863e-c636b71f50a9}</Project>
+          <Name>Vikle.UI</Name>
+        </ProjectReference>
         <ProjectReference Include="..\Vikle\Vikle.csproj">
             <Project>{B3E0A99B-030A-415B-B05D-4A3D7BB6C82E}</Project>
             <Name>Vikle</Name>

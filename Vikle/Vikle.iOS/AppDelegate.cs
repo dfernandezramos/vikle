@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Foundation;
+﻿using Foundation;
+using MvvmCross.Forms.Platforms.Ios.Core;
 using UIKit;
+using Vikle.UI;
 
 namespace Vikle.iOS
 {
@@ -10,7 +9,7 @@ namespace Vikle.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public partial class AppDelegate : MvxFormsApplicationDelegate<MvxFormsIosSetup<Vikle.Core.App, FormsApp>, Vikle.Core.App, FormsApp>
     {
         //
         // This method is invoked when the application has loaded and is ready to run. In this 

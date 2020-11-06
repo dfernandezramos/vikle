@@ -1,4 +1,5 @@
 using MvvmCross.ViewModels;
+using Vikle.Core.ViewModels;
 
 namespace Vikle.Core
 {
@@ -11,7 +12,7 @@ namespace Vikle.Core
         public override void Initialize()
         {
             RegisterServices();
-            // RegisterAppStart<TipViewModel>();
+            RegisterAppStart<WelcomeVM>();
         }
 
         void RegisterServices()
