@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Vikle.Core.Interfaces;
 using Vikle.Core.Models;
 
 namespace Vikle.Core.ViewModels
@@ -13,6 +14,10 @@ namespace Vikle.Core.ViewModels
     public class RecoverPasswordVM : MvxViewModel
     {
         readonly IMvxNavigationService _mvxNavigationService;
+        readonly IRecoverPasswordService _recoverPasswordService;
+        private string _recoverError;
+        private string _email;
+        private bool _showRecoverError;
 
         /// <summary>
         /// Gets or sets the login navigation command
@@ -28,10 +33,50 @@ namespace Vikle.Core.ViewModels
         /// Gets or sets the recover password command
         /// </summary>
         public IMvxAsyncCommand RecoverPasswordCommand { get; }
-        
-        public RecoverPasswordVM(IMvxNavigationService mvxNavigationService)
+
+        /// <summary>
+        /// Gets or sets the email the user wants to recover the password from
+        /// </summary>
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                RaisePropertyChanged(() => Email);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the recover error message.
+        /// </summary>
+        public string RecoverError
+        {
+            get => _recoverError;
+            set
+            {
+                _recoverError = value;
+                RaisePropertyChanged(() => RecoverError);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a boolean indicating whether the recover error message has to be shown or not.
+        /// </summary>
+        public bool ShowRecoverError
+        {
+            get => _showRecoverError;
+            set
+            {
+                _showRecoverError = value;
+                RaisePropertyChanged(() => ShowRecoverError);
+            }
+        }
+
+        public RecoverPasswordVM(IMvxNavigationService mvxNavigationService, IRecoverPasswordService recoverPasswordService)
         {
             _mvxNavigationService = mvxNavigationService;
+            _recoverPasswordService = recoverPasswordService;
             
             LoginNavigateCommand = new MvxAsyncCommand(LoginNavigation);
             SignupNavigateCommand = new MvxAsyncCommand(SignupNavigation);
@@ -50,15 +95,24 @@ namespace Vikle.Core.ViewModels
 
         async Task RecoverPassword(CancellationToken cancellationToken)
         {
-            // TODO: Implement recover password logic
+            ShowRecoverError = false;
+            Result result = _recoverPasswordService.RecoverPassword(Email);
 
-            var confirmationParams = new ConfirmationParams
+            if (result.Error)
             {
-                Title = "Reset successful!",
-                Subtitle = "If the provided address exists, we will send you a password recover e-mail"
-            };
+                RecoverError = result.Message;
+                ShowRecoverError = true;
+            }
+            else
+            {
+                var confirmationParams = new ConfirmationParams
+                {
+                    Title = "Reset successful!",
+                    Subtitle = "If the provided address exists, we will send you a password recover e-mail"
+                };
             
-            await _mvxNavigationService.Navigate<ConfirmationVM, ConfirmationParams>(confirmationParams ,cancellationToken: cancellationToken);
+                await _mvxNavigationService.Navigate<ConfirmationVM, ConfirmationParams>(confirmationParams ,cancellationToken: cancellationToken);
+            }
         }
     }
 }
