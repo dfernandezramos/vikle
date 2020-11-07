@@ -1,8 +1,11 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Vikle.Core.Interfaces;
+using Vikle.Core.Models;
 
 namespace Vikle.Core.ViewModels
 {
@@ -12,6 +15,9 @@ namespace Vikle.Core.ViewModels
     public class LoginVM : MvxViewModel
     {
         readonly IMvxNavigationService _mvxNavigationService;
+        readonly ILoginService _loginService;
+        private bool _showLoginError;
+        private string _loginError;
 
         /// <summary>
         /// Gets or sets the login command
@@ -28,9 +34,46 @@ namespace Vikle.Core.ViewModels
         /// </summary>
         public IMvxAsyncCommand RecoverPasswordCommand { get; }
 
-        public LoginVM(IMvxNavigationService navigationService)
+        /// <summary>
+        /// Gets or sets the user name.
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user password.
+        /// </summary>
+        public string UserPassword { get; set; }
+
+        /// <summary>
+        /// Gets or sets the login error message.
+        /// </summary>
+        public string LoginError
+        {
+            get => _loginError;
+            set
+            {
+                _loginError = value;
+                RaisePropertyChanged(() => LoginError);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a boolean indicating whether the login error message has to be shown or not.
+        /// </summary>
+        public bool ShowLoginError
+        {
+            get => _showLoginError;
+            set
+            {
+                _showLoginError = value;
+                RaisePropertyChanged(() => ShowLoginError);
+            }
+        }
+
+        public LoginVM(IMvxNavigationService navigationService, ILoginService loginService)
         {
             _mvxNavigationService = navigationService;
+            _loginService = loginService;
 
             LoginCommand = new MvxAsyncCommand(Login);
             SignupNavigateCommand = new MvxAsyncCommand(SignupNavigation);
@@ -44,7 +87,25 @@ namespace Vikle.Core.ViewModels
 
         async Task Login(CancellationToken cancellationToken)
         {
-            // TODO: Pending implement login logic
+            ShowLoginError = false;
+            LoginResult result = _loginService.Login(UserName, UserPassword);
+
+            if (result.Error)
+            {
+                ShowLoginError = true;
+                LoginError = result.Message;
+            }
+            else
+            {
+                if (result.Worker)
+                {
+                    await _mvxNavigationService.Navigate<WSReparationsVM>(cancellationToken: cancellationToken);
+                }
+                else
+                {
+                    await _mvxNavigationService.Navigate<VehiclesVM>(cancellationToken: cancellationToken);
+                }
+            }
         }
         
         async Task SignupNavigation(CancellationToken cancellationToken)

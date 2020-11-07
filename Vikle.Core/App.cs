@@ -1,4 +1,7 @@
+using MvvmCross;
 using MvvmCross.ViewModels;
+using Vikle.Core.Interfaces;
+using Vikle.Core.Services;
 using Vikle.Core.ViewModels;
 
 namespace Vikle.Core
@@ -17,7 +20,7 @@ namespace Vikle.Core
 
         void RegisterServices()
         {
-            // Mvx.IoCProvider.RegisterType<ICalculationService, CalculationService>();
+            Mvx.IoCProvider.RegisterType<ILoginService, LoginService>();
         }
     }
 }

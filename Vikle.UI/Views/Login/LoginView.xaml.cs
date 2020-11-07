@@ -1,3 +1,4 @@
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Forms.Views;
 using Vikle.Core.ViewModels;
 using Xamarin.Forms;
@@ -22,6 +23,13 @@ namespace Vikle.UI.Views.Login
 
             LoginButton.Command = ViewModel.LoginCommand;
             SignupButton.Command = ViewModel.SignupNavigateCommand;
+            UsernameEntry.BindingContext = ViewModel;
+            UsernameEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.UserName));
+            UserPasswordEntry.BindingContext = ViewModel;
+            UserPasswordEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.UserPassword));
+            ErrorLabel.BindingContext = ViewModel;
+            ErrorLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.ShowLoginError));
+            ErrorLabel.SetBinding(Label.TextProperty, nameof(ViewModel.LoginError));
 
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.RecoverPasswordCommand.ExecuteAsync();
