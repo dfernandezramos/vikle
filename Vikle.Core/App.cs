@@ -22,6 +22,7 @@ namespace Vikle.Core
         {
             Mvx.IoCProvider.RegisterType<ILoginService, LoginService>();
             Mvx.IoCProvider.RegisterType<IRecoverPasswordService, RecoverPasswordService>();
+            Mvx.IoCProvider.RegisterType<ISignupService, SignupService> ();
         }
     }
 }

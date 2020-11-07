@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Vikle.Core.Interfaces;
 using Vikle.Core.Models;
 
 namespace Vikle.Core.ViewModels
@@ -14,6 +15,9 @@ namespace Vikle.Core.ViewModels
     {
 
         readonly IMvxNavigationService _mvxNavigationService;
+        readonly ISignupService _signupService;
+        private string _signupError;
+        private bool _showSignupError;
 
         /// <summary>
         /// Gets or sets the back navigation command
@@ -25,12 +29,45 @@ namespace Vikle.Core.ViewModels
         /// </summary>
         public IMvxAsyncCommand SignupCommand { get; }
         
-        public SignupVM(IMvxNavigationService navigationService)
+        /// <summary>
+        /// Gets or sets the user signup data
+        /// </summary>
+        public SignupData UserData { get; set; }
+
+        /// <summary>
+        /// Gets or sets the recover error message.
+        /// </summary>
+        public string SignupError
+        {
+            get => _signupError;
+            set
+            {
+                _signupError = value;
+                RaisePropertyChanged(() => SignupError);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a boolean indicating whether the recover error message has to be shown or not.
+        /// </summary>
+        public bool ShowSignupError
+        {
+            get => _showSignupError;
+            set
+            {
+                _showSignupError = value;
+                RaisePropertyChanged(() => ShowSignupError);
+            }
+        }
+
+        public SignupVM(IMvxNavigationService navigationService, ISignupService signupService)
         {
             _mvxNavigationService = navigationService;
+            _signupService = signupService;
 
             BackNavigationCommand = new MvxAsyncCommand(BackNavigation);
             SignupCommand = new MvxAsyncCommand(Signup);
+            UserData = new SignupData();
         }
         
         async Task BackNavigation(CancellationToken cancellationToken)
@@ -40,15 +77,24 @@ namespace Vikle.Core.ViewModels
         
         async Task Signup(CancellationToken cancellationToken)
         {
-            // TODO: Pending implement signup logic
-            
-            var confirmationParams = new ConfirmationParams
+            ShowSignupError = false;
+            Result result = _signupService.SignUp(UserData);
+
+            if (result.Error)
             {
-                Title = "Signup successful!",
-                Subtitle = "We have sent you a confirmation e-mail but you can now log in"
-            };
-            
-            await _mvxNavigationService.Navigate<ConfirmationVM, ConfirmationParams>(confirmationParams ,cancellationToken: cancellationToken);
+                SignupError = result.Message;
+                ShowSignupError = true;
+            }
+            else
+            {
+                var confirmationParams = new ConfirmationParams
+                {
+                    Title = "Signup successful!",
+                    Subtitle = "We have sent you a confirmation e-mail but you can now log in"
+                };
+                
+                await _mvxNavigationService.Navigate<ConfirmationVM, ConfirmationParams>(confirmationParams ,cancellationToken: cancellationToken);
+            }
         }
     }
 }

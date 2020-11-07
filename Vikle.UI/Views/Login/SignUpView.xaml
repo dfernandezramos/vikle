@@ -46,12 +46,11 @@
                            Padding="0,50,0,0"
                            Style="{StaticResource WelcomeTitle}" />
                     <Label Grid.Row="1"
+                           x:Name="ErrorLabel"
                            Margin="50, 25, 50,0"
-                           Text="All fields are mandatory*"
                            HorizontalTextAlignment="Center"
                            TextColor="Red"
-                           FontAttributes="Bold"
-                           IsVisible="False" />
+                           FontAttributes="Bold" />
                     <ScrollView Grid.Row="2">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -64,31 +63,37 @@
                                 <RowDefinition Height="30" />
                             </Grid.RowDefinitions>
                             <Entry Grid.Row="0"
+                                   x:Name="NameEntry"
                                    Placeholder="Name*"
                                    Margin="50, 25, 50,0"
                                    Keyboard="Text"
                                    Style="{StaticResource VikleEntry}" />
                             <Entry Grid.Row="1"
+                                   x:Name="SurnameEntry"
                                    Placeholder="Surname*"
                                    Margin="50, 25, 50,0"
                                    Keyboard="Text"
                                    Style="{StaticResource VikleEntry}" />
                             <Entry Grid.Row="2"
+                                   x:Name="PhoneEntry"
                                    Placeholder="Phone number*"
                                    Margin="50, 25, 50,0"
                                    Keyboard="Telephone"
                                    Style="{StaticResource VikleEntry}" />
                             <Entry Grid.Row="3"
+                                   x:Name="EmailEntry"
                                    Placeholder="E-mail*"
                                    Margin="50, 25, 50,0"
                                    Keyboard="Email"
                                    Style="{StaticResource VikleEntry}" />
                             <Entry Grid.Row="4"
+                                   x:Name="PasswordEntry"
                                    Placeholder="Password*"
                                    IsPassword="True"
                                    Margin="50, 25, 50,0"
                                    Style="{StaticResource VikleEntry}" />
                             <Entry Grid.Row="5"
+                                   x:Name="RepeatPasswordEntry"
                                    Placeholder="Repeat password*"
                                    IsPassword="True"
                                    Margin="50, 25, 50,0"
