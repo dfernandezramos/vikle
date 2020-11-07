@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Vikle.UI"
-             x:Class="Vikle.UI.Views.Login.LoginView">
+<views:MvxContentPage x:TypeArguments="viewModels:LoginVM"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:Vikle.Core.ViewModels;assembly=Vikle.Core"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:local="clr-namespace:Vikle.UI"
+                      x:Class="Vikle.UI.Views.Login.LoginView">
     <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -61,11 +64,12 @@
                            TextColor="Red"
                            FontAttributes="Bold" />
                     <Label Grid.Row="4"
+                           x:Name="ForgotPasswordLabel"
                            Margin="50, 0, 50,0"
                            HorizontalTextAlignment="Center"
                            Text="Forgot your password?"
                            TextDecorations="Underline"
-                           TextColor="{StaticResource YellowStrongColor}" />
+                           TextColor="{StaticResource YellowStrongColor}"/>
                 </Grid>
             </Grid>
             <Grid
@@ -83,13 +87,15 @@
                             Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0"
+                            x:Name="LoginButton"
                             Style="{StaticResource YellowButton}"
                             Text="Continue"/>
                     <Button Grid.Column="1"
+                            x:Name="SignupButton"
                             Style="{StaticResource WhiteButton}"
                             Text="Sing up"/>
                 </Grid>
             </Grid>
         </Grid>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

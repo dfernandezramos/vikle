@@ -3,13 +3,11 @@ using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Vikle.Core.Models;
 
 namespace Vikle.Core.ViewModels
 {
-    /// <summary>
-    /// This class contains the implementation of the Welcome viewmodel
-    /// </summary>
-    public class WelcomeVM : MvxViewModel
+    public class ConfirmationVM : MvxViewModel<ConfirmationParams>
     {
         readonly IMvxNavigationService _mvxNavigationService;
 
@@ -22,13 +20,29 @@ namespace Vikle.Core.ViewModels
         /// Gets or sets the signup navigation command
         /// </summary>
         public IMvxAsyncCommand SignupNavigateCommand { get; }
+
+        /// <summary>
+        /// Gets or sets the title text of the view.
+        /// </summary>
+        public string Title { get; set; }
         
-        public WelcomeVM(IMvxNavigationService navigationService)
+        /// <summary>
+        /// Gets or sets the subtitle text of the view.
+        /// </summary>
+        public string Subtitle { get; set; }
+
+        public ConfirmationVM(IMvxNavigationService navigationService)
         {
             _mvxNavigationService = navigationService;
 
             LoginNavigateCommand = new MvxAsyncCommand(LoginNavigation);
             SignupNavigateCommand = new MvxAsyncCommand(SignupNavigation);
+        }
+        
+        public override void Prepare(ConfirmationParams parameters)
+        {
+            Title = parameters.Title;
+            Subtitle = parameters.Subtitle;
         }
         
         async Task LoginNavigation(CancellationToken cancellationToken)

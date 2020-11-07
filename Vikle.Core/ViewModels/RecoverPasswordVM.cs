@@ -3,13 +3,14 @@ using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Vikle.Core.Models;
 
 namespace Vikle.Core.ViewModels
 {
     /// <summary>
-    /// This class contains the implementation of the Welcome viewmodel
+    /// This class implements the recover password viewmodel.
     /// </summary>
-    public class WelcomeVM : MvxViewModel
+    public class RecoverPasswordVM : MvxViewModel
     {
         readonly IMvxNavigationService _mvxNavigationService;
 
@@ -23,12 +24,18 @@ namespace Vikle.Core.ViewModels
         /// </summary>
         public IMvxAsyncCommand SignupNavigateCommand { get; }
         
-        public WelcomeVM(IMvxNavigationService navigationService)
+        /// <summary>
+        /// Gets or sets the recover password command
+        /// </summary>
+        public IMvxAsyncCommand RecoverPasswordCommand { get; }
+        
+        public RecoverPasswordVM(IMvxNavigationService mvxNavigationService)
         {
-            _mvxNavigationService = navigationService;
-
+            _mvxNavigationService = mvxNavigationService;
+            
             LoginNavigateCommand = new MvxAsyncCommand(LoginNavigation);
             SignupNavigateCommand = new MvxAsyncCommand(SignupNavigation);
+            RecoverPasswordCommand = new MvxAsyncCommand(RecoverPassword);
         }
         
         async Task LoginNavigation(CancellationToken cancellationToken)
@@ -39,6 +46,19 @@ namespace Vikle.Core.ViewModels
         async Task SignupNavigation(CancellationToken cancellationToken)
         {
             await _mvxNavigationService.Navigate<SignupVM>(cancellationToken: cancellationToken);
+        }
+
+        async Task RecoverPassword(CancellationToken cancellationToken)
+        {
+            // TODO: Implement recover password logic
+
+            var confirmationParams = new ConfirmationParams
+            {
+                Title = "Reset successful!",
+                Subtitle = "If the provided address exists, we will send you a password recover e-mail"
+            };
+            
+            await _mvxNavigationService.Navigate<ConfirmationVM, ConfirmationParams>(confirmationParams ,cancellationToken: cancellationToken);
         }
     }
 }

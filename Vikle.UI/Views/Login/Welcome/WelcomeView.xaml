@@ -66,12 +66,14 @@
                             Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0"
+                            x:Name="LoginButton"
                             TextColor="{StaticResource BlueMediumColor}"
                             FontAttributes="Bold"
                             Text="Login"
                             BorderColor="{StaticResource YellowStrongColor}"
                             BackgroundColor="{StaticResource YellowStrongColor}" />
                     <Button Grid.Column="1"
+                            x:Name="SignupButton"
                             TextColor="{StaticResource BlueMediumColor}"
                             Text="Sing up"
                             BorderColor="{StaticResource BlueSoftColor}"

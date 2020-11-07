@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Vikle.UI"
-             x:Class="Vikle.UI.Views.Login.ConfirmationView">
+<views:MvxContentPage x:TypeArguments="viewModels:ConfirmationVM"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:Vikle.Core.ViewModels;assembly=Vikle.Core"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:local="clr-namespace:Vikle.UI"
+                      x:Class="Vikle.UI.Views.Login.ConfirmationView">
     <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -42,14 +45,14 @@
                            Source="{local:ImageResource Vikle.UI.Images.successful.png}"
                            TranslationY="50" />
                     <Label Grid.Row="1"
-                           Text="Reset successful!"
+                           x:Name="TitleLabel"
                            Padding="0,50,0,0"
                            Style="{StaticResource WelcomeTitle}" />
                     <Label Grid.Row="2"
                         Style="{StaticResource WelcomeInfo}">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="If the provided address exists, we will send you a password recover e-mail" />
+                                <Span x:Name="SubtitleLabel" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -70,12 +73,14 @@
                             Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0"
+                            x:Name="LoginButton"
                             TextColor="{StaticResource BlueMediumColor}"
                             FontAttributes="Bold"
                             Text="Login"
                             BorderColor="{StaticResource YellowStrongColor}"
                             BackgroundColor="{StaticResource YellowStrongColor}" />
                     <Button Grid.Column="1"
+                            x:Name="SignupButton"
                             TextColor="{StaticResource BlueMediumColor}"
                             Text="Sing up"
                             BorderColor="{StaticResource BlueSoftColor}"
@@ -84,4 +89,4 @@
             </Grid>
         </Grid>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>
