@@ -1,8 +1,10 @@
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using MvvmCross;
 using Vikle.Core.Interfaces;
 using Vikle.Core.Models;
+using Xamarin.Essentials;
 
 namespace Vikle.Core.Services
 {
@@ -11,11 +13,13 @@ namespace Vikle.Core.Services
     /// </summary>
     public class LoginService : ILoginService
     {
-        private IApiClientService _clientService;
+        IApiClientService _clientService;
+        ISecureStorageService _secureStorageService;
         
         public LoginService()
         {
             _clientService = Mvx.IoCProvider.Resolve<IApiClientService>();
+            _secureStorageService = Mvx.IoCProvider.Resolve<ISecureStorageService>();
         }
         
         /// <summary>
@@ -55,7 +59,7 @@ namespace Vikle.Core.Services
                 return result;
             }
 
-            StoreUserData(userData.Result);
+            await StoreUserData(loginData.Result.UserId, loginData.Result.Token);
             result.Worker = userData.Result.IsWorker;
 
             return result;
@@ -82,9 +86,10 @@ namespace Vikle.Core.Services
             return result;
         }
 
-        void StoreUserData(User user)
+        async Task StoreUserData(string userId, string token)
         {
-            // TODO: Pending save globally user data
+            await _secureStorageService.SetAsync(Constants.SS_TOKEN, token);
+            await _secureStorageService.SetAsync(Constants.SS_USER_ID, userId);
         }
     }
 }

@@ -27,6 +27,7 @@ namespace Vikle.Core
             
             Mvx.IoCProvider.RegisterSingleton<IRestClient> (new RestClient(Constants.API_BASE_URI));
             Mvx.IoCProvider.RegisterSingleton<IApiClientService> (new ApiClientService ());
+            Mvx.IoCProvider.RegisterSingleton<ISecureStorageService> (new SecureStorageService());
         }
     }
 }

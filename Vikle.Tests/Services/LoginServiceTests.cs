@@ -31,12 +31,15 @@ namespace Vikle.Tests.Services
         const string CLIENT_TOKEN = "UserToken";
         
         LoginService _loginService;
+        DummySecureStorageService _secureStorageService;
         Mock<IRestClient> _restClientMock;
 
         protected override void AdditionalSetup()
         {
             base.AdditionalSetup();
             
+            _secureStorageService = new DummySecureStorageService();
+            Ioc.RegisterSingleton<ISecureStorageService> (_secureStorageService);
             _restClientMock = new Mock<IRestClient> ();
             Ioc.RegisterSingleton<IRestClient> (_restClientMock.Object);
             Ioc.RegisterSingleton<IApiClientService> (new ApiClientService());
@@ -102,6 +105,10 @@ namespace Vikle.Tests.Services
             // Then
             Assert.IsFalse(result.Error);
             Assert.IsTrue(result.Worker);
+            var token = await _secureStorageService.GetAsync(Constants.SS_TOKEN);
+            Assert.AreEqual(WORKER_TOKEN, token);
+            var userId = await _secureStorageService.GetAsync(Constants.SS_USER_ID);
+            Assert.AreEqual(WORKER_ID, userId);
         }
         
         [Test]
@@ -116,6 +123,10 @@ namespace Vikle.Tests.Services
             // Then
             Assert.IsFalse(result.Error);
             Assert.IsFalse(result.Worker);
+            var token = await _secureStorageService.GetAsync(Constants.SS_TOKEN);
+            Assert.AreEqual(CLIENT_TOKEN, token);
+            var userId = await _secureStorageService.GetAsync(Constants.SS_USER_ID);
+            Assert.AreEqual(CLIENT_ID, userId);
         }
         
         [Test]

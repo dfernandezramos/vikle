@@ -10,5 +10,8 @@ namespace Vikle.Core
 #else
         public const string API_BASE_URI = "http://www.vikle.com";
 #endif
+
+        public const string SS_TOKEN = "Vikle_Token";
+        public const string SS_USER_ID = "Vikle_UserId";
     }
 }
