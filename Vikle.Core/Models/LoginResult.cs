@@ -10,10 +10,5 @@ namespace Vikle.Core.Models
         /// a client condition.
         /// </summary>
         public bool Worker { get; set; }
-
-        /// <summary>
-        /// Gets or sets the user id returned by the API.
-        /// </summary>
-        public string UserId { get; set; }
     }
 }

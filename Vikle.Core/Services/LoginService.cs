@@ -24,6 +24,13 @@ namespace Vikle.Core.Services
                 result.Message = "Email and password are required";
                 return result;
             }
+
+            if (!Utils.IsValidEmail(email))
+            {
+                result.Error = true;
+                result.Message = "Enter a valid email";
+                return result;
+            }
             
             // TODO: Pending API call for login
             
