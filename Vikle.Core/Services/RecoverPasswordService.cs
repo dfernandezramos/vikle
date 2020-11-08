@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Vikle.Core.Interfaces;
 using Vikle.Core.Models;
 
@@ -12,7 +13,7 @@ namespace Vikle.Core.Services
         /// This method calls the API with the provided email address in order to recover the password.
         /// </summary>
         /// <param name="email">The email the user wants to recover the password from</param>
-        public Result RecoverPassword(string email)
+        public async Task<Result> RecoverPassword(string email)
         {
             Result result = new Result();
 

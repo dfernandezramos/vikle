@@ -96,7 +96,7 @@ namespace Vikle.Core.ViewModels
         async Task RecoverPassword(CancellationToken cancellationToken)
         {
             ShowRecoverError = false;
-            Result result = _recoverPasswordService.RecoverPassword(Email);
+            Result result = await _recoverPasswordService.RecoverPassword(Email);
 
             if (result.Error)
             {

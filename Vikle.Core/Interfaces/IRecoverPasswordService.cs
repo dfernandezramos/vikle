@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Vikle.Core.Models;
 
 namespace Vikle.Core.Interfaces
@@ -12,6 +13,6 @@ namespace Vikle.Core.Interfaces
         /// </summary>
         /// <param name="email">The email the user wants to recover the password from</param>
         /// <returns>A result indicating whether this recover action was successful or not.</returns>
-        Result RecoverPassword(string email);
+        Task<Result> RecoverPassword(string email);
     }
 }
