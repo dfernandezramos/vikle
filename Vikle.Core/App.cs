@@ -1,5 +1,6 @@
 using MvvmCross;
 using MvvmCross.ViewModels;
+using RestSharp;
 using Vikle.Core.Interfaces;
 using Vikle.Core.Services;
 using Vikle.Core.ViewModels;
@@ -23,6 +24,9 @@ namespace Vikle.Core
             Mvx.IoCProvider.RegisterType<ILoginService, LoginService>();
             Mvx.IoCProvider.RegisterType<IRecoverPasswordService, RecoverPasswordService>();
             Mvx.IoCProvider.RegisterType<ISignupService, SignupService> ();
+            
+            Mvx.IoCProvider.RegisterSingleton<IRestClient> (new RestClient(Constants.API_BASE_URI));
+            Mvx.IoCProvider.RegisterSingleton<IApiClientService> (new ApiClientService ());
         }
     }
 }
