@@ -1,5 +1,13 @@
+using System.Linq;
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
+using Moq;
+using MvvmCross.Tests;
 using NUnit.Framework;
+using RestSharp;
 using Vikle.Core;
+using Vikle.Core.Interfaces;
 using Vikle.Core.Models;
 using Vikle.Core.Services;
 
@@ -9,7 +17,7 @@ namespace Vikle.Tests.Services
     /// This class contains the implementations of the unit tests for the login service
     /// </summary>
     [TestFixture]
-    public class LoginServiceTests
+    public class LoginServiceTests : MvxIoCSupportingTest
     {
         const string CLIENT_EMAIL = "client@email.com";
         const string WORKER_EMAIL = "worker@email.com";
@@ -17,21 +25,41 @@ namespace Vikle.Tests.Services
         const string CLIENT_PASSWORD = "clientpassword";
         const string WORKER_PASSWORD = "workerpassword";
         const string WRONG_PASSWORD = "wrongpassword";
+        const string WORKER_ID = "1";
+        const string CLIENT_ID = "2";
+        const string WORKER_TOKEN = "WorkerToken";
+        const string CLIENT_TOKEN = "UserToken";
         
         LoginService _loginService;
+        Mock<IRestClient> _restClientMock;
 
-        [OneTimeSetUp]
-        public void OneTimeSetup()
+        protected override void AdditionalSetup()
         {
+            base.AdditionalSetup();
+            
+            _restClientMock = new Mock<IRestClient> ();
+            Ioc.RegisterSingleton<IRestClient> (_restClientMock.Object);
+            Ioc.RegisterSingleton<IApiClientService> (new ApiClientService());
             _loginService = new LoginService();
         }
 
+        [SetUp]
+        public void Init() {
+            base.Setup();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _restClientMock.Reset();
+        }
+        
         [Test]
-        public void LoginService_NoEmailProvided_DataRequiredErrorShown()
+        public async Task LoginService_NoEmailProvided_DataRequiredErrorShown()
         {
             // Given
             // When
-            LoginResult result = _loginService.Login(null, CLIENT_PASSWORD);
+            LoginResult result = await _loginService.Login(null, CLIENT_PASSWORD);
 
             // Then
             Assert.IsTrue(result.Error);
@@ -39,11 +67,11 @@ namespace Vikle.Tests.Services
         }
         
         [Test]
-        public void LoginService_NoPasswordProvided_DataRequiredErrorShown()
+        public async Task LoginService_NoPasswordProvided_DataRequiredErrorShown()
         {
             // Given
             // When
-            LoginResult result = _loginService.Login(CLIENT_EMAIL, null);
+            LoginResult result = await _loginService.Login(CLIENT_EMAIL, null);
 
             // Then
             Assert.IsTrue(result.Error);
@@ -51,11 +79,11 @@ namespace Vikle.Tests.Services
         }
         
         [Test]
-        public void LoginService_InvalidEmailProvided_WrongEmailErrorShown()
+        public async Task LoginService_InvalidEmailProvided_WrongEmailErrorShown()
         {
             // Given
             // When
-            LoginResult result = _loginService.Login("invalid", CLIENT_PASSWORD);
+            LoginResult result = await _loginService.Login("invalid", CLIENT_PASSWORD);
 
             // Then
             Assert.IsTrue(result.Error);
@@ -63,13 +91,13 @@ namespace Vikle.Tests.Services
         }
         
         [Test]
-        public void LoginService_CorrectWorkerCredentials_WorkerUserReturned()
+        public async Task LoginService_CorrectWorkerCredentials_WorkerUserReturned()
         {
             // Given
-            // TODO: Pending implement API mock here
-            
+            SetupCorrectLoginMocks(WORKER_TOKEN, WORKER_ID);
+
             // When
-            LoginResult result = _loginService.Login(WORKER_EMAIL, WORKER_PASSWORD);
+            LoginResult result = await _loginService.Login(WORKER_EMAIL, WORKER_PASSWORD);
 
             // Then
             Assert.IsFalse(result.Error);
@@ -77,13 +105,13 @@ namespace Vikle.Tests.Services
         }
         
         [Test]
-        public void LoginService_CorrectClientCredentials_ClientUserReturned()
+        public async Task LoginService_CorrectClientCredentials_ClientUserReturned()
         {
             // Given
-            // TODO: Pending implement API mock here
+            SetupCorrectLoginMocks(CLIENT_TOKEN, CLIENT_ID);
             
             // When
-            LoginResult result = _loginService.Login(CLIENT_EMAIL, CLIENT_PASSWORD);
+            LoginResult result = await _loginService.Login(CLIENT_EMAIL, CLIENT_PASSWORD);
 
             // Then
             Assert.IsFalse(result.Error);
@@ -91,31 +119,64 @@ namespace Vikle.Tests.Services
         }
         
         [Test]
-        public void LoginService_IncorrectCredentials_UnauthorizedErrorReturned()
+        public async Task LoginService_IncorrectCredentials_UnauthorizedErrorReturned()
         {
             // Given
-            // TODO: Pending implement API mock here
+            _restClientMock.Setup(
+                m => m.ExecuteAsync<LoginData>(It.Is<RestRequest>(
+                        r => r.Parameters.Any (p => (string) p.Value == ERROR_EMAIL) &&
+                             r.Parameters.Any (p => (string) p.Value == WRONG_PASSWORD)),
+                    It.IsAny<CancellationToken>())).ReturnsAsync(new RestResponse<LoginData>
+            {
+                StatusCode = HttpStatusCode.Forbidden
+            });
             
             // When
-            LoginResult result = _loginService.Login(ERROR_EMAIL, WRONG_PASSWORD);
+            LoginResult result = await _loginService.Login(ERROR_EMAIL, WRONG_PASSWORD);
 
             // Then
             Assert.IsTrue(result.Error);
-            Assert.AreEqual("Incorrect email or password", result.Message);
+            Assert.AreEqual(Strings.IncorrectEmailOrPassword, result.Message);
         }
         
         [Test]
-        public void LoginService_APIRandomError_ServerErrorReturned()
+        public async Task LoginService_APIRandomError_ServerErrorReturned()
         {
             // Given
-            // TODO: Pending implement API mock here
+            _restClientMock.Setup(
+                m => m.ExecuteAsync<LoginData>(It.Is<RestRequest>(
+                        r => r.Parameters.Any (p => (string) p.Value == ERROR_EMAIL) &&
+                             r.Parameters.Any (p => (string) p.Value == WRONG_PASSWORD)),
+                    It.IsAny<CancellationToken>())).ReturnsAsync(new RestResponse<LoginData>
+            {
+                StatusCode = HttpStatusCode.Unauthorized
+            });
             
             // When
-            LoginResult result = _loginService.Login(ERROR_EMAIL, WRONG_PASSWORD);
+            LoginResult result = await _loginService.Login(ERROR_EMAIL, WRONG_PASSWORD);
 
             // Then
             Assert.IsTrue(result.Error);
-            Assert.AreEqual("Server error. Try again later", result.Message);
+            Assert.AreEqual(Strings.ServerError, result.Message);
+        }
+
+        void SetupCorrectLoginMocks(string userToken, string userId)
+        {
+            _restClientMock.Setup(m => m.ExecuteAsync<LoginData>(It.IsAny<RestRequest>(),
+                It.IsAny<CancellationToken>())).ReturnsAsync(new RestResponse<LoginData>
+            {
+                StatusCode = HttpStatusCode.OK,
+                ResponseStatus = ResponseStatus.Completed,
+                Data = new LoginData { Token = userToken, UserId = userId}
+            });
+            _restClientMock.Setup(m => m.ExecuteAsync<User>(It.Is<RestRequest>(
+                    r => r.Parameters.Any (p => (string) p.Value == userId)),
+                It.IsAny<CancellationToken>())).ReturnsAsync(new RestResponse<User>
+            {
+                StatusCode = HttpStatusCode.OK,
+                ResponseStatus = ResponseStatus.Completed,
+                Data = new User { IsWorker = userId == WORKER_ID, Id = userId}
+            });
         }
     }
 }

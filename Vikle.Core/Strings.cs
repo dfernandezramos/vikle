@@ -77,5 +77,7 @@ namespace Vikle.Core
         public static readonly string Reparations = "Reparations";
         public static readonly string OnRepair = "On repair";
         public static readonly string Contact = "Contact";
+        public static readonly string IncorrectEmailOrPassword = "Incorrect e-mail or password";
+        public static readonly string ServerError = "Server error. Try again later";
     }
 }

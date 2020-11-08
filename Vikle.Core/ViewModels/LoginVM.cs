@@ -88,7 +88,7 @@ namespace Vikle.Core.ViewModels
         async Task Login(CancellationToken cancellationToken)
         {
             ShowLoginError = false;
-            LoginResult result = _loginService.Login(UserName, UserPassword);
+            LoginResult result = await _loginService.Login(UserName, UserPassword);
 
             if (result.Error)
             {

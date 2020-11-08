@@ -47,7 +47,7 @@ namespace Vikle.Tests.ViewModels
         {
             // Given
             _loginServiceMock.Setup(m => m.Login(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(new LoginResult { Error = true, Message = "Error" });
+                .ReturnsAsync(new LoginResult { Error = true, Message = "Error" });
             
             // When
             _loginVM.LoginCommand.Execute();
@@ -62,7 +62,7 @@ namespace Vikle.Tests.ViewModels
         {
             // Given
             _loginServiceMock.Setup(m => m.Login(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(new LoginResult { Worker = true });
+                .ReturnsAsync(new LoginResult { Worker = true });
             
             // When
             _loginVM.LoginCommand.Execute();
@@ -78,7 +78,7 @@ namespace Vikle.Tests.ViewModels
         {
             // Given
             _loginServiceMock.Setup(m => m.Login(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(new LoginResult { Worker = false });
+                .ReturnsAsync(new LoginResult { Worker = false });
             
             // When
             _loginVM.LoginCommand.Execute();
