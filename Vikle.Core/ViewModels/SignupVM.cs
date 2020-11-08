@@ -78,7 +78,7 @@ namespace Vikle.Core.ViewModels
         async Task Signup(CancellationToken cancellationToken)
         {
             ShowSignupError = false;
-            Result result = _signupService.SignUp(UserData);
+            Result result = await _signupService.SignUp(UserData);
 
             if (result.Error)
             {

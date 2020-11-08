@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Vikle.Core.Interfaces;
 using Vikle.Core.Models;
 
@@ -16,7 +17,7 @@ namespace Vikle.Core.Services
         /// </summary>
         /// <param name="data">The user signup data</param>
         /// <returns>A result indicating whether this signup action was successful or not.</returns>
-        public Result SignUp(SignupData data)
+        public async Task<Result> SignUp(SignupData data)
         {
             Result result = PerformDataChecks(data);
 
