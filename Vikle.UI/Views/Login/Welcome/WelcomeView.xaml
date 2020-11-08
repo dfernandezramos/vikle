@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Vikle.UI.Views.Login.Welcome.WelcomeView"
-    xmlns:local="clr-namespace:Vikle.UI"
-    xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
-    BackgroundColor="{StaticResource BlueStrongColor}">
+<views:MvxContentPage x:TypeArguments="viewModels:WelcomeVM"
+                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                      xmlns:viewModels="clr-namespace:Vikle.Core.ViewModels;assembly=Vikle.Core"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      x:Class="Vikle.UI.Views.Login.Welcome.WelcomeView"
+                      xmlns:local="clr-namespace:Vikle.UI"
+                      xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+                      BackgroundColor="{StaticResource BlueStrongColor}">
+    <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -28,7 +31,7 @@
                 </RowDefinition>
             </Grid.RowDefinitions>
             <Grid
-                Grid.Row="0" BackgroundColor="#00296B">
+                Grid.Row="0" BackgroundColor="{StaticResource BlueStrongColor}">
                 <Image
                     Source="{local:ImageResource Vikle.UI.Images.logo.png}" Margin="50,50,50,0"/>
             </Grid>
@@ -50,7 +53,7 @@
                 HorizontalOptions="EndAndExpand"/>
             <Grid
                 Grid.Row="3"
-                Padding="20" BackgroundColor="#00296B">
+                Padding="20" BackgroundColor="{StaticResource BlueStrongColor}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition
@@ -63,12 +66,14 @@
                             Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0"
+                            x:Name="LoginButton"
                             TextColor="{StaticResource BlueMediumColor}"
                             FontAttributes="Bold"
                             Text="Login"
                             BorderColor="{StaticResource YellowStrongColor}"
                             BackgroundColor="{StaticResource YellowStrongColor}" />
                     <Button Grid.Column="1"
+                            x:Name="SignupButton"
                             TextColor="{StaticResource BlueMediumColor}"
                             Text="Sing up"
                             BorderColor="{StaticResource BlueSoftColor}"
@@ -77,4 +82,4 @@
             </Grid>
         </Grid>
     </ContentPage.Content>
-</ContentPage>
+</views:MvxContentPage>

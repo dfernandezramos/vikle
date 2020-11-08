@@ -1,3 +1,5 @@
+using MvvmCross.Forms.Views;
+using Vikle.Core.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,15 +9,13 @@ namespace Vikle.UI.Views.Login.Welcome
     /// This class contains the definition of the Welcome view.
     /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WelcomeView : ContentPage
+    public partial class WelcomeView : MvxContentPage<WelcomeVM>
     {
-        private View[] _views;
-
         public WelcomeView()
         {
             InitializeComponent();
-			
-            _views = new View[]
+
+            Carousel.ItemsSource = new View[]
             {
                 new WelcomeVikleView(), 
                 new WelcomeHistoryView(),
@@ -23,8 +23,14 @@ namespace Vikle.UI.Views.Login.Welcome
                 new WelcomeStatusView(),
                 new WelcomeDatesView()
             };
+        }
 
-            Carousel.ItemsSource = _views;
+        protected override void OnViewModelSet()
+        {
+            base.OnViewModelSet();
+            
+            LoginButton.Command = ViewModel.LoginNavigateCommand;
+            SignupButton.Command = ViewModel.SignupNavigateCommand;
         }
     }
 }
