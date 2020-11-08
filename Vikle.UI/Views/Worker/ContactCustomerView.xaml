@@ -5,7 +5,8 @@
              x:Class="Vikle.UI.Views.Worker.ContactCustomerView"
              xmlns:local="clr-namespace:Vikle.UI"
              xmlns:views="clr-namespace:Vikle.UI.Views"
-             Title="Contact">
+             xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
+             Title="{x:Static core:Strings.Contact}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -61,7 +62,7 @@
                        Padding="50,20,0,0"
                        Style="{StaticResource BlueLabel}"
                        FontAttributes="Bold"
-                       Text="Phone:" IsVisible="True"/>
+                       Text="{x:Static core:Strings.PhoneDoublePeriod}" IsVisible="True"/>
                 <Label Grid.Row="0" Grid.Column="1"
                        Margin="20,20,20,0"
                        Style="{StaticResource BlueLabel}"
@@ -71,7 +72,7 @@
                        Padding="50,20,0,0"
                        Style="{StaticResource BlueLabel}"
                        FontAttributes="Bold"
-                       Text="E-mail:" IsVisible="True"/>
+                       Text="{x:Static core:Strings.EMailDoublePeriod}" IsVisible="True"/>
                 <Label Grid.Row="2" Grid.Column="1"
                        Margin="20,20,20,0"
                        Style="{StaticResource BlueLabel}"

@@ -107,8 +107,8 @@ namespace Vikle.Core.ViewModels
             {
                 var confirmationParams = new ConfirmationParams
                 {
-                    Title = "Reset successful!",
-                    Subtitle = "If the provided address exists, we will send you a password recover e-mail"
+                    Title = Strings.ResetConfirmationViewTitle,
+                    Subtitle = Strings.ResetConfirmationViewSubtitle
                 };
             
                 await _mvxNavigationService.Navigate<ConfirmationVM, ConfirmationParams>(confirmationParams ,cancellationToken: cancellationToken);

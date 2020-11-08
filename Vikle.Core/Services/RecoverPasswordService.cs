@@ -19,7 +19,7 @@ namespace Vikle.Core.Services
             if (!Utils.IsValidEmail(email))
             {
                 result.Error = true;
-                result.Message = "Enter a valid email";
+                result.Message = Strings.EnterValidEmail;
                 return result;
             }
             

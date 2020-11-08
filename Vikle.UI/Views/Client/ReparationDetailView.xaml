@@ -4,8 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
              xmlns:views="clr-namespace:Vikle.UI.Views"
+             xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
              x:Class="Vikle.UI.Views.Client.ReparationDetailView"
-             Title="Reparation">
+             Title="{x:Static core:Strings.Reparation}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -38,11 +39,11 @@
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0" Grid.Column="0"
-                               Text="Vehicle:"
+                               Text="{x:Static core:Strings.Vehicle}"
                                Style="{StaticResource MediumYellowLabel}"
                                VerticalOptions="Center"/>
                         <Label Grid.Row="1" Grid.Column="0"
-                               Text="Date:"
+                               Text="{x:Static core:Strings.Date}"
                                Style="{StaticResource MediumYellowLabel}"/>
                         <Label Grid.Row="0" Grid.Column="1"
                                Text="1234 ABC"
@@ -74,7 +75,7 @@
                 </Grid>
             </Grid>
             <StackLayout>
-                <Label Text="Reparation details:"
+                <Label Text="{x:Static core:Strings.ReparationDetails}"
                        FontAttributes="Bold"
                        TextColor="{StaticResource BlueStrongColor}"
                        FontSize="Large"

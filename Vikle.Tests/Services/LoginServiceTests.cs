@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Vikle.Core;
 using Vikle.Core.Models;
 using Vikle.Core.Services;
 
@@ -34,7 +35,7 @@ namespace Vikle.Tests.Services
 
             // Then
             Assert.IsTrue(result.Error);
-            Assert.AreEqual("Email and password are required", result.Message);
+            Assert.AreEqual(Strings.EmailPasswordRequired, result.Message);
         }
         
         [Test]
@@ -46,7 +47,7 @@ namespace Vikle.Tests.Services
 
             // Then
             Assert.IsTrue(result.Error);
-            Assert.AreEqual("Email and password are required", result.Message);
+            Assert.AreEqual(Strings.EmailPasswordRequired, result.Message);
         }
         
         [Test]
@@ -58,7 +59,7 @@ namespace Vikle.Tests.Services
 
             // Then
             Assert.IsTrue(result.Error);
-            Assert.AreEqual("Enter a valid email", result.Message);
+            Assert.AreEqual(Strings.EnterValidEmail, result.Message);
         }
         
         [Test]

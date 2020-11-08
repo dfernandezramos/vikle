@@ -37,21 +37,21 @@ namespace Vikle.Core.Services
             if (!data.IsComplete)
             {
                 result.Error = true;
-                result.Message = "All fields are required";
+                result.Message = Strings.AllFieldsAreRequired;
                 return result;
             }
 
             if (!Utils.IsValidEmail(data.Email))
             {
                 result.Error = true;
-                result.Message = "Enter a valid email";
+                result.Message = Strings.EnterValidEmail;
                 return result;
             }
             
             if (data.Password != data.RepeatedPassword)
             {
                 result.Error = true;
-                result.Message = "Passwords are not equal";
+                result.Message = Strings.PasswordsAreNotEqual;
                 return result;
             }
 
@@ -67,14 +67,14 @@ namespace Vikle.Core.Services
             if (password.Length < 8)
             {
                 result.Error = true;
-                result.Message = "Password length should be 8 or more";
+                result.Message = Strings.IncorrectPasswordLength;
                 return result;
             }
             
             if (!(password.Any(char.IsUpper) && password.Any(char.IsLower) && password.Any(char.IsNumber)))
             {
                 result.Error = true;
-                result.Message = "Password must contain upper and lower case and have a number";
+                result.Message = Strings.PasswordIncorrectFormat;
                 return result;
             }
 

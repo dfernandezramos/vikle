@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Vikle.UI"
+    xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
     x:Class="Vikle.UI.Views.Login.Welcome.WelcomeHistoryView">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -30,13 +31,13 @@
             VerticalOptions="Start"
             TranslationY="0">
             <Label
-                Text="Reparation history"
+                Text="{x:Static core:Strings.ReparationHistoryTitle}"
                 Style="{StaticResource WelcomeTitle}" />
             <Label
                 Style="{StaticResource WelcomeInfo}">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Checkout the reparation history of your vehicle" />
+                        <Span Text="{x:Static core:Strings.ReparationHistorySubtitle}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

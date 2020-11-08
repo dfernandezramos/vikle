@@ -21,14 +21,14 @@ namespace Vikle.Core.Services
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 result.Error = true;
-                result.Message = "Email and password are required";
+                result.Message = Strings.EmailPasswordRequired;
                 return result;
             }
 
             if (!Utils.IsValidEmail(email))
             {
                 result.Error = true;
-                result.Message = "Enter a valid email";
+                result.Message = Strings.EnterValidEmail;
                 return result;
             }
             

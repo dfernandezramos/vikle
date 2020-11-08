@@ -6,6 +6,7 @@
                       xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:local="clr-namespace:Vikle.UI"
+                      xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
                       x:Class="Vikle.UI.Views.Login.LoginView">
     <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
     <ContentPage.Resources>
@@ -44,18 +45,18 @@
                         <RowDefinition Height="75" />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0"
-                           Text="Login"
+                           Text="{x:Static core:Strings.Login}"
                            Padding="0,50,0,0"
                            Style="{StaticResource WelcomeTitle}" />
                     <Entry Grid.Row="1"
                            x:Name="UsernameEntry"
-                           Placeholder="E-mail"
+                           Placeholder="{x:Static core:Strings.EMail}"
                            Margin="50, 25, 50,0"
                            Keyboard="Email"
                            Style="{StaticResource VikleEntry}" />
                     <Entry Grid.Row="2"
                            x:Name="UserPasswordEntry"
-                           Placeholder="Password"
+                           Placeholder="{x:Static core:Strings.Password}"
                            IsPassword="True"
                            Margin="50, 25, 50,0"
                            Style="{StaticResource VikleEntry}" />
@@ -69,7 +70,7 @@
                            x:Name="ForgotPasswordLabel"
                            Margin="50, 0, 50,0"
                            HorizontalTextAlignment="Center"
-                           Text="Forgot your password?"
+                           Text="{x:Static core:Strings.ForgotYourPassword}"
                            TextDecorations="Underline"
                            TextColor="{StaticResource YellowStrongColor}"/>
                 </Grid>
@@ -91,11 +92,11 @@
                     <Button Grid.Column="0"
                             x:Name="LoginButton"
                             Style="{StaticResource YellowButton}"
-                            Text="Continue"/>
+                            Text="{x:Static core:Strings.Continue}"/>
                     <Button Grid.Column="1"
                             x:Name="SignupButton"
                             Style="{StaticResource WhiteButton}"
-                            Text="Sing up"/>
+                            Text="{x:Static core:Strings.SignUp}"/>
                 </Grid>
             </Grid>
         </Grid>

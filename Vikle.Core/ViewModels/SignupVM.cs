@@ -89,8 +89,8 @@ namespace Vikle.Core.ViewModels
             {
                 var confirmationParams = new ConfirmationParams
                 {
-                    Title = "Signup successful!",
-                    Subtitle = "We have sent you a confirmation e-mail but you can now log in"
+                    Title = Strings.SignupConfirmationViewTitle,
+                    Subtitle = Strings.SignupConfirmationViewSubtitle
                 };
                 
                 await _mvxNavigationService.Navigate<ConfirmationVM, ConfirmationParams>(confirmationParams ,cancellationToken: cancellationToken);

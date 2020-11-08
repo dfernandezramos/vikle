@@ -4,8 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
              xmlns:views="clr-namespace:Vikle.UI.Views"
+             xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
              x:Class="Vikle.UI.Views.Client.VehicleDetailView"
-             Title="Vehicle">
+             Title="{x:Static core:Strings.Vehicle}">
      <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -35,9 +36,9 @@
                                 Margin="0,30,20,0"
                                 Style="{StaticResource WhiteButton}"
                                 BorderWidth="1"
-                                Text="History"/>
+                                Text="{x:Static core:Strings.History}"/>
                     </Grid>
-                    <Label Text="Vehicle details:"
+                    <Label Text="{x:Static core:Strings.VehicleDetails}"
                            FontAttributes="Bold"
                            TextColor="{StaticResource BlueStrongColor}"
                            FontSize="Large"
@@ -58,23 +59,23 @@
                         <Label Grid.Row="0" Grid.Column="0"
                                Padding="50,30,0,0"
                                Style="{StaticResource BlueLabel}"
-                               Text="Plate n.:"/>
+                               Text="{x:Static core:Strings.Plate}"/>
                         <Entry Grid.Row="0" Grid.Column="1"
                                Margin="20,30,20,0"
                                Style="{StaticResource VikleEntry}"
-                               Placeholder="Plate number"/>
+                               Placeholder="{x:Static core:Strings.PlateNumber}"/>
                         <Label Grid.Row="1" Grid.Column="0"
                                Padding="50,30,0,0"
                                Style="{StaticResource BlueLabel}"
-                               Text="Model:"/>
+                               Text="{x:Static core:Strings.Model}"/>
                         <Entry Grid.Row="1" Grid.Column="1"
                                Margin="20,30,20,0"
                                Style="{StaticResource VikleEntry}"
-                               Placeholder="Model"/>
+                               Placeholder="{x:Static core:Strings.VehicleModel}"/>
                         <Label Grid.Row="2" Grid.Column="0"
                                Padding="50,30,0,0"
                                Style="{StaticResource BlueLabel}"
-                               Text="Type:"/>
+                               Text="{x:Static core:Strings.Type}"/>
                         <Picker Grid.Row="2" Grid.Column="1"
                                Margin="20,30,20,0"
                                Style="{StaticResource ViklePicker}"
@@ -82,7 +83,7 @@
                         <Label Grid.Row="3" Grid.Column="0"
                                Padding="50,30,0,0"
                                Style="{StaticResource BlueLabel}"
-                               Text="Year:"/>
+                               Text="{x:Static core:Strings.Year}"/>
                         <Picker Grid.Row="3" Grid.Column="1"
                                 Margin="20,30,20,0"
                                 Style="{StaticResource ViklePicker}"
@@ -90,7 +91,7 @@
                         <Label Grid.Row="4" Grid.Column="0"
                                Padding="50,30,0,0"
                                Style="{StaticResource BlueLabel}"
-                               Text="Last TBDS:"/>
+                               Text="{x:Static core:Strings.LastTBDS}"/>
                         <DatePicker Grid.Row="4" Grid.Column="1"
                                     Margin="20,30,20,0"
                                     HorizontalOptions="CenterAndExpand"
@@ -98,7 +99,7 @@
                         <Label Grid.Row="5" Grid.Column="0"
                                Padding="50,30,0,0"
                                Style="{StaticResource BlueLabel}"
-                               Text="Last ITV:"/>
+                               Text="{x:Static core:Strings.LastITV}"/>
                         <DatePicker Grid.Row="5" Grid.Column="1"
                                     Margin="20,30,20,0"
                                     HorizontalOptions="CenterAndExpand"
@@ -115,7 +116,7 @@
                                 WidthRequest="200"
                                 HeightRequest="75"
                                 IsVisible="True"
-                                Text="Confirm"/>
+                                Text="{x:Static core:Strings.Confirm}"/>
                     </Grid>
                     <Label HorizontalOptions="Center"
                            VerticalOptions="Center"
@@ -123,7 +124,7 @@
                            TextColor="{StaticResource BlueStrongColor}"
                            FontAttributes="Bold"
                            Margin="0,30,0,50"
-                           Text="Cancel"/>
+                           Text="{x:Static core:Strings.Cancel}"/>
                 </StackLayout>
             </ScrollView>
         </Grid>
