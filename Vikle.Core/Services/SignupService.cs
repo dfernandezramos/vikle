@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using MvvmCross;
 using Vikle.Core.Interfaces;
 using Vikle.Core.Models;
 
@@ -12,6 +14,13 @@ namespace Vikle.Core.Services
     /// </summary>
     public class SignupService : ISignupService
     {
+        IApiClientService _clientService;
+        
+        public SignupService()
+        {
+            _clientService = Mvx.IoCProvider.Resolve<IApiClientService>();
+        }
+        
         /// <summary>
         /// This method calls the API to register the user in the application.
         /// </summary>
@@ -26,7 +35,16 @@ namespace Vikle.Core.Services
                 return result;
             }
 
-            // TODO: Pending implement signup API call
+            var signupResult = await _clientService.Signup(data);
+            
+            if (signupResult.Error)
+            {
+                result.Error = true;
+                result.Message = signupResult?.HttpStatusCode == HttpStatusCode.Conflict
+                    ? Strings.EmailAlreadyInUse
+                    : Strings.ServerError;
+                return result;
+            }
 
             return result;
         }

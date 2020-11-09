@@ -79,5 +79,6 @@ namespace Vikle.Core
         public static readonly string Contact = "Contact";
         public static readonly string IncorrectEmailOrPassword = "Incorrect e-mail or password";
         public static readonly string ServerError = "Server error. Try again later";
+        public static readonly string EmailAlreadyInUse = "The email is already in use";
     }
 }

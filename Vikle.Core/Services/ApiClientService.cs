@@ -27,8 +27,8 @@ namespace Vikle.Core.Services
         /// <returns>The login result data</returns>
         public async Task<HttpCallResult<LoginData>> GetUserToken(string email, string password)
         {
-            RestRequest request = new RestRequest ("api/auth/", Method.POST);
-            request.AddParameter ("username", email, ParameterType.GetOrPost);
+            RestRequest request = new RestRequest ("api/auth/", Method.GET);
+            request.AddParameter ("email", email, ParameterType.GetOrPost);
             request.AddParameter ("password", password, ParameterType.GetOrPost);
             var response = await _client.ExecuteAsync<LoginData> (request);
             
@@ -50,12 +50,52 @@ namespace Vikle.Core.Services
             
             return ToHttpCallResult (response);
         }
-        
+
+        /// <summary>
+        /// This method sends a recover password request to the API.
+        /// </summary>
+        /// <param name="email">The email the user wants to recover the password from</param>
+        public async Task<HttpCallResult> RecoverPassword(string email)
+        {
+            RestRequest request = new RestRequest ("api/user/", Method.POST);
+            request.AddParameter ("email", email, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync (request);
+            
+            return ToHttpCallResult (response);
+        }
+
+        /// <summary>
+        /// Sets the provided signup data in the API.
+        /// </summary>
+        /// <param name="data">The signup data to register in the API</param>
+        public async Task<HttpCallResult> Signup(SignupData data)
+        {
+            RestRequest request = new RestRequest ("api/auth/", Method.PUT);
+            request.AddParameter ("email", data.Email, ParameterType.GetOrPost);
+            request.AddParameter ("password", data.Password, ParameterType.GetOrPost);
+            request.AddParameter ("name", data.Name, ParameterType.GetOrPost);
+            request.AddParameter ("surname", data.Surname, ParameterType.GetOrPost);
+            request.AddParameter ("phone", data.Phone, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync (request);
+            
+            return ToHttpCallResult (response);
+        }
+
         HttpCallResult<TResponse> ToHttpCallResult<TResponse> (IRestResponse<TResponse> response)
         {
             return new HttpCallResult<TResponse>
             {
                 Result = response.Data,
+                HttpStatusCode = response.StatusCode,
+                Error = response.StatusCode != HttpStatusCode.OK ||
+                        response.ResponseStatus != ResponseStatus.Completed
+            };
+        }
+        
+        HttpCallResult ToHttpCallResult (IRestResponse response)
+        {
+            return new HttpCallResult
+            {
                 HttpStatusCode = response.StatusCode,
                 Error = response.StatusCode != HttpStatusCode.OK ||
                         response.ResponseStatus != ResponseStatus.Completed

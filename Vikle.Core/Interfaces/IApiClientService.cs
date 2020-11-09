@@ -23,5 +23,17 @@ namespace Vikle.Core.Interfaces
         /// <param name="token">The user token</param>
         /// <returns>The user information</returns>
         Task<HttpCallResult<User>> GetUserInformation (string userId, string token);
+
+        /// <summary>
+        /// This method sends a recover password request to the API.
+        /// </summary>
+        /// <param name="email">The email the user wants to recover the password from</param>
+        Task<HttpCallResult> RecoverPassword(string email);
+
+        /// <summary>
+        /// Sets the provided signup data in the API.
+        /// </summary>
+        /// <param name="data">The signup data to register in the API</param>
+        Task<HttpCallResult> Signup(SignupData data);
     }
 }
