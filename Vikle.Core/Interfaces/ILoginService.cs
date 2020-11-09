@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Vikle.Core.Models;
 
 namespace Vikle.Core.Interfaces
@@ -13,6 +14,6 @@ namespace Vikle.Core.Interfaces
         /// <param name="email">The user email</param>
         /// <param name="password">The user password</param>
         /// <returns>A LoginResult indicating whether this login action was successful or not.</returns>
-        LoginResult Login(string email, string password);
+        Task<LoginResult> Login(string email, string password);
     }
 }

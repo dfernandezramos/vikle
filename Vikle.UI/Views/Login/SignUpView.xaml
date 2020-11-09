@@ -6,6 +6,7 @@
                       xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:local="clr-namespace:Vikle.UI"
+                      xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
                       x:Class="Vikle.UI.Views.Login.SignUpView">
     <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
     <ContentPage.Resources>
@@ -42,7 +43,7 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0"
-                           Text="Sign up"
+                           Text="{x:Static core:Strings.SignUp}"
                            Padding="0,50,0,0"
                            Style="{StaticResource WelcomeTitle}" />
                     <Label Grid.Row="1"
@@ -64,37 +65,37 @@
                             </Grid.RowDefinitions>
                             <Entry Grid.Row="0"
                                    x:Name="NameEntry"
-                                   Placeholder="Name*"
+                                   Placeholder="{x:Static core:Strings.NameStar}"
                                    Margin="50, 25, 50,0"
                                    Keyboard="Text"
                                    Style="{StaticResource VikleEntry}" />
                             <Entry Grid.Row="1"
                                    x:Name="SurnameEntry"
-                                   Placeholder="Surname*"
+                                   Placeholder="{x:Static core:Strings.SurnameStar}"
                                    Margin="50, 25, 50,0"
                                    Keyboard="Text"
                                    Style="{StaticResource VikleEntry}" />
                             <Entry Grid.Row="2"
                                    x:Name="PhoneEntry"
-                                   Placeholder="Phone number*"
+                                   Placeholder="{x:Static core:Strings.PhoneStar}"
                                    Margin="50, 25, 50,0"
                                    Keyboard="Telephone"
                                    Style="{StaticResource VikleEntry}" />
                             <Entry Grid.Row="3"
                                    x:Name="EmailEntry"
-                                   Placeholder="E-mail*"
+                                   Placeholder="{x:Static core:Strings.EMailStar}"
                                    Margin="50, 25, 50,0"
                                    Keyboard="Email"
                                    Style="{StaticResource VikleEntry}" />
                             <Entry Grid.Row="4"
                                    x:Name="PasswordEntry"
-                                   Placeholder="Password*"
+                                   Placeholder="{x:Static core:Strings.PasswordStar}"
                                    IsPassword="True"
                                    Margin="50, 25, 50,0"
                                    Style="{StaticResource VikleEntry}" />
                             <Entry Grid.Row="5"
                                    x:Name="RepeatPasswordEntry"
-                                   Placeholder="Repeat password*"
+                                   Placeholder="{x:Static core:Strings.RepeatPasswordStar}"
                                    IsPassword="True"
                                    Margin="50, 25, 50,0"
                                    Style="{StaticResource VikleEntry}" />
@@ -120,13 +121,13 @@
                             x:Name="ConfirmButton"
                             TextColor="{StaticResource BlueMediumColor}"
                             FontAttributes="Bold"
-                            Text="Confirm"
+                            Text="{x:Static core:Strings.Confirm}"
                             BorderColor="{StaticResource YellowStrongColor}"
                             BackgroundColor="{StaticResource YellowStrongColor}" />
                     <Button Grid.Column="1"
                             x:Name="GoBackButton"
                             TextColor="{StaticResource BlueMediumColor}"
-                            Text="Go back"
+                            Text="{x:Static core:Strings.GoBack}"
                             BorderColor="{StaticResource BlueSoftColor}"
                             BackgroundColor="White" />
                 </Grid>

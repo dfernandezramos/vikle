@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Vikle.UI"
+    xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
     x:Class="Vikle.UI.Views.Login.Welcome.WelcomeReparationView">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -30,13 +31,13 @@
             VerticalOptions="Start"
             TranslationY="0">
             <Label
-                Text="Reparation details"
+                Text="{x:Static core:Strings.ReparationDetailsTitle}"
                 Style="{StaticResource WelcomeTitle}" />
             <Label
                 Style="{StaticResource WelcomeInfo}">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Check what reparations were performed in your vehicle on a concrete reparation" />
+                        <Span Text="{x:Static core:Strings.ReparationDetailsSubtitle}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

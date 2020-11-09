@@ -4,8 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
              xmlns:views="clr-namespace:Vikle.UI.Views"
+             xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
              x:Class="Vikle.UI.Views.Client.ReparationsView"
-             Title="Reparations">
+             Title="{x:Static core:Strings.Reparations}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

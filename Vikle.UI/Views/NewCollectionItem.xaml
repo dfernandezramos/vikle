@@ -3,6 +3,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
+             xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
              x:Class="Vikle.UI.Views.NewCollectionItem">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -45,12 +46,12 @@
                          HorizontalOptions="Start" 
                          VerticalOptions="FillAndExpand"/>
                 <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="20">
-                    <Label Text="New reparation"
+                    <Label Text="{x:Static core:Strings.NewReparation}"
                            TextColor="{StaticResource BlueMediumColor}"
                            FontSize="18"
                            FontAttributes="Bold"
                            Margin="0,-4,0,0"/>
-                    <Label Text="Tap here to add"
+                    <Label Text="{x:Static core:Strings.TapHereToAdd}"
                            TextColor="{StaticResource BlueMediumColor}"
                            FontSize="12"
                            Margin="0,-8,0,0"/>

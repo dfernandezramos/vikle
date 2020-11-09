@@ -3,6 +3,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
+             xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
              x:Class="Vikle.UI.Views.Login.Welcome.WelcomeStatusView">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -30,13 +31,13 @@
             VerticalOptions="Start"
             TranslationY="0">
             <Label
-                Text="Reparation status"
+                Text="{x:Static core:Strings.ReparationStatusTitle}"
                 Style="{StaticResource WelcomeTitle}" />
             <Label
                 Style="{StaticResource WelcomeInfo}">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Your current reparation status anytime anywhere" />
+                        <Span Text="{x:Static core:Strings.ReparationStatusSubtitle}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

@@ -5,6 +5,7 @@
        xmlns:workerViews="clr-namespace:Vikle.UI.Views.Worker"
        xmlns:local="clr-namespace:Vikle.UI"
        xmlns:views="clr-namespace:Vikle.UI.Views"
+       xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
        x:Class="Vikle.UI.Views.Worker.WorkerAppShell"
        FlyoutBackgroundColor="{StaticResource BlueMediumColor}">
        <Shell.Resources>
@@ -32,19 +33,19 @@
               </DataTemplate>
        </Shell.MenuItemTemplate>
        
-       <FlyoutItem Title="Worker"
+       <FlyoutItem Title="{x:Static core:Strings.Worker}"
                    FlyoutDisplayOptions="AsMultipleItems"
                    Shell.BackgroundColor="{StaticResource BlueStrongColor}"
                    Shell.ForegroundColor="{StaticResource YellowStrongColor}"
                    Shell.TitleColor="{StaticResource YellowStrongColor}"
                    Shell.TabBarIsVisible="False">
-              <ShellContent Title="Repairing"
+              <ShellContent Title="{x:Static core:Strings.Repairing}"
                             Icon="{local:ImageResource Vikle.UI.Images.car.png}">
                      <workerViews:WSReparationsView />
               </ShellContent>
        </FlyoutItem>
        
-       <MenuItem Text="Log out"
+       <MenuItem Text="{x:Static core:Strings.LogOut}"
                  IconImageSource="{local:ImageResource Vikle.UI.Images.logout.png}"
                  Command="{Binding RandomPageCommand}" />
 </Shell>

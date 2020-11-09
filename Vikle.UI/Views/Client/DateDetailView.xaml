@@ -4,8 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
              xmlns:views="clr-namespace:Vikle.UI.Views"
+             xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
              x:Class="Vikle.UI.Views.Client.DateDetailView"
-             Title="New Date">
+             Title="{x:Static core:Strings.NewDate}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,7 +19,7 @@
     </Shell.TitleView>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Date details:"
+            <Label Text="{x:Static core:Strings.DateDetails}"
                    FontAttributes="Bold"
                    TextColor="{StaticResource BlueStrongColor}"
                    FontSize="Large"
@@ -36,7 +37,7 @@
                 <Label Grid.Row="0" Grid.Column="0"
                        Padding="50,30,0,0"
                        Style="{StaticResource BlueLabel}"
-                       Text="Vehicle:"/>
+                       Text="{x:Static core:Strings.Vehicle}"/>
                 <Picker Grid.Row="0" Grid.Column="1"
                         Margin="20,30,20,0"
                         Style="{StaticResource ViklePicker}"
@@ -44,7 +45,7 @@
                 <Label Grid.Row="1" Grid.Column="0"
                        Padding="50,30,0,0"
                        Style="{StaticResource BlueLabel}"
-                       Text="Date:"/>
+                       Text="{x:Static core:Strings.Date}"/>
                 <DatePicker Grid.Row="1" Grid.Column="1"
                             Margin="20,30,20,0"
                             HorizontalOptions="CenterAndExpand"
@@ -52,7 +53,7 @@
                 <Label Grid.Row="2" Grid.Column="0"
                        Padding="50,30,0,0"
                        Style="{StaticResource BlueLabel}"
-                       Text="Reason:"/>
+                       Text="{x:Static core:Strings.Reason}"/>
                 <Picker Grid.Row="2" Grid.Column="1"
                         Margin="20,30,20,0"
                         Style="{StaticResource ViklePicker}"
@@ -69,13 +70,13 @@
                         HorizontalOptions="Center"
                         WidthRequest="200"
                         HeightRequest="75"
-                        Text="Continue"/>
+                        Text="{x:Static core:Strings.Continue}"/>
                 <Label Grid.Row="1" HorizontalOptions="Center"
                        VerticalOptions="Center"
                        TextDecorations="Underline"
                        TextColor="{StaticResource BlueStrongColor}"
                        FontAttributes="Bold"
-                       Text="Cancel"/>
+                       Text="{x:Static core:Strings.Cancel}"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

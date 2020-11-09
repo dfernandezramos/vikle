@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Vikle.UI"
+    xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
     x:Class="Vikle.UI.Views.Login.Welcome.WelcomeDatesView">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -30,13 +31,13 @@
             VerticalOptions="Start"
             TranslationY="0">
             <Label
-                Text="Arrange appointments"
+                Text="{x:Static core:Strings.ArrangeAppointmentsTitle}"
                 Style="{StaticResource WelcomeTitle}" />
             <Label
                 Style="{StaticResource WelcomeInfo}">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Arrange an appointment to bring your vehicle to the workshop" />
+                        <Span Text="{x:Static core:Strings.ArrangeAppointmentsSubtitle}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

@@ -96,7 +96,7 @@ namespace Vikle.Core.ViewModels
         async Task RecoverPassword(CancellationToken cancellationToken)
         {
             ShowRecoverError = false;
-            Result result = _recoverPasswordService.RecoverPassword(Email);
+            Result result = await _recoverPasswordService.RecoverPassword(Email);
 
             if (result.Error)
             {
@@ -107,8 +107,8 @@ namespace Vikle.Core.ViewModels
             {
                 var confirmationParams = new ConfirmationParams
                 {
-                    Title = "Reset successful!",
-                    Subtitle = "If the provided address exists, we will send you a password recover e-mail"
+                    Title = Strings.ResetConfirmationViewTitle,
+                    Subtitle = Strings.ResetConfirmationViewSubtitle
                 };
             
                 await _mvxNavigationService.Navigate<ConfirmationVM, ConfirmationParams>(confirmationParams ,cancellationToken: cancellationToken);

@@ -1,5 +1,10 @@
+using System;
+using System.Net;
+using System.Threading.Tasks;
+using MvvmCross;
 using Vikle.Core.Interfaces;
 using Vikle.Core.Models;
+using Xamarin.Essentials;
 
 namespace Vikle.Core.Services
 {
@@ -8,26 +13,83 @@ namespace Vikle.Core.Services
     /// </summary>
     public class LoginService : ILoginService
     {
+        IApiClientService _clientService;
+        ISecureStorageService _secureStorageService;
+        
+        public LoginService()
+        {
+            _clientService = Mvx.IoCProvider.Resolve<IApiClientService>();
+            _secureStorageService = Mvx.IoCProvider.Resolve<ISecureStorageService>();
+        }
+        
         /// <summary>
         /// This method uses the provided credentials to log into the application.
         /// </summary>
         /// <param name="email">The user email</param>
         /// <param name="password">The user password</param>
         /// <returns>A LoginResult indicating whether this login action was successful or not.</returns>
-        public LoginResult Login(string email, string password)
+        public async Task<LoginResult> Login(string email, string password)
+        {
+            var result = PerformChecks(email, password);
+
+            if (result.Error)
+            {
+                return result;
+            }
+            
+            var loginData = await _clientService.GetUserToken(email, password);
+
+            if (loginData == null || loginData.Error)
+            {
+                result.Error = true;
+                result.Message = loginData?.HttpStatusCode == HttpStatusCode.Forbidden
+                    ? Strings.IncorrectEmailOrPassword
+                    : Strings.ServerError;
+                return result;
+            }
+
+            var userData = await _clientService.GetUserInformation(loginData.Result.UserId, loginData.Result.Token);
+
+            if (userData == null || userData.Error)
+            {
+                result.Error = true;
+                result.Message = userData?.HttpStatusCode == HttpStatusCode.Forbidden
+                    ? Strings.IncorrectEmailOrPassword
+                    : Strings.ServerError;
+                return result;
+            }
+
+            await StoreUserData(loginData.Result.UserId, loginData.Result.Token);
+            result.Worker = userData.Result.IsWorker;
+
+            return result;
+        }
+
+        LoginResult PerformChecks(string email, string password)
         {
             var result = new LoginResult();
 
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 result.Error = true;
-                result.Message = "Email and password are required";
+                result.Message = Strings.EmailPasswordRequired;
                 return result;
             }
-            
-            // TODO: Pending API call for login
-            
+
+            if (!Utils.IsValidEmail(email))
+            {
+                result.Error = true;
+                result.Message = Strings.EnterValidEmail;
+                return result;
+            }
+
             return result;
+        }
+
+        async Task StoreUserData(string userId, string token)
+        {
+            await _secureStorageService.SetAsync(Constants.SS_TOKEN, token);
+            await _secureStorageService.SetAsync(Constants.SS_USER_ID, userId);
         }
     }
 }

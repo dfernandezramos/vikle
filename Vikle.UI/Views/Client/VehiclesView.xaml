@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
              xmlns:views="clr-namespace:Vikle.UI.Views"
-             Title="Vehicles"
+             xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
+             Title="{x:Static core:Strings.Vehicles}"
              x:Class="Vikle.UI.Views.Client.VehiclesView">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -28,7 +29,7 @@
                                      Margin="25,25,25,0"
                                      HorizontalOptions="FillAndExpand"
                                      VerticalOptions="FillAndExpand"/>
-            <Label Grid.Row="1" Text="Registered vehicles:"
+            <Label Grid.Row="1" Text="{x:Static core:Strings.RegisteredVehicles}"
                    FontAttributes="Bold"
                    TextColor="{StaticResource BlueStrongColor}"
                    FontSize="Large"

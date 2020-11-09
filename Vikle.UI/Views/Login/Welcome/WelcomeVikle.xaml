@@ -3,6 +3,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
+             xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
              x:Class="Vikle.UI.Views.Login.Welcome.WelcomeVikleView">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -30,13 +31,13 @@
             VerticalOptions="Start"
             TranslationY="0">
             <Label
-                Text="Welcome to Vikle!"
+                Text="{x:Static core:Strings.WelcomeToVikle}"
                 Style="{StaticResource WelcomeTitle}" />
             <Label
                 Style="{StaticResource WelcomeInfo}">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Your workshop helper" />
+                        <Span Text="{x:Static core:Strings.YourWorkshopHelper}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -44,7 +45,7 @@
                 Style="{StaticResource WelcomeInfo}">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Swipe to see what can you do with this app" />
+                        <Span Text="{x:Static core:Strings.SwipeToSee}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

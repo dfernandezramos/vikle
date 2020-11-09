@@ -78,7 +78,7 @@ namespace Vikle.Core.ViewModels
         async Task Signup(CancellationToken cancellationToken)
         {
             ShowSignupError = false;
-            Result result = _signupService.SignUp(UserData);
+            Result result = await _signupService.SignUp(UserData);
 
             if (result.Error)
             {
@@ -89,8 +89,8 @@ namespace Vikle.Core.ViewModels
             {
                 var confirmationParams = new ConfirmationParams
                 {
-                    Title = "Signup successful!",
-                    Subtitle = "We have sent you a confirmation e-mail but you can now log in"
+                    Title = Strings.SignupConfirmationViewTitle,
+                    Subtitle = Strings.SignupConfirmationViewSubtitle
                 };
                 
                 await _mvxNavigationService.Navigate<ConfirmationVM, ConfirmationParams>(confirmationParams ,cancellationToken: cancellationToken);

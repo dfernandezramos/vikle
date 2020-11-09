@@ -1,6 +1,9 @@
 using System;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using MvvmCross;
 using Vikle.Core.Interfaces;
 using Vikle.Core.Models;
 
@@ -11,12 +14,19 @@ namespace Vikle.Core.Services
     /// </summary>
     public class SignupService : ISignupService
     {
+        IApiClientService _clientService;
+        
+        public SignupService()
+        {
+            _clientService = Mvx.IoCProvider.Resolve<IApiClientService>();
+        }
+        
         /// <summary>
         /// This method calls the API to register the user in the application.
         /// </summary>
         /// <param name="data">The user signup data</param>
         /// <returns>A result indicating whether this signup action was successful or not.</returns>
-        public Result SignUp(SignupData data)
+        public async Task<Result> SignUp(SignupData data)
         {
             Result result = PerformDataChecks(data);
 
@@ -25,7 +35,16 @@ namespace Vikle.Core.Services
                 return result;
             }
 
-            // TODO: Pending implement signup API call
+            var signupResult = await _clientService.Signup(data);
+            
+            if (signupResult.Error)
+            {
+                result.Error = true;
+                result.Message = signupResult?.HttpStatusCode == HttpStatusCode.Conflict
+                    ? Strings.EmailAlreadyInUse
+                    : Strings.ServerError;
+                return result;
+            }
 
             return result;
         }
@@ -37,21 +56,21 @@ namespace Vikle.Core.Services
             if (!data.IsComplete)
             {
                 result.Error = true;
-                result.Message = "All fields are required";
+                result.Message = Strings.AllFieldsAreRequired;
                 return result;
             }
 
             if (!Utils.IsValidEmail(data.Email))
             {
                 result.Error = true;
-                result.Message = "Enter a valid email";
+                result.Message = Strings.EnterValidEmail;
                 return result;
             }
             
             if (data.Password != data.RepeatedPassword)
             {
                 result.Error = true;
-                result.Message = "Passwords are not equal";
+                result.Message = Strings.PasswordsAreNotEqual;
                 return result;
             }
 
@@ -67,14 +86,14 @@ namespace Vikle.Core.Services
             if (password.Length < 8)
             {
                 result.Error = true;
-                result.Message = "Password length should be 8 or more";
+                result.Message = Strings.IncorrectPasswordLength;
                 return result;
             }
             
             if (!(password.Any(char.IsUpper) && password.Any(char.IsLower) && password.Any(char.IsNumber)))
             {
                 result.Error = true;
-                result.Message = "Password must contain upper and lower case and have a number";
+                result.Message = Strings.PasswordIncorrectFormat;
                 return result;
             }
 

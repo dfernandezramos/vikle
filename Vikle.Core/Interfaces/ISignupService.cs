@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Vikle.Core.Models;
 
 namespace Vikle.Core.Interfaces
@@ -12,6 +13,6 @@ namespace Vikle.Core.Interfaces
         /// </summary>
         /// <param name="data">The user signup data</param>
         /// <returns>A result indicating whether this signup action was successful or not.</returns>
-        Result SignUp(SignupData data);
+        Task<Result> SignUp(SignupData data);
     }
 }

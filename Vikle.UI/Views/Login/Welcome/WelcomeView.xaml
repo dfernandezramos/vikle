@@ -8,6 +8,7 @@
                       x:Class="Vikle.UI.Views.Login.Welcome.WelcomeView"
                       xmlns:local="clr-namespace:Vikle.UI"
                       xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+                      xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
                       BackgroundColor="{StaticResource BlueStrongColor}">
     <NavigationPage.HasNavigationBar>False</NavigationPage.HasNavigationBar>
     <ContentPage.Resources>
@@ -69,13 +70,13 @@
                             x:Name="LoginButton"
                             TextColor="{StaticResource BlueMediumColor}"
                             FontAttributes="Bold"
-                            Text="Login"
+                            Text="{x:Static core:Strings.Login}"
                             BorderColor="{StaticResource YellowStrongColor}"
                             BackgroundColor="{StaticResource YellowStrongColor}" />
                     <Button Grid.Column="1"
                             x:Name="SignupButton"
                             TextColor="{StaticResource BlueMediumColor}"
-                            Text="Sing up"
+                            Text="{x:Static core:Strings.SignUp}"
                             BorderColor="{StaticResource BlueSoftColor}"
                             BackgroundColor="White" />
                 </Grid>

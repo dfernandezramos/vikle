@@ -1,6 +1,7 @@
 // ReSharper disable once RedundantUsingDirective
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Moq;
 using MvvmCross.Navigation;
 using MvvmCross.Tests;
@@ -12,7 +13,7 @@ using Vikle.Core.ViewModels;
 namespace Vikle.Tests.ViewModels
 {
     /// <summary>
-    /// This class contains the implementations of the unit tests for the login service
+    /// This class contains the implementations of the unit tests for the login viewmodel
     /// </summary>
     [TestFixture]
     public class LoginVMTests : MvxIoCSupportingTest
@@ -43,14 +44,14 @@ namespace Vikle.Tests.ViewModels
         }
 		
         [Test]
-        public void LoginCommand_LoginFails_ErrorIsShown()
+        public async Task LoginCommand_LoginFails_ErrorIsShown()
         {
             // Given
             _loginServiceMock.Setup(m => m.Login(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(new LoginResult { Error = true, Message = "Error" });
+                .ReturnsAsync(new LoginResult { Error = true, Message = "Error" });
             
             // When
-            _loginVM.LoginCommand.Execute();
+            await _loginVM.LoginCommand.ExecuteAsync();
             
             // Then
             Assert.IsTrue(_loginVM.ShowLoginError);
@@ -58,14 +59,14 @@ namespace Vikle.Tests.ViewModels
         }
         
         [Test]
-        public void LoginCommand_LoginReturnsWorker_NavigationToWSReparationsIsPerformed()
+        public async Task LoginCommand_LoginReturnsWorker_NavigationToWSReparationsIsPerformed()
         {
             // Given
             _loginServiceMock.Setup(m => m.Login(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(new LoginResult { Worker = true, UserId = "1"});
+                .ReturnsAsync(new LoginResult { Worker = true });
             
             // When
-            _loginVM.LoginCommand.Execute();
+            await _loginVM.LoginCommand.ExecuteAsync();
             
             // Then
             Assert.IsFalse(_loginVM.ShowLoginError);
@@ -74,14 +75,14 @@ namespace Vikle.Tests.ViewModels
         }
         
         [Test]
-        public void LoginCommand_LoginReturnsClient_NavigationToVehiclesIsPerformed()
+        public async Task LoginCommand_LoginReturnsClient_NavigationToVehiclesIsPerformed()
         {
             // Given
             _loginServiceMock.Setup(m => m.Login(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(new LoginResult { Worker = false, UserId = "2"});
+                .ReturnsAsync(new LoginResult { Worker = false });
             
             // When
-            _loginVM.LoginCommand.Execute();
+            await _loginVM.LoginCommand.ExecuteAsync();
             
             // Then
             Assert.IsFalse(_loginVM.ShowLoginError);
