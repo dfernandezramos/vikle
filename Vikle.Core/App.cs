@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using MvvmCross;
 using MvvmCross.ViewModels;
 using RestSharp;
@@ -13,10 +14,41 @@ namespace Vikle.Core
     /// </summary>
     public class App : MvxApplication
     {
+        private ISecureStorageService _secureStorageService;
+        
         public override void Initialize()
         {
+            _secureStorageService = new SecureStorageService();
+            
             RegisterServices();
-            RegisterAppStart<WelcomeVM>();
+
+            if (UserHasToken())
+            {
+                if (UserIsWorker())
+                {
+                    RegisterAppStart<WorkerRootVM>();
+                }
+                else
+                {
+                    RegisterAppStart<ClientRootVM>();
+                }
+            }
+            else
+            {
+                RegisterAppStart<WelcomeVM>();
+            }
+        }
+        
+        bool UserHasToken()
+        {
+            var token = _secureStorageService.GetAsync(Constants.SS_TOKEN).Result;
+            return !string.IsNullOrEmpty(token);
+        }
+        
+        bool UserIsWorker()
+        {
+            var worker = _secureStorageService.GetAsync(Constants.SS_WORKER).Result;
+            return !string.IsNullOrEmpty(worker);
         }
 
         void RegisterServices()
@@ -27,7 +59,7 @@ namespace Vikle.Core
             
             Mvx.IoCProvider.RegisterSingleton<IRestClient> (new RestClient(Constants.API_BASE_URI));
             Mvx.IoCProvider.RegisterSingleton<IApiClientService> (new ApiClientService ());
-            Mvx.IoCProvider.RegisterSingleton<ISecureStorageService> (new SecureStorageService());
+            Mvx.IoCProvider.RegisterSingleton<ISecureStorageService> (_secureStorageService);
         }
     }
 }

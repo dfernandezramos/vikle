@@ -13,5 +13,6 @@ namespace Vikle.Core
 
         public const string SS_TOKEN = "Vikle_Token";
         public const string SS_USER_ID = "Vikle_UserId";
+        public const string SS_WORKER = "Vikle_Worker";
     }
 }

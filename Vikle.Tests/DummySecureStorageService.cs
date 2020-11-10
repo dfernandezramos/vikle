@@ -29,7 +29,7 @@ namespace Vikle.Tests
         /// <returns>The value of the provided key</returns>
         public async Task<string> GetAsync(string key)
         {
-            return SecureStorage[key];
+            return SecureStorage.TryGetValue(key, out string result) ? result : null;
         }
     }
 }
