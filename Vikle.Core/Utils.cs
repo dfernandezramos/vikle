@@ -1,6 +1,11 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
+using Xamarin.Forms;
 
 namespace Vikle.Core
 {
@@ -46,6 +51,27 @@ namespace Vikle.Core
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// This method is a workaround for a bug in MVVMCross that does not hide the menu after a navigation.
+        /// </summary>
+        /// <param name="navigationService">The navigation service</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        /// <typeparam name="T">The destination viewmodel type</typeparam>
+        public static async Task MenuNavigation<T>(IMvxNavigationService navigationService, CancellationToken cancellationToken)
+            where T : MvxViewModel
+        {
+            if(Application.Current.MainPage is MasterDetailPage masterDetailPage)
+            {
+                masterDetailPage.IsPresented = false; 
+            }
+            else if(Application.Current.MainPage is NavigationPage navigationPage && navigationPage.CurrentPage is MasterDetailPage nestedMasterDetail)
+            {
+                nestedMasterDetail.IsPresented = false;
+            }
+            
+            await navigationService.Navigate<T>(cancellationToken: cancellationToken);
         }
     }
 }

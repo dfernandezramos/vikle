@@ -70,7 +70,7 @@ namespace Vikle.Tests.ViewModels
             
             // Then
             Assert.IsFalse(_loginVM.ShowLoginError);
-            _navigationMock.Verify(m => m.Navigate<WSReparationsVM> (null,
+            _navigationMock.Verify(m => m.Navigate<WorkerRootVM> (null,
                 It.IsAny<CancellationToken>()), times: Times.Once);
         }
         
@@ -86,7 +86,7 @@ namespace Vikle.Tests.ViewModels
             
             // Then
             Assert.IsFalse(_loginVM.ShowLoginError);
-            _navigationMock.Verify(m => m.Navigate<VehiclesVM> (null,
+            _navigationMock.Verify(m => m.Navigate<ClientRootVM> (null,
                 It.IsAny<CancellationToken>()), times: Times.Once);
         }
     }

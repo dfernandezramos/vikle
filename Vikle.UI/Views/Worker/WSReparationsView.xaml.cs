@@ -1,5 +1,8 @@
 using System;
 using System.Collections.ObjectModel;
+using MvvmCross.Forms.Presenters.Attributes;
+using MvvmCross.Forms.Views;
+using Vikle.Core.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,14 +11,14 @@ namespace Vikle.UI.Views.Worker
     /// <summary>
     /// This class contains the definition of the worker side reparations view.
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WSReparationsView : ContentPage
+    [MvxMasterDetailPagePresentation(MasterDetailPosition.Detail, NoHistory = true)]
+    public partial class WSReparationsView : MvxContentPage<WSReparationsVM>
     {
         public WSReparationsView()
         {
             InitializeComponent();
             TitleView.Title = Title;
-            this.BindingContext = this;
+            // this.BindingContext = this;
         }
         
         /// <summary>
