@@ -14,6 +14,7 @@ namespace Vikle.UI.Views.Client
         {
             InitializeComponent();
             TitleView.Title = Title;
+            TitleView.HomeButtonVisible = false;
         }
     }
 }

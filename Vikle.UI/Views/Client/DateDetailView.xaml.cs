@@ -1,14 +1,15 @@
 using System.Collections.Generic;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using MvvmCross.Forms.Presenters.Attributes;
+using MvvmCross.Forms.Views;
+using Vikle.Core.ViewModels;
 
 namespace Vikle.UI.Views.Client
 {
     /// <summary>
     /// This class contains the definition for the date detail view.
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DateDetailView : ContentPage
+    [MvxMasterDetailPagePresentation(MasterDetailPosition.Detail)]
+    public partial class DateDetailView : MvxContentPage<DateDetailVM>
     {
         public DateDetailView()
         {
@@ -16,6 +17,13 @@ namespace Vikle.UI.Views.Client
             
             TitleView.Title = Title;
             ReasonPicker.ItemsSource = new List<string> {"Maintenance", "Reparation", "Other"};
+        }
+
+        protected override void OnViewModelSet()
+        {
+            base.OnViewModelSet();
+
+            TitleView.HomeButtonCommand = ViewModel.HomeNavigationCommand;
         }
     }
 }

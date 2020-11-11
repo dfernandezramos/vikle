@@ -21,6 +21,8 @@
         <views:ShellTitleView x:Name="TitleView"/>
     </NavigationPage.TitleView>
     <NavigationPage.IconColor><x:StaticResource Key="YellowStrongColor"/></NavigationPage.IconColor>
+    <NavigationPage.HasBackButton>False</NavigationPage.HasBackButton>
+    
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

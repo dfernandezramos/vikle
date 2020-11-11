@@ -1,24 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using MvvmCross.Forms.Presenters.Attributes;
+using MvvmCross.Forms.Views;
+using Vikle.Core.ViewModels;
 
 namespace Vikle.UI.Views.Client
 {
     /// <summary>
     /// This class implements the client reparation detail view.
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ReparationDetailView : ContentPage
+    [MvxMasterDetailPagePresentation(MasterDetailPosition.Detail)]
+    public partial class ReparationDetailView : MvxContentPage<ReparationDetailVM>
     {
         public ReparationDetailView()
         {
             InitializeComponent();
             TitleView.Title = Title;
+        }
+        
+        protected override void OnViewModelSet()
+        {
+            base.OnViewModelSet();
+
+            TitleView.HomeButtonCommand = ViewModel.HomeNavigationCommand;
         }
     }
 }

@@ -7,13 +7,11 @@ namespace Vikle.Core.ViewModels
     /// <summary>
     /// This class contains the implementation of the client vehicles viewmodel
     /// </summary>
-    public class VehiclesVM : MvxViewModel
+    public class VehiclesVM : ClientBaseVM
     {
-        readonly IMvxNavigationService _mvxNavigationService;
-
-        public VehiclesVM(IMvxNavigationService mvxNavigationService)
+        public VehiclesVM(IMvxNavigationService mvxNavigationService) : base(mvxNavigationService)
         {
-            _mvxNavigationService = mvxNavigationService;
+            
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Vikle.UI.Views.Worker
         {
             InitializeComponent();
             TitleView.Title = Title;
-            // this.BindingContext = this;
+            TitleView.HomeButtonVisible = false;
         }
 
         protected override void OnViewModelSet()
@@ -22,6 +22,7 @@ namespace Vikle.UI.Views.Worker
             base.OnViewModelSet();
 
             ReparationsCollectionView.ItemsSource = ViewModel.Reparations;
+            TitleView.HomeButtonCommand = ViewModel.HomeNavigationCommand;
         }
 
         // /// <summary>

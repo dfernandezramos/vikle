@@ -17,9 +17,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Shell.TitleView>
+    <NavigationPage.TitleView>
         <views:ShellTitleView x:Name="TitleView"/>
-    </Shell.TitleView>
+    </NavigationPage.TitleView>
+    <NavigationPage.IconColor><x:StaticResource Key="YellowStrongColor"/></NavigationPage.IconColor>
+    <NavigationPage.HasBackButton>False</NavigationPage.HasBackButton>
     
     <ContentPage.Content>
         <Grid>
