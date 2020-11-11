@@ -25,10 +25,6 @@
         <DependentUpon>ShellTitleView.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Views\Worker\WorkerAppShell.xaml.cs">
-        <DependentUpon>WorkerAppShell.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
       <Compile Update="Views\NewCollectionItem.xaml.cs">
         <DependentUpon>NewCollectionItem.xaml</DependentUpon>
         <SubType>Code</SubType>
