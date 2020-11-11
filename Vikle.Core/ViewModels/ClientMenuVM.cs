@@ -14,9 +14,33 @@ namespace Vikle.Core.ViewModels
     {
         readonly IMvxNavigationService _mvxNavigationService;
         
+        /// <summary>
+        /// Gets or sets the vehicles view navigation command.
+        /// </summary>
+        public MvxAsyncCommand VehiclesNavigationCommand { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the dates view navigation command.
+        /// </summary>
+        public MvxAsyncCommand DatesNavigationCommand { get; set; }
+        
         public ClientMenuVM(IMvxNavigationService mvxNavigationService)
         {
             _mvxNavigationService = mvxNavigationService;
+            VehiclesNavigationCommand = new MvxAsyncCommand(VehiclesNavigation);
+            DatesNavigationCommand = new MvxAsyncCommand(DatesNavigation);
+        }
+
+        async Task DatesNavigation(CancellationToken cancellationToken)
+        {
+            Utils.CloseMenu();
+            await _mvxNavigationService.Navigate<DatesVM>(cancellationToken: cancellationToken);
+        }
+        
+        async Task VehiclesNavigation(CancellationToken cancellationToken)
+        {
+            Utils.CloseMenu();
+            await _mvxNavigationService.Navigate<VehiclesVM>(cancellationToken: cancellationToken);
         }
     }
 }

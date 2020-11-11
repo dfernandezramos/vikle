@@ -30,7 +30,8 @@
                            Margin="30"/>
                 </Grid>
             </Grid>
-            <Grid Margin="0,10,0,0">
+            <Grid Margin="0,10,0,0"
+                  x:Name="ReparationsButton">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.2*" />
                     <ColumnDefinition Width="0.8*" />

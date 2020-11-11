@@ -38,8 +38,12 @@
                    TextColor="{StaticResource BlueStrongColor}"
                    FontSize="Large"
                    Padding="40,40,0,0"/>
-            <CollectionView Grid.Row="2" Margin="25,0,25,25" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                            SelectionMode="None" ItemsSource="{Binding Reparations}">
+            <CollectionView Grid.Row="2"
+                            x:Name="ReparationsCollectionView"
+                            Margin="25,0,25,25"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            SelectionMode="None">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
                 </CollectionView.ItemsLayout>

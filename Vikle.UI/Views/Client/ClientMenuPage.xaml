@@ -30,7 +30,8 @@
                            Margin="30"/>
                 </Grid>
             </Grid>
-            <Grid Margin="0,10,0,0">
+            <Grid Margin="0,10,0,0"
+                  x:Name="VehiclesButton">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.2*" />
                     <ColumnDefinition Width="0.8*" />
@@ -46,7 +47,7 @@
                        VerticalTextAlignment="Center"/> 
             </Grid>
             <BoxView HeightRequest="20"/>
-            <Grid>
+            <Grid x:Name="DatesButton">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.2*" />
                     <ColumnDefinition Width="0.8*" />

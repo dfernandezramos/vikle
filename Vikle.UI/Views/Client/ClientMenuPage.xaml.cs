@@ -20,6 +20,14 @@ namespace Vikle.UI.Views.Client
         public ClientMenuPage()
         {
             InitializeComponent();
+            
+            var vehiclesTapGestureRecognizer = new TapGestureRecognizer();
+            vehiclesTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.VehiclesNavigationCommand.ExecuteAsync();
+            VehiclesButton.GestureRecognizers.Add(vehiclesTapGestureRecognizer);
+            
+            var datesTapGestureRecognizer = new TapGestureRecognizer();
+            datesTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.DatesNavigationCommand.ExecuteAsync();
+            DatesButton.GestureRecognizers.Add(datesTapGestureRecognizer);
         }
     }
 }
