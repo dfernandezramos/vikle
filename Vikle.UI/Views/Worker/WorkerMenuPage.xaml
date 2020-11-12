@@ -58,7 +58,8 @@
                          HeightRequest="3"
                          BackgroundColor="{StaticResource YellowStrongColor}"
                          Margin="0,0,0,10"/>
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1"
+                      x:Name="LogoutButton">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.2*" />
                         <ColumnDefinition Width="0.8*" />

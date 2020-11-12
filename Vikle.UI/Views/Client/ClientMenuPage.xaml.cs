@@ -28,6 +28,10 @@ namespace Vikle.UI.Views.Client
             var datesTapGestureRecognizer = new TapGestureRecognizer();
             datesTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.DatesNavigationCommand.ExecuteAsync();
             DatesButton.GestureRecognizers.Add(datesTapGestureRecognizer);
+            
+            var logoutTapGestureRecognizer = new TapGestureRecognizer();
+            logoutTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.LogoutCommand.ExecuteAsync();
+            LogoutButton.GestureRecognizers.Add(logoutTapGestureRecognizer);
         }
     }
 }

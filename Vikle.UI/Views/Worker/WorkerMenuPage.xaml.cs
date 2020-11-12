@@ -20,9 +20,13 @@ namespace Vikle.UI.Views.Worker
         {
             base.OnViewModelSet();
             
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.ReparationsNavigationCommand.ExecuteAsync();
-            ReparationsButton.GestureRecognizers.Add(tapGestureRecognizer);
+            var reparationsTapGestureRecognizer = new TapGestureRecognizer();
+            reparationsTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.ReparationsNavigationCommand.ExecuteAsync();
+            ReparationsButton.GestureRecognizers.Add(reparationsTapGestureRecognizer);
+            
+            var logoutTapGestureRecognizer = new TapGestureRecognizer();
+            logoutTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.LogoutCommand.ExecuteAsync();
+            LogoutButton.GestureRecognizers.Add(logoutTapGestureRecognizer);
         }
     }
 }

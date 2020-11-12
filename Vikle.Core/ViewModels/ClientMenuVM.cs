@@ -2,18 +2,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using Xamarin.Forms;
+using Vikle.Core.Interfaces;
 
 namespace Vikle.Core.ViewModels
 {
     /// <summary>
     /// This class contains the implementation of the Menu ViewModel for the MasterDetailPage in the Client side
     /// </summary>
-    public class ClientMenuVM : MvxViewModel
+    public class ClientMenuVM : MenuBaseVM
     {
-        readonly IMvxNavigationService _mvxNavigationService;
-        
         /// <summary>
         /// Gets or sets the vehicles view navigation command.
         /// </summary>
@@ -24,9 +21,8 @@ namespace Vikle.Core.ViewModels
         /// </summary>
         public MvxAsyncCommand DatesNavigationCommand { get; set; }
         
-        public ClientMenuVM(IMvxNavigationService mvxNavigationService)
+        public ClientMenuVM(IMvxNavigationService mvxNavigationService) : base(mvxNavigationService)
         {
-            _mvxNavigationService = mvxNavigationService;
             VehiclesNavigationCommand = new MvxAsyncCommand(VehiclesNavigation);
             DatesNavigationCommand = new MvxAsyncCommand(DatesNavigation);
         }

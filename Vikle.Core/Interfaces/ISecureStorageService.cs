@@ -20,5 +20,11 @@ namespace Vikle.Core.Interfaces
         /// <param name="key">The key the value is stored with</param>
         /// <returns>The value of the provided key</returns>
         Task<string> GetAsync(string key);
+
+        /// <summary>
+        /// This method removes the value of the provided key in the secure storage
+        /// </summary>
+        /// <param name="key">The key the value is going to be deleted</param>
+        void Remove(string key);
     }
 }

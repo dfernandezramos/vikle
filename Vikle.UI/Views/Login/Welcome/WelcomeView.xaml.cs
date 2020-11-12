@@ -1,14 +1,14 @@
+using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Vikle.Core.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Vikle.UI.Views.Login.Welcome
 {
     /// <summary>
     /// This class contains the definition of the Welcome view.
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    [MvxContentPagePresentation(WrapInNavigationPage = true, NoHistory = true)]
     public partial class WelcomeView : MvxContentPage<WelcomeVM>
     {
         public WelcomeView()
