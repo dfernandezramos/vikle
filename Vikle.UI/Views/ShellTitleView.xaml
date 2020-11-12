@@ -27,8 +27,7 @@
                FontAttributes="Bold"
                TextColor="{StaticResource YellowStrongColor}"/>
         <ImageButton Grid.Column="1"
-                     x:Name="Button"
-                     Command="{Binding HomePageCommand}"
+                     x:Name="HomeBtn"
                      BackgroundColor="Transparent"
                      Source="{local:ImageResource Vikle.UI.Images.home.png}" />
     </Grid>

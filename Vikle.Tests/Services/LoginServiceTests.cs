@@ -109,6 +109,8 @@ namespace Vikle.Tests.Services
             Assert.AreEqual(WORKER_TOKEN, token);
             var userId = await _secureStorageService.GetAsync(Constants.SS_USER_ID);
             Assert.AreEqual(WORKER_ID, userId);
+            var worker = await _secureStorageService.GetAsync(Constants.SS_WORKER);
+            Assert.IsFalse(string.IsNullOrEmpty(worker));
         }
         
         [Test]
@@ -127,6 +129,8 @@ namespace Vikle.Tests.Services
             Assert.AreEqual(CLIENT_TOKEN, token);
             var userId = await _secureStorageService.GetAsync(Constants.SS_USER_ID);
             Assert.AreEqual(CLIENT_ID, userId);
+            var worker = await _secureStorageService.GetAsync(Constants.SS_WORKER);
+            Assert.IsTrue(string.IsNullOrEmpty(worker));
         }
         
         [Test]

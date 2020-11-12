@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Xamarin.Forms;
 
 namespace Vikle.Core
 {
@@ -45,6 +46,21 @@ namespace Vikle.Core
             catch (RegexMatchTimeoutException)
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// This method is a workaround for a bug in MVVMCross that does not hide the menu after a navigation.
+        /// </summary>
+        public static void CloseMenu()
+        {
+            if(Application.Current.MainPage is MasterDetailPage masterDetailPage)
+            {
+                masterDetailPage.IsPresented = false; 
+            }
+            else if(Application.Current.MainPage is NavigationPage navigationPage && navigationPage.CurrentPage is MasterDetailPage nestedMasterDetail)
+            {
+                nestedMasterDetail.IsPresented = false;
             }
         }
     }

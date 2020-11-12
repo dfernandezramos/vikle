@@ -44,5 +44,14 @@ namespace Vikle.Core.Services
                 return null;
             }
         }
+
+        /// <summary>
+        /// This method removes the value of the provided key in the secure storage
+        /// </summary>
+        /// <param name="key">The key the value is going to be deleted</param>
+        public void Remove(string key)
+        {
+            SecureStorage.Remove(key);
+        }
     }
 }

@@ -58,9 +58,9 @@ namespace Vikle.Core.Services
                     : Strings.ServerError;
                 return result;
             }
-
-            await StoreUserData(loginData.Result.UserId, loginData.Result.Token);
+            
             result.Worker = userData.Result.IsWorker;
+            await StoreUserData(loginData.Result.UserId, loginData.Result.Token, result.Worker);
 
             return result;
         }
@@ -86,10 +86,14 @@ namespace Vikle.Core.Services
             return result;
         }
 
-        async Task StoreUserData(string userId, string token)
+        async Task StoreUserData(string userId, string token, bool worker)
         {
             await _secureStorageService.SetAsync(Constants.SS_TOKEN, token);
             await _secureStorageService.SetAsync(Constants.SS_USER_ID, userId);
+            if (worker)
+            {
+                await _secureStorageService.SetAsync(Constants.SS_WORKER, "worker");
+            }
         }
     }
 }

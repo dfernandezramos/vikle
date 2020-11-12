@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<crossviews:MvxContentPage x:TypeArguments="viewModels:WorkerMenuVM"
+                           xmlns:crossviews="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                           xmlns:viewModels="clr-namespace:Vikle.Core.ViewModels;assembly=Vikle.Core"
+                           xmlns="http://xamarin.com/schemas/2014/forms"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                           xmlns:local="clr-namespace:Vikle.UI"
+                           xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
+                           xmlns:views="clr-namespace:Vikle.UI.Views"
+                           x:Class="Vikle.UI.Views.Worker.WorkerMenuPage"
+                           BackgroundColor="{StaticResource BlueSoftColor}"
+                           Title="WorkerMenu">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <local:Resources />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                      BackgroundColor="{StaticResource BlueSoftColor}">
+                    <Image Source="{local:ImageResource Vikle.UI.Images.logo.png}"
+                           Margin="30"/>
+                </Grid>
+            </Grid>
+            <Grid Margin="0,10,0,0"
+                  x:Name="ReparationsButton">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.8*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{local:ImageResource Vikle.UI.Images.car.png}"
+                       Margin="5"
+                       HeightRequest="35"
+                       Aspect="AspectFit"/>
+                <Label Grid.Column="1"
+                       Text="{x:Static core:Strings.Reparations}"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource YellowStrongColor}"
+                       VerticalTextAlignment="Center"/> 
+            </Grid>
+            <Grid VerticalOptions="EndAndExpand"
+                  Padding="10"
+                  RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <BoxView Grid.Row="0"
+                         HeightRequest="3"
+                         BackgroundColor="{StaticResource YellowStrongColor}"
+                         Margin="0,0,0,10"/>
+                <Grid Grid.Row="1"
+                      x:Name="LogoutButton">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.8*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{local:ImageResource Vikle.UI.Images.logout.png}"
+                           Margin="5"
+                           HeightRequest="35"
+                           Aspect="AspectFit"/>
+                    <Label Grid.Column="1"
+                           Text="{x:Static core:Strings.LogOut}"
+                           FontAttributes="Italic"
+                           TextColor="{StaticResource YellowStrongColor}"
+                           VerticalTextAlignment="Center"/> 
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.8*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="1" Grid.Column="1"
+                           Text="David Fernández 2020-21"
+                           FontAttributes="Italic"
+                           Padding="0"
+                           TextColor="{StaticResource YellowStrongColor}"
+                           HorizontalTextAlignment="End"/>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</crossviews:MvxContentPage>

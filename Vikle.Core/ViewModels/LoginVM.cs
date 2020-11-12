@@ -99,11 +99,11 @@ namespace Vikle.Core.ViewModels
             {
                 if (result.Worker)
                 {
-                    await _mvxNavigationService.Navigate<WSReparationsVM>(cancellationToken: cancellationToken);
+                    await _mvxNavigationService.Navigate<WorkerRootVM>(cancellationToken: cancellationToken);
                 }
                 else
                 {
-                    await _mvxNavigationService.Navigate<VehiclesVM>(cancellationToken: cancellationToken);
+                    await _mvxNavigationService.Navigate<ClientRootVM>(cancellationToken: cancellationToken);
                 }
             }
         }

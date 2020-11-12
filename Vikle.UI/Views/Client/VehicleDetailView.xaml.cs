@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using MvvmCross.Forms.Presenters.Attributes;
+using MvvmCross.Forms.Views;
+using Vikle.Core.ViewModels;
 
 namespace Vikle.UI.Views.Client
 {
     /// <summary>
     /// This class contains the definition for the vehicle detail view.
     /// </summary>
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class VehicleDetailView : ContentPage
+    [MvxMasterDetailPagePresentation(MasterDetailPosition.Detail)]
+    public partial class VehicleDetailView : MvxContentPage<VehicleDetailVM>
     {
         public VehicleDetailView()
         {
@@ -18,6 +19,13 @@ namespace Vikle.UI.Views.Client
             TitleView.Title = Title;
             TypePicker.ItemsSource = new List<string> {"Car", "Truck", "Motorcycle", "Other"};
             InitYearPicker();
+        }
+        
+        protected override void OnViewModelSet()
+        {
+            base.OnViewModelSet();
+
+            TitleView.HomeButtonCommand = ViewModel.HomeNavigationCommand;
         }
 
         void InitYearPicker()
