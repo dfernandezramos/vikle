@@ -56,7 +56,8 @@ namespace Vikle.Core
             Mvx.IoCProvider.RegisterType<ILoginService, LoginService>();
             Mvx.IoCProvider.RegisterType<IRecoverPasswordService, RecoverPasswordService>();
             Mvx.IoCProvider.RegisterType<ISignupService, SignupService> ();
-            
+            Mvx.IoCProvider.RegisterType<IVehiclesService, VehiclesService> ();
+
             Mvx.IoCProvider.RegisterSingleton<IRestClient> (new RestClient(Constants.API_BASE_URI));
             Mvx.IoCProvider.RegisterSingleton<IApiClientService> (new ApiClientService ());
             Mvx.IoCProvider.RegisterSingleton<ISecureStorageService> (_secureStorageService);

@@ -3,8 +3,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
-             xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
-             x:Class="Vikle.UI.Views.NewCollectionItem">
+             x:Class="Vikle.UI.Views.Client.VehicleCollectionItem">
     <ContentView.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,12 +14,13 @@
     <ContentView.Content>
         <Grid VerticalOptions="StartAndExpand"
               HorizontalOptions="FillAndExpand"
-              BackgroundColor="{StaticResource YellowSoftColor}">
+              BackgroundColor="{StaticResource YellowSoftColor}"
+              x:Name="VehicleItem">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <BoxView BackgroundColor="Green"
+            <BoxView Grid.Column="0" BackgroundColor="{StaticResource BlueSoftColor}"
                      WidthRequest="5"
                      HorizontalOptions="Start"
                      VerticalOptions="FillAndExpand"/>    
@@ -33,24 +33,25 @@
                 <StackLayout HorizontalOptions="Center"
                              VerticalOptions="Center">
                     <Image BackgroundColor="Transparent"
-                           Aspect="AspectFill"
-                           Source="{local:ImageResource Vikle.UI.Images.plus.png}"/>
+                           x:Name="VehicleImage"
+                           Aspect="AspectFill"/>
                 </StackLayout>
                 <BoxView Grid.Column="1"
-                         BackgroundColor="#F2F4F8"
-                         WidthRequest="1"
+                         BackgroundColor="White" WidthRequest="1"
                          HorizontalOptions="Start" 
                          VerticalOptions="FillAndExpand"/>
-                <StackLayout Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Center" Margin="20">
-                    <Label x:Name="TitleLabel"
+                <StackLayout Grid.Column="2"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             Margin="20">
+                    <Label Text="{Binding PlateNumber}"
+                           x:Name="TempName"
                            TextColor="{StaticResource BlueMediumColor}"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           Margin="0,-4,0,0"/>
-                    <Label Text="{x:Static core:Strings.TapHereToAdd}"
+                           FontSize="15"/>
+                    <Label Text="{Binding Model}"
                            TextColor="{StaticResource BlueMediumColor}"
                            FontSize="12"
-                           Margin="0,-8,0,0"/>
+                           Margin="0,-10,0,0"/>
                 </StackLayout>
             </Grid>
         </Grid>

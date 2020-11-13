@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using MvvmCross;
@@ -77,6 +78,22 @@ namespace Vikle.Core.Services
             request.AddParameter ("surname", data.Surname, ParameterType.GetOrPost);
             request.AddParameter ("phone", data.Phone, ParameterType.GetOrPost);
             var response = await _client.ExecuteAsync (request);
+            
+            return ToHttpCallResult (response);
+        }
+
+        /// <summary>
+        /// Gets the provided user vehicles information from the web API.
+        /// </summary>
+        /// <param name="userId">The user identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The user vehicles information</returns>
+        public async Task<HttpCallResult<List<Vehicle>>> GetUserVehicles(string userId, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/vehicles", Method.GET);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("userId", userId, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync<List<Vehicle>> (request);
             
             return ToHttpCallResult (response);
         }

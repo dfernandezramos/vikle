@@ -13,10 +13,11 @@ namespace Vikle.UI
         public FormsApp()
         {
             InitializeComponent();
-            
+
 #if DEBUG
             HotReloader.Current.Run(this); 
 #endif
+            Device.SetFlags(new string[] { "Expander_Experimental" });
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Vikle.Core
         public static readonly string SignupConfirmationViewTitle = "Signup successful!";
         public static readonly string SignupConfirmationViewSubtitle = "We have sent you a confirmation e-mail but you can now log in";
         public static readonly string NewReparation = "New reparation";
+        public static readonly string NewVehicle = "New vehicle";
         public static readonly string TapHereToAdd = "Tap here to add";
         public static readonly string ReparationDetails = "Reparation details:";
         public static readonly string Plate = "Plate:";
@@ -39,7 +40,8 @@ namespace Vikle.Core
         public static readonly string ArrangeAppointmentsTitle = "Arrange appointments";
         public static readonly string ArrangeAppointmentsSubtitle = "Arrange an appointment to bring your vehicle to the workshop";
         public static readonly string RegisteredVehicles = "Registered vehicles:";
-        public static readonly string Vehicle = "Vehicle:";
+        public static readonly string Vehicle = "Vehicle";
+        public static readonly string VehicleDoublePeriod = "Vehicle:";
         public static readonly string DateDetails = "Date details:";
         public static readonly string NextDates = "Next dates:";
         public static readonly string Login = "Login";

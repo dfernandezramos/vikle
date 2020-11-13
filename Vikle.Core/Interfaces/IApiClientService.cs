@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vikle.Core.Models;
 
@@ -35,5 +36,13 @@ namespace Vikle.Core.Interfaces
         /// </summary>
         /// <param name="data">The signup data to register in the API</param>
         Task<HttpCallResult> Signup(SignupData data);
+        
+        /// <summary>
+        /// Gets the provided user vehicles information from the web API.
+        /// </summary>
+        /// <param name="userId">The user identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The user vehicles information</returns>
+        Task<HttpCallResult<List<Vehicle>>> GetUserVehicles (string userId, string token);
     }
 }
