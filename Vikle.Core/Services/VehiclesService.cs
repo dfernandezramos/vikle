@@ -49,7 +49,7 @@ namespace Vikle.Core.Services
             //             IdDrivers = new List<string> (),
             //             LastITV = DateTime.Today,
             //             LastTBDS = DateTime.Today,
-            //             Model = "",
+            //             Model = "Vespino",
             //             PlateNumber = "1234 ABC",
             //             VehicleType = VehicleType.MotorCycle,
             //             Year = 2015

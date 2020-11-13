@@ -22,6 +22,11 @@ namespace Vikle.UI.Views.Client
             if (e.PropertyName == nameof(BindingContext))
             {
                 var vehicle = (Vehicle)this.BindingContext;
+                if (vehicle == null)
+                {
+                    return;
+                }
+                
                 VehicleImage.Source = ImageSource.FromResource(Utils.GetVehicleImageName(vehicle.VehicleType));
             }
         }
