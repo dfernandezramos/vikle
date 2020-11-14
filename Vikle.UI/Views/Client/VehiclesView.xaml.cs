@@ -35,6 +35,9 @@ namespace Vikle.UI.Views.Client
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.ShowVehicleDetailsCommand.ExecuteAsync((new Vehicle(), true));
             NewVehicleButton.GestureRecognizers.Add(tapGestureRecognizer);
+
+            ErrorLabel.IsVisible = ViewModel.ShowVehiclesError;
+            ErrorLabel.Text = ViewModel.VehiclesError;
         }
 
         async Task VehiclesCollectionOnSelectionChanged(object sender, SelectionChangedEventArgs e)

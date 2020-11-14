@@ -30,6 +30,7 @@
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <views:NewCollectionItem Grid.Row="0"
                                      x:Name="NewVehicleButton"
@@ -41,7 +42,12 @@
                    TextColor="{StaticResource BlueStrongColor}"
                    FontSize="Large"
                    Padding="40,40,0,0"/>
-            <CollectionView Grid.Row="2"
+            <Label Grid.Row="2"
+                   x:Name="ErrorLabel"
+                   FontAttributes="Bold"
+                   TextColor="Red"
+                   TextDecorations="Underline"/>
+            <CollectionView Grid.Row="3"
                             x:Name="VehiclesCollection"
                             Margin="25,0,25,25"
                             HorizontalOptions="FillAndExpand"

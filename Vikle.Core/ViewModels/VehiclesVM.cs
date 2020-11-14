@@ -67,6 +67,7 @@ namespace Vikle.Core.ViewModels
         
         async Task GetVehicles()
         {
+            ShowVehiclesError = false;
             Result<MvxObservableCollection<Vehicle>> result = await _vehiclesService.GetUserVehicles();
 
             if (result.Error)
