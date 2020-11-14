@@ -82,7 +82,7 @@ namespace Vikle.Core.ViewModels
 
         async Task ShowVehicleDetails((Vehicle, bool) vehicle, CancellationToken cancellationToken = default)
         {
-            await _mvxNavigationService.Navigate<VehicleDetailVM>(cancellationToken: cancellationToken);
+            await _mvxNavigationService.Navigate<VehicleDetailVM, (Vehicle, bool)>(vehicle, cancellationToken: cancellationToken);
         }
     }
 }

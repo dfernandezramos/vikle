@@ -98,6 +98,63 @@ namespace Vikle.Core.Services
             return ToHttpCallResult (response);
         }
 
+        /// <summary>
+        /// Deletes the vehicle related to the calling user.
+        /// </summary>
+        /// <param name="userId">The user identifier</param>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns></returns>
+        public async Task<HttpCallResult> DeleteVehicle(string userId, string plateNumber, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/vehicles", Method.DELETE);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("userId", userId, ParameterType.GetOrPost);
+            request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync (request);
+            
+            return ToHttpCallResult (response);
+        }
+
+        /// <summary>
+        /// Updates the vehicle data in the API
+        /// </summary>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="vehicle">The vehicle to be updated</param>
+        /// <param name="token">The user token</param>
+        public async Task<HttpCallResult> UpdateVehicle(string plateNumber, Vehicle vehicle, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/vehicles", Method.POST);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("oldPlateNumber", plateNumber, ParameterType.GetOrPost);
+            request.AddParameter ("newPlateNumber", vehicle.PlateNumber, ParameterType.GetOrPost);
+            request.AddParameter ("model", vehicle.Model, ParameterType.GetOrPost);
+            request.AddParameter ("vehicleType", vehicle.VehicleType, ParameterType.GetOrPost);
+            request.AddParameter ("year", vehicle.Year, ParameterType.GetOrPost);
+            request.AddParameter ("lastITV", vehicle.LastITV, ParameterType.GetOrPost);
+            request.AddParameter ("lastTBDS", vehicle.LastTBDS, ParameterType.GetOrPost);
+            request.AddParameter ("IdClient", vehicle.IdClient, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync (request);
+            
+            return ToHttpCallResult (response);
+        }
+
+        /// <summary>
+        /// Gets the current reparation related to he provided vehicle identifier
+        /// </summary>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The current vehicle reparation</returns>
+        public async Task<HttpCallResult<Reparation>> GetCurrentReparation(string plateNumber, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/reparations/current", Method.GET);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync<Reparation> (request);
+            
+            return ToHttpCallResult (response);
+        }
+
         HttpCallResult<TResponse> ToHttpCallResult<TResponse> (IRestResponse<TResponse> response)
         {
             return new HttpCallResult<TResponse>

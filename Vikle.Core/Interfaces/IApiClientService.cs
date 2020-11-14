@@ -44,5 +44,29 @@ namespace Vikle.Core.Interfaces
         /// <param name="token">The user token</param>
         /// <returns>The user vehicles information</returns>
         Task<HttpCallResult<List<Vehicle>>> GetUserVehicles (string userId, string token);
+        
+        /// <summary>
+        /// Deletes the vehicle related to the calling user.
+        /// </summary>
+        /// <param name="userId">The user identifier</param>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="token">The user token</param>
+        Task<HttpCallResult> DeleteVehicle(string userId, string plateNumber, string token);
+        
+        /// <summary>
+        /// Updates the vehicle data in the API
+        /// </summary>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="vehicle">The vehicle to be updated</param>
+        /// <param name="token">The user token</param>
+        Task<HttpCallResult> UpdateVehicle(string plateNumber, Vehicle vehicle, string token);
+        
+        /// <summary>
+        /// Gets the current reparation related to he provided vehicle identifier
+        /// </summary>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The current vehicle reparation</returns>
+        Task<HttpCallResult<Reparation>> GetCurrentReparation(string plateNumber, string token);
     }
 }
