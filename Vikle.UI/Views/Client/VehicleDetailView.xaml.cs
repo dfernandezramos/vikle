@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
@@ -34,7 +35,14 @@ namespace Vikle.UI.Views.Client
         protected override void OnViewModelSet()
         {
             base.OnViewModelSet();
+            
+            ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
+            SetBindings();
+            SetGestureRecognizers();
+        }
 
+        void SetBindings()
+        {
             TitleView.HomeButtonCommand = ViewModel.HomeNavigationCommand;
             PlateEntry.Text = ViewModel.PlateNumber;
             PlateEntry.IsEnabled = ViewModel.EditionMode;
@@ -56,10 +64,12 @@ namespace Vikle.UI.Views.Client
             HistoryButton.IsVisible = !ViewModel.EditionMode;
             ErrorLabel.IsVisible = ViewModel.ShowDetailError;
             ErrorLabel.Text = ViewModel.DetailError;
-
             HistoryButton.Command = ViewModel.ReparationsHistoryCommand;
             ConfirmButton.Command = ViewModel.UpdateVehicleCommand;
-            
+        }
+
+        void SetGestureRecognizers()
+        {
             var cancelTapGestureRecognizer = new TapGestureRecognizer();
             cancelTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync();
             CancelLabel.GestureRecognizers.Add(cancelTapGestureRecognizer);
@@ -71,6 +81,34 @@ namespace Vikle.UI.Views.Client
             var deleteTapGestureRecognizer = new TapGestureRecognizer();
             deleteTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync();
             DeleteLabel.GestureRecognizers.Add(deleteTapGestureRecognizer);
+        }
+
+        void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (ViewModel != null && e.PropertyName == nameof(ViewModel.ReparationStatus))
+            {
+                if (ViewModel.ReparationStatus == null)
+                {
+                    return;
+                }
+                
+                StatusBar.Pending.Active = false;
+                StatusBar.Repairing.Active = false;
+                StatusBar.Repaired.Active = false;
+
+                switch (ViewModel.ReparationStatus)
+                {
+                    case ReparationStatus.Pending:
+                        StatusBar.Pending.Active = true;
+                        break;
+                    case ReparationStatus.Repairing:
+                        StatusBar.Repairing.Active = true;
+                        break;
+                    case ReparationStatus.Repaired:
+                        StatusBar.Repaired.Active = true;
+                        break;
+                }
+            }
         }
 
         void InitYearPicker()

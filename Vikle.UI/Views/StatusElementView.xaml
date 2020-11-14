@@ -32,16 +32,22 @@
                 </Grid.ColumnDefinitions>
                 <Image Grid.Row="1"
                        Grid.Column="1"
+                       x:Name="GreenDotImage"
                        Source="{local:ImageResource Vikle.UI.Images.dot_green.png}"/>
+                <Image Grid.Row="1"
+                       Grid.Column="1"
+                       x:Name="YellowDotImage"
+                       Source="{local:ImageResource Vikle.UI.Images.dot.png}"/>
             </Grid>
             <Image Grid.Row="1"
                    Source="{local:ImageResource Vikle.UI.Images.small_line.png}"
-                   Aspect="Fill"/>
+                   Aspect="Fill"
+                   x:Name="Underline"/>
             <Label Grid.Row="2"
                    FontAttributes="Bold"
                    TextColor="{StaticResource YellowStrongColor}"
                    HorizontalOptions="CenterAndExpand"
-                   Text="Pending"/>
+                   x:Name="ElementName"/>
         </Grid>
     </ContentView.Content>
 </ContentView>
