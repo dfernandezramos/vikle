@@ -15,4 +15,15 @@ namespace Vikle.Core.Models
         /// </summary>
         public string Message { get; set; }
     }
+    
+    /// <summary>
+    /// This class contains the definition of an action result with a data model of type T.
+    /// </summary>
+    public class Result<T> : Result
+    {
+        /// <summary>
+        /// Gets or sets a model of data of type T.
+        /// </summary>
+        public T Data { get; set; }
+    }
 }

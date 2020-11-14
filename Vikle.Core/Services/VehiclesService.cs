@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using MvvmCross;
 using MvvmCross.ViewModels;
@@ -27,42 +28,50 @@ namespace Vikle.Core.Services
         /// Gets the current user vehicles
         /// </summary>
         /// <returns>The user vehicles information</returns>
-        public async Task<MvxObservableCollection<Vehicle>> GetUserVehicles()
+        public async Task<Result<MvxObservableCollection<Vehicle>>> GetUserVehicles()
         {
+            Result<MvxObservableCollection<Vehicle>> result = new Result<MvxObservableCollection<Vehicle>>();
             string userId = await _secureStorageService.GetAsync(Constants.SS_USER_ID);
             string token = await _secureStorageService.GetAsync(Constants.SS_TOKEN);
-            var result = await _clientService.GetUserVehicles(userId, token);
+            var vehiclesResult = await _clientService.GetUserVehicles(userId, token);
             
-            if (result.Error)
+            if (vehiclesResult.Error)
             {
-                // TODO: log error here
-                return null;
+                result.Error = true;
+                result.Message = vehiclesResult?.HttpStatusCode == HttpStatusCode.Unauthorized
+                    ? Strings.UserUnauthorised
+                    : Strings.ServerError;
+                return result;
             }
+
+            result.Data = new MvxObservableCollection<Vehicle> (vehiclesResult.Result);
             
-            return new MvxObservableCollection<Vehicle>(result.Result);
+            return result;
             
             // TODO: Remove this mock after implementing API
-            // return new MvxObservableCollection<Vehicle>
+            // return new Result<MvxObservableCollection<Vehicle>>
             // {
-            //     new Vehicle {
-            //             IdClient = "1",
+            //     Data = new MvxObservableCollection<Vehicle> {
+            //         new Vehicle {
+            //                 IdClient = "1",
+            //                 IdDrivers = new List<string> (),
+            //                 LastITV = DateTime.Today,
+            //                 LastTBDS = DateTime.Today,
+            //                 Model = "Vespino",
+            //                 PlateNumber = "1234 ABC",
+            //                 VehicleType = VehicleType.MotorCycle,
+            //                 Year = 2015
+            //             },
+            //         new Vehicle {
+            //             IdClient = "2",
             //             IdDrivers = new List<string> (),
             //             LastITV = DateTime.Today,
             //             LastTBDS = DateTime.Today,
-            //             Model = "Vespino",
-            //             PlateNumber = "1234 ABC",
-            //             VehicleType = VehicleType.MotorCycle,
-            //             Year = 2015
-            //         },
-            //     new Vehicle {
-            //         IdClient = "2",
-            //         IdDrivers = new List<string> (),
-            //         LastITV = DateTime.Today,
-            //         LastTBDS = DateTime.Today,
-            //         Model = "Audi A3",
-            //         PlateNumber = "5678 DEF",
-            //         VehicleType = VehicleType.Car,
-            //         Year = 2007
+            //             Model = "Audi A3",
+            //             PlateNumber = "5678 DEF",
+            //             VehicleType = VehicleType.Car,
+            //             Year = 2007
+            //         }
             //     }
             // };
         }

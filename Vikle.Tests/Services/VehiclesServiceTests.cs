@@ -48,7 +48,7 @@ namespace Vikle.Tests.Services
         }
         
         [Test]
-        public async Task VehiclesService_APICallFails_NullReturned()
+        public async Task VehiclesService_APICallFails_ErrorReturned()
         {
             // Given
             _restClientMock.Setup(
@@ -62,7 +62,29 @@ namespace Vikle.Tests.Services
             var vehicles = await _vehiclesService.GetUserVehicles();
 
             // Then
-            Assert.IsNull(vehicles);
+            Assert.IsNull(vehicles.Data);
+            Assert.IsTrue(vehicles.Error);
+            Assert.AreEqual(Strings.ServerError, vehicles.Message);
+        }
+        
+        [Test]
+        public async Task VehiclesService_APICallUnauthorised_UnauthorisedErrorReturned()
+        {
+            // Given
+            _restClientMock.Setup(
+                m => m.ExecuteAsync<List<Vehicle>>(It.IsAny<RestRequest>(), 
+                    It.IsAny<CancellationToken>())).ReturnsAsync(new RestResponse<List<Vehicle>>
+            {
+                StatusCode = HttpStatusCode.Unauthorized
+            });
+            
+            // When
+            var vehicles = await _vehiclesService.GetUserVehicles();
+
+            // Then
+            Assert.IsNull(vehicles.Data);
+            Assert.IsTrue(vehicles.Error);
+            Assert.AreEqual(Strings.UserUnauthorised, vehicles.Message);
         }
         
         [Test]
@@ -94,9 +116,10 @@ namespace Vikle.Tests.Services
             var vehicles = await _vehiclesService.GetUserVehicles();
 
             // Then
-            Assert.IsNotNull(vehicles);
-            Assert.IsNotEmpty(vehicles);
-            var car = vehicles.First();
+            Assert.IsNotNull(vehicles.Data);
+            Assert.IsFalse(vehicles.Error);
+            Assert.IsNotEmpty(vehicles.Data);
+            var car = vehicles.Data.First();
             Assert.AreEqual("Audi A3", car.Model);
             Assert.AreEqual("2", car.IdClient);
         }

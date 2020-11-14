@@ -13,6 +13,6 @@ namespace Vikle.Core.Interfaces
         /// Gets the current user vehicles
         /// </summary>
         /// <returns>The user vehicles information</returns>
-        Task<MvxObservableCollection<Vehicle>> GetUserVehicles();
+        Task<Result<MvxObservableCollection<Vehicle>>> GetUserVehicles();
     }
 }
