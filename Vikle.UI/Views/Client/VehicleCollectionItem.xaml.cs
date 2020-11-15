@@ -14,10 +14,10 @@ namespace Vikle.UI.Views.Client
         public VehicleCollectionItem()
         {
             InitializeComponent();
-            this.PropertyChanged += TempNameOnPropertyChanged;
+            this.PropertyChanged += OnPropertyChanged;
         }
 
-        private void TempNameOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(BindingContext))
             {

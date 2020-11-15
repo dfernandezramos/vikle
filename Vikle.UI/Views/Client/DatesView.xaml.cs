@@ -1,6 +1,8 @@
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Vikle.Core.ViewModels;
+using Xamarin.Forms;
+using CollectionView = Xamarin.Forms.CollectionView;
 
 namespace Vikle.UI.Views.Client
 {
@@ -20,7 +22,8 @@ namespace Vikle.UI.Views.Client
         {
             base.OnViewModelSet();
             
-            DatesCollectionView.ItemsSource = ViewModel.Dates;
+            DatesCollectionView.BindingContext = ViewModel;
+            DatesCollectionView.SetBinding(CollectionView.ItemsSourceProperty, nameof(ViewModel.Dates));
             TitleView.HomeButtonCommand = ViewModel.HomeNavigationCommand;
         }
     }

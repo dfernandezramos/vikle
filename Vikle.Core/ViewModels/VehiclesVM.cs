@@ -16,11 +16,20 @@ namespace Vikle.Core.ViewModels
         private readonly IVehiclesService _vehiclesService;
         private string _vehiclesError;
         private bool _showVehiclesError;
+        private MvxObservableCollection<Vehicle> _vehicles;
 
         /// <summary>
         /// Gets or sets the user vehicles.
         /// </summary>
-        public MvxObservableCollection<Vehicle> Vehicles { get; set; }
+        public MvxObservableCollection<Vehicle> Vehicles
+        {
+            get => _vehicles;
+            set
+            {
+                _vehicles = value;
+                RaisePropertyChanged(() => Vehicles);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the command to show the selected vehicle details

@@ -46,8 +46,8 @@
                    x:Name="ErrorLabel"
                    FontAttributes="Bold"
                    TextColor="Red"
-                   TextDecorations="Underline"/>
-            <CollectionView Grid.Row="3"
+                   HorizontalTextAlignment="Center"/>
+            <CollectionView Grid.Row="2"
                             x:Name="VehiclesCollection"
                             Margin="25,0,25,25"
                             HorizontalOptions="FillAndExpand"

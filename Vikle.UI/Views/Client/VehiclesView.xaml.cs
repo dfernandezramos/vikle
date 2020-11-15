@@ -28,16 +28,17 @@ namespace Vikle.UI.Views.Client
         protected override void OnViewModelSet()
         {
             base.OnViewModelSet();
-            
-            VehiclesCollection.ItemsSource = ViewModel.Vehicles;
-            VehiclesCollection.SelectionChanged += async (sender, args) => await VehiclesCollectionOnSelectionChanged(sender, args);
-            
+
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.ShowVehicleDetailsCommand.ExecuteAsync((new Vehicle(), true));
             NewVehicleButton.GestureRecognizers.Add(tapGestureRecognizer);
 
-            ErrorLabel.IsVisible = ViewModel.ShowVehiclesError;
-            ErrorLabel.Text = ViewModel.VehiclesError;
+            ErrorLabel.BindingContext = ViewModel;
+            ErrorLabel.SetBinding(Label.TextProperty, nameof(ViewModel.VehiclesError));
+            ErrorLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.ShowVehiclesError));
+            VehiclesCollection.BindingContext = ViewModel;
+            VehiclesCollection.SetBinding(CollectionView.ItemsSourceProperty, nameof(ViewModel.Vehicles));
+            VehiclesCollection.SelectionChanged += async (sender, args) => await VehiclesCollectionOnSelectionChanged(sender, args);
         }
 
         async Task VehiclesCollectionOnSelectionChanged(object sender, SelectionChangedEventArgs e)

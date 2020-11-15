@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Vikle.Core.Enums;
-using Vikle.Core.Models;
 using Vikle.Core.ViewModels;
+using Vikle.UI.Converters;
 using Xamarin.Forms;
 
 namespace Vikle.UI.Views.Client
@@ -44,26 +43,39 @@ namespace Vikle.UI.Views.Client
         void SetBindings()
         {
             TitleView.HomeButtonCommand = ViewModel.HomeNavigationCommand;
-            PlateEntry.Text = ViewModel.PlateNumber;
-            PlateEntry.IsEnabled = ViewModel.EditionMode;
-            ModelEntry.Text = ViewModel.VehicleModel;
-            ModelEntry.IsEnabled = ViewModel.EditionMode;
-            TBDSDate.Date = ViewModel.LastTBDS.Date;
-            TBDSDate.IsEnabled = ViewModel.EditionMode;
-            ITVDate.Date = ViewModel.LastITV.Date;
-            ITVDate.IsEnabled = ViewModel.EditionMode;
-            TypePicker.SelectedItem = ViewModel.VehicleType;
-            TypePicker.IsEnabled = ViewModel.EditionMode;
-            YearPicker.SelectedItem = ViewModel.Year;
-            YearPicker.IsEnabled = ViewModel.EditionMode;
-            StatusBar.IsVisible = !ViewModel.ShowReparationStatus;
-            ConfirmButton.IsVisible = ViewModel.EditionMode;
-            CancelLabel.IsVisible = ViewModel.EditionMode;
-            DeleteLabel.IsVisible = ViewModel.EditionMode;
-            EditLabel.IsVisible = !ViewModel.EditionMode;
-            HistoryButton.IsVisible = !ViewModel.EditionMode;
-            ErrorLabel.IsVisible = ViewModel.ShowDetailError;
-            ErrorLabel.Text = ViewModel.DetailError;
+            PlateEntry.BindingContext = ViewModel;
+            PlateEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.PlateNumber));
+            PlateEntry.SetBinding(Entry.IsEnabledProperty, nameof(ViewModel.EditionMode));
+            ModelEntry.BindingContext = ViewModel;
+            ModelEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.VehicleModel));
+            ModelEntry.SetBinding(Entry.IsEnabledProperty, nameof(ViewModel.EditionMode));
+            TBDSDate.BindingContext = ViewModel;
+            TBDSDate.SetBinding(DatePicker.DateProperty, nameof(ViewModel.LastTBDS.Date));
+            TBDSDate.SetBinding(DatePicker.IsEnabledProperty, nameof(ViewModel.EditionMode));
+            ITVDate.BindingContext = ViewModel;
+            ITVDate.SetBinding(DatePicker.DateProperty, nameof(ViewModel.LastITV.Date));
+            ITVDate.SetBinding(DatePicker.IsEnabledProperty, nameof(ViewModel.EditionMode));
+            TypePicker.BindingContext = ViewModel;
+            TypePicker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.VehicleType));
+            TypePicker.SetBinding(Picker.IsEnabledProperty, nameof(ViewModel.EditionMode));
+            YearPicker.BindingContext = ViewModel;
+            YearPicker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.Year));
+            YearPicker.SetBinding(Picker.IsEnabledProperty, nameof(ViewModel.EditionMode));
+            StatusBar.BindingContext = ViewModel;
+            StatusBar.SetBinding(Picker.IsVisibleProperty, nameof(ViewModel.ShowReparationStatus), BindingMode.Default, new InverseBoolConverter());
+            ConfirmButton.BindingContext = ViewModel;
+            ConfirmButton.SetBinding(Button.IsVisibleProperty, nameof(ViewModel.EditionMode));
+            CancelLabel.BindingContext = ViewModel;
+            CancelLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.EditionMode));
+            DeleteLabel.BindingContext = ViewModel;
+            DeleteLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.EditionMode));
+            EditLabel.BindingContext = ViewModel;
+            EditLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.EditionMode));
+            HistoryButton.BindingContext = ViewModel;
+            HistoryButton.SetBinding(Button.IsVisibleProperty, nameof(ViewModel.EditionMode));
+            ErrorLabel.BindingContext = ViewModel;
+            ErrorLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.ShowDetailError));
+            ErrorLabel.SetBinding(Label.TextProperty, nameof(ViewModel.DetailError));
             HistoryButton.Command = ViewModel.ReparationsHistoryCommand;
             ConfirmButton.Command = ViewModel.UpdateVehicleCommand;
         }
