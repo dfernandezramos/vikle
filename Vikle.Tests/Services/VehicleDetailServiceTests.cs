@@ -15,6 +15,9 @@ using Vikle.Core.Services;
 
 namespace Vikle.Tests.Services
 {
+    /// <summary>
+    /// This class contains the implementation of the vehicle details service tests
+    /// </summary>
     [TestFixture]
     public class VehicleDetailServiceTests : MvxIoCSupportingTest
     {

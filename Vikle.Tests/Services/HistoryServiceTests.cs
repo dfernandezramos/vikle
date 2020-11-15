@@ -16,6 +16,10 @@ using Vikle.Core.Services;
 
 namespace Vikle.Tests.Services
 {
+    /// <summary>
+    /// This class contains the implementation of the reparations history service tests
+    /// </summary>
+    [TestFixture]
     public class HistoryServiceTests : MvxIoCSupportingTest
     {
         HistoryService _historyService;
