@@ -41,7 +41,7 @@ namespace Vikle.Core.ViewModels
             await _mvxNavigationService.Navigate<VehiclesVM>(cancellationToken: cancellationToken);
         }
 
-        public override void Prepare(T parameter)
+        public override void Prepare(T reparation)
         {
             
         }

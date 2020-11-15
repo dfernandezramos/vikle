@@ -72,6 +72,8 @@ namespace Vikle.Core
         public static readonly string Worker = "Worker";
         public static readonly string Client = "Client";
         public static readonly string Repairing = "Repairing";
+        public static readonly string Pending = "Pending";
+        public static readonly string Repaired = "Repaired";
         public static readonly string Vehicles = "Vehicles";
         public static readonly string Dates = "Dates";
         public static readonly string NewDate = "New date";

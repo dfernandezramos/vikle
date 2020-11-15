@@ -1,3 +1,6 @@
+using Vikle.Core;
+using Vikle.Core.Enums;
+
 namespace Vikle.UI.Views
 {
     /// <summary>
@@ -5,24 +8,52 @@ namespace Vikle.UI.Views
     /// </summary>
     public partial class StatusBar
     {
+        private ReparationStatus? _status;
+
         /// <summary>
-        /// Gets the Pending status element
+        /// Gets or sets the reparation status to display it in the bar.
         /// </summary>
-        public StatusElementView Pending => PendingElement;
-        
-        /// <summary>
-        /// Gets the Repairing status element
-        /// </summary>
-        public StatusElementView Repairing => RepairingElement;
-        
-        /// <summary>
-        /// Gets the Repaired status element
-        /// </summary>
-        public StatusElementView Repaired => RepairedElement;
-        
+        public ReparationStatus? Status
+        {
+            get => _status;
+            set
+            {
+                _status = value;
+                ChangeStatus();
+            }
+        }
+
         public StatusBar()
         {
             InitializeComponent();
+            PendingElement.Title = Strings.Pending;
+            RepairingElement.Title = Strings.Repairing;
+            RepairedElement.Title = Strings.Repaired;
+        }
+        
+        void ChangeStatus()
+        {
+            if (Status == null)
+            {
+                return;
+            }
+                
+            PendingElement.Active = false;
+            RepairingElement.Active = false;
+            RepairedElement.Active = false;
+
+            switch (_status)
+            {
+                case ReparationStatus.Pending:
+                    PendingElement.Active = true;
+                    break;
+                case ReparationStatus.Repairing:
+                    RepairingElement.Active = true;
+                    break;
+                case ReparationStatus.Repaired:
+                    RepairedElement.Active = true;
+                    break;
+            }
         }
     }
 }

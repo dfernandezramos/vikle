@@ -18,16 +18,25 @@ namespace Vikle.Core.ViewModels
         private bool _showDetailError;
         private string _detailError;
         private string oldPlateNumber;
+        private bool _editionMode;
 
         /// <summary>
         /// Gets or sets the vehicle data model.
         /// </summary>
         public Vehicle Model { get; set; }
-        
+
         /// <summary>
         /// Gets or sets a value indicating whether the view will be in edition mode or not.
         /// </summary>
-        public bool EditionMode { get; set; }
+        public bool EditionMode
+        {
+            get => _editionMode;
+            set
+            {
+                _editionMode = value;
+                RaisePropertyChanged(() => EditionMode);
+            }
+        }
 
         public string PlateNumber
         {
@@ -64,7 +73,7 @@ namespace Vikle.Core.ViewModels
                 RaisePropertyChanged(() => VehicleType);
             }
         }
-        
+
         /// <summary>
         /// Gets or sets the vehicle year
         /// </summary>
@@ -159,6 +168,11 @@ namespace Vikle.Core.ViewModels
                 RaisePropertyChanged(() => ShowDetailError);
             }
         }
+        
+        /// <summary>
+        /// Gets or sets a boolean indicating whether the delete option is visible or not 
+        /// </summary>
+        public bool ShowDeleteOption => !string.IsNullOrEmpty(oldPlateNumber) && EditionMode;
 
         public VehicleDetailVM(IMvxNavigationService mvxNavigationService, IVehicleDetailService vehicleDetailService) : base(mvxNavigationService)
         {
@@ -169,12 +183,12 @@ namespace Vikle.Core.ViewModels
             ReparationsHistoryCommand = new MvxAsyncCommand(ShowHistory);
         }
 
-        public override void Prepare((Vehicle, bool) parameter)
+        public override void Prepare((Vehicle, bool) reparation)
         {
-            base.Prepare(parameter);
+            base.Prepare(reparation);
 
-            Model = parameter.Item1;
-            EditionMode = parameter.Item2;
+            Model = reparation.Item1;
+            EditionMode = reparation.Item2;
             oldPlateNumber = PlateNumber;
         }
 
@@ -186,6 +200,7 @@ namespace Vikle.Core.ViewModels
 
         async Task GetReparationStatus()
         {
+            ShowDetailError = false;
             Result<ReparationStatus> result = await _vehicleDetailService.GetReparationStatus(PlateNumber);
 
             if (result.Error)
@@ -201,6 +216,8 @@ namespace Vikle.Core.ViewModels
         
         async Task UpdateVehicle()
         {
+            ShowDetailError = false;
+            
             if (Model == null || !Model.IsComplete)
             {
                 DetailError = Strings.AllFieldsAreRequired;
@@ -224,6 +241,7 @@ namespace Vikle.Core.ViewModels
         
         async Task DeleteVehicle()
         {
+            ShowDetailError = false;
             Result result = await _vehicleDetailService.DeleteVehicle(oldPlateNumber);
             
             if (result.Error)
@@ -239,7 +257,15 @@ namespace Vikle.Core.ViewModels
 
         async Task ChangeEditionMode()
         {
+            if (string.IsNullOrEmpty(oldPlateNumber))
+            {
+                await _mvxNavigationService.Close(this);
+                return;
+            }
+            
+            ShowDetailError = false;
             EditionMode = !EditionMode;
+            await RaisePropertyChanged(() => ShowDeleteOption);
         }
         
         async Task ShowHistory(CancellationToken cancellationToken)

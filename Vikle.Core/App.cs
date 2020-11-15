@@ -58,6 +58,7 @@ namespace Vikle.Core
             Mvx.IoCProvider.RegisterType<ISignupService, SignupService> ();
             Mvx.IoCProvider.RegisterType<IVehiclesService, VehiclesService> ();
             Mvx.IoCProvider.RegisterType<IVehicleDetailService, VehicleDetailService> ();
+            Mvx.IoCProvider.RegisterType<IHistoryService, HistoryService> ();
 
             Mvx.IoCProvider.RegisterSingleton<IRestClient> (new RestClient(Constants.API_BASE_URI));
             Mvx.IoCProvider.RegisterSingleton<IApiClientService> (new ApiClientService ());

@@ -35,7 +35,6 @@ namespace Vikle.UI.Views.Client
         {
             base.OnViewModelSet();
             
-            ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
             SetBindings();
             SetGestureRecognizers();
         }
@@ -62,22 +61,23 @@ namespace Vikle.UI.Views.Client
             YearPicker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.Year));
             YearPicker.SetBinding(Picker.IsEnabledProperty, nameof(ViewModel.EditionMode));
             StatusBar.BindingContext = ViewModel;
-            StatusBar.SetBinding(Picker.IsVisibleProperty, nameof(ViewModel.ShowReparationStatus), BindingMode.Default, new InverseBoolConverter());
+            StatusBar.SetBinding(Picker.IsVisibleProperty, nameof(ViewModel.ShowReparationStatus));
             ConfirmButton.BindingContext = ViewModel;
             ConfirmButton.SetBinding(Button.IsVisibleProperty, nameof(ViewModel.EditionMode));
             CancelLabel.BindingContext = ViewModel;
             CancelLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.EditionMode));
             DeleteLabel.BindingContext = ViewModel;
-            DeleteLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.EditionMode));
+            DeleteLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.ShowDeleteOption));
             EditLabel.BindingContext = ViewModel;
-            EditLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.EditionMode));
+            EditLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.EditionMode), BindingMode.Default, new InverseBoolConverter());
             HistoryButton.BindingContext = ViewModel;
-            HistoryButton.SetBinding(Button.IsVisibleProperty, nameof(ViewModel.EditionMode));
+            HistoryButton.SetBinding(Button.IsVisibleProperty, nameof(ViewModel.EditionMode), BindingMode.Default, new InverseBoolConverter());
             ErrorLabel.BindingContext = ViewModel;
             ErrorLabel.SetBinding(Label.IsVisibleProperty, nameof(ViewModel.ShowDetailError));
             ErrorLabel.SetBinding(Label.TextProperty, nameof(ViewModel.DetailError));
             HistoryButton.Command = ViewModel.ReparationsHistoryCommand;
             ConfirmButton.Command = ViewModel.UpdateVehicleCommand;
+            StatusBar.Status = ViewModel.ReparationStatus;
         }
 
         void SetGestureRecognizers()
@@ -91,36 +91,8 @@ namespace Vikle.UI.Views.Client
             EditLabel.GestureRecognizers.Add(editTapGestureRecognizer);
             
             var deleteTapGestureRecognizer = new TapGestureRecognizer();
-            deleteTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync();
+            deleteTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.DeleteVehicleCommand.ExecuteAsync();
             DeleteLabel.GestureRecognizers.Add(deleteTapGestureRecognizer);
-        }
-
-        void ViewModelOnPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (ViewModel != null && e.PropertyName == nameof(ViewModel.ReparationStatus))
-            {
-                if (ViewModel.ReparationStatus == null)
-                {
-                    return;
-                }
-                
-                StatusBar.Pending.Active = false;
-                StatusBar.Repairing.Active = false;
-                StatusBar.Repaired.Active = false;
-
-                switch (ViewModel.ReparationStatus)
-                {
-                    case ReparationStatus.Pending:
-                        StatusBar.Pending.Active = true;
-                        break;
-                    case ReparationStatus.Repairing:
-                        StatusBar.Repairing.Active = true;
-                        break;
-                    case ReparationStatus.Repaired:
-                        StatusBar.Repaired.Active = true;
-                        break;
-                }
-            }
         }
 
         void InitYearPicker()

@@ -154,6 +154,22 @@ namespace Vikle.Core.Services
             
             return ToHttpCallResult (response);
         }
+        
+        /// <summary>
+        /// Gets the provided vehicle reparations information from the web API.
+        /// </summary>
+        /// <param name="plateNumber">The user identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The vehicle reparations information</returns>
+        public async Task<HttpCallResult<List<Reparation>>> GetVehicleReparations(string plateNumber, string token)
+        {
+            RestRequest request = new RestRequest ("api/vehicle/reparations", Method.GET);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync<List<Reparation>> (request);
+            
+            return ToHttpCallResult (response);
+        }
 
         HttpCallResult<TResponse> ToHttpCallResult<TResponse> (IRestResponse<TResponse> response)
         {

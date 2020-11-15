@@ -68,5 +68,13 @@ namespace Vikle.Core.Interfaces
         /// <param name="token">The user token</param>
         /// <returns>The current vehicle reparation</returns>
         Task<HttpCallResult<Reparation>> GetCurrentReparation(string plateNumber, string token);
+        
+        /// <summary>
+        /// Gets the provided vehicle reparations information from the web API.
+        /// </summary>
+        /// <param name="plateNumber">The user identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The vehicle reparations information</returns>
+        Task<HttpCallResult<List<Reparation>>> GetVehicleReparations (string plateNumber, string token);
     }
 }
