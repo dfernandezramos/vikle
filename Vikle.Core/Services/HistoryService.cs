@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using MvvmCross;
@@ -55,10 +56,19 @@ namespace Vikle.Core.Services
             //                 Id = "1",
             //                 PlateNumber = plateNumber,
             //                 AirFilter = true,
-            //                 Oil = true,
+            //                 TBDS = true,
             //                 OilFilter = true,
             //                 Date = DateTime.Today,
-            //                 Type = ReparationType.Maintenance
+            //                 Type = ReparationType.Maintenance,
+            //                 Details = new List<string> {
+            //                     "Changed air filters",
+            //                     "Checked and changed TBDS",
+            //                     "Changed oil filter and oil",
+            //                     "Rest of the common things are ok",
+            //                     "Some scratches on the left side",
+            //                     "Fixed some small things on the engine",
+            //                     "Changed front lights"
+            //                 }
             //         },
             //         new Reparation {
             //             Id = "2",

@@ -87,5 +87,11 @@ namespace Vikle.Core
         public static readonly string UserUnauthorised = "Wrong credentials. Log in again";
         public static readonly string DeleteThisCar = "Delete this car";
         public static readonly string EditThisCar = "Edit this car";
+        public static readonly string OilFilter = "Oil filter";
+        public static readonly string AirFilter = "Air filter";
+        public static readonly string GasFilter = "Gas filter";
+        public static readonly string Liquids = "Liquids";
+        public static readonly string ITV = "ITV";
+        public static readonly string TBDS = "TBDS";
     }
 }

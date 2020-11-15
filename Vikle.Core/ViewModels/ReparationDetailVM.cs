@@ -8,11 +8,21 @@ namespace Vikle.Core.ViewModels
     /// </summary>
     public class ReparationDetailVM : ClientBaseVM<Reparation>
     {
+        private Reparation _model;
+
         /// <summary>
         /// Gets or sets the vehicle data model.
         /// </summary>
-        public Reparation Model { get; set; }
-        
+        public Reparation Model
+        {
+            get => _model;
+            set
+            {
+                _model = value;
+                RaisePropertyChanged(() => Model);
+            }
+        }
+
         public ReparationDetailVM(IMvxNavigationService mvxNavigationService) : base(mvxNavigationService)
         {
         }

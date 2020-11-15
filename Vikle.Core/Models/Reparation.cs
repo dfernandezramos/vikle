@@ -33,12 +33,7 @@ namespace Vikle.Core.Models
         /// Gets or sets the status of the reparation.
         /// </summary>
         public ReparationStatus Status { get; set; }
-        
-        /// <summary>
-        /// Gets or sets a boolean indicating if the oil was changed in this reparation or not.
-        /// </summary>
-        public bool Oil { get; set; }
-        
+
         /// <summary>
         /// Gets or sets a boolean indicating if the oil filter was changed in this reparation or not.
         /// </summary>

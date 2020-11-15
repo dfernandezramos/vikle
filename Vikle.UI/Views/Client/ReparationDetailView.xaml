@@ -52,12 +52,12 @@
                                Text="{x:Static core:Strings.Date}"
                                Style="{StaticResource MediumYellowLabel}"/>
                         <Label Grid.Row="0" Grid.Column="1"
-                               Text="1234 ABC"
+                               x:Name="PlateNumberLabel"
                                Style="{StaticResource MediumThinYellowLabel}"
                                VerticalOptions="Center"
                                HorizontalOptions="Start"/>
                         <Label Grid.Row="1" Grid.Column="1"
-                               Text="24 MAY 2020"
+                               x:Name="DateLabel"
                                Style="{StaticResource MediumThinYellowLabel}"
                                HorizontalOptions="Start"/>
                     </Grid>
@@ -72,12 +72,24 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <views:ReparationElementStatus Grid.Column="0"/>
-                    <views:ReparationElementStatus Grid.Column="1"/>
-                    <views:ReparationElementStatus Grid.Column="2"/>
-                    <views:ReparationElementStatus Grid.Column="3"/>
-                    <views:ReparationElementStatus Grid.Column="4"/>
-                    <views:ReparationElementStatus Grid.Column="5"/>
+                    <views:ReparationElementStatus Grid.Column="0"
+                                                   x:Name="OilFilterElement"
+                                                   Title="{x:Static core:Strings.OilFilter}"/>
+                    <views:ReparationElementStatus Grid.Column="1"
+                                                   x:Name="AirFilterElement"
+                                                   Title="{x:Static core:Strings.AirFilter}"/>
+                    <views:ReparationElementStatus Grid.Column="2"
+                                                   x:Name="GasFilterElement"
+                                                   Title="{x:Static core:Strings.GasFilter}"/>
+                    <views:ReparationElementStatus Grid.Column="3"
+                                                   x:Name="LiquidsElement"
+                                                   Title="{x:Static core:Strings.Liquids}"/>
+                    <views:ReparationElementStatus Grid.Column="4"
+                                                   x:Name="ITVElement"
+                                                   Title="{x:Static core:Strings.ITV}"/>
+                    <views:ReparationElementStatus Grid.Column="5"
+                                                   x:Name="TBDSElement"
+                                                   Title="{x:Static core:Strings.TBDS}"/>
                 </Grid>
             </Grid>
             <StackLayout>
@@ -86,8 +98,8 @@
                        TextColor="{StaticResource BlueStrongColor}"
                        FontSize="Large"
                        Padding="50,20,0,20"/>
-                <ScrollView>
-                    <!-- REPARATION EXPLANATIONS HERE -->
+                <ScrollView Margin="55,0,55,0">
+                    <StackLayout x:Name="Details"/>
                 </ScrollView>
             </StackLayout>
         </StackLayout>
