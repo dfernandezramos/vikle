@@ -257,15 +257,14 @@ namespace Vikle.Core.ViewModels
 
         async Task ChangeEditionMode()
         {
-            if (string.IsNullOrEmpty(oldPlateNumber))
-            {
-                await _mvxNavigationService.Close(this);
-                return;
-            }
-            
             ShowDetailError = false;
             EditionMode = !EditionMode;
             await RaisePropertyChanged(() => ShowDeleteOption);
+            
+            if (string.IsNullOrEmpty(oldPlateNumber))
+            {
+                await _mvxNavigationService.Close(this);
+            }
         }
         
         async Task ShowHistory(CancellationToken cancellationToken)
