@@ -24,7 +24,7 @@
     <NavigationPage.HasBackButton>False</NavigationPage.HasBackButton>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="White">
             <Label Text="{x:Static core:Strings.DateDetails}"
                    FontAttributes="Bold"
                    TextColor="{StaticResource BlueStrongColor}"

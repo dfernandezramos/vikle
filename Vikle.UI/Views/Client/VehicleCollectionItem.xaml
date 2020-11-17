@@ -45,7 +45,6 @@
                              VerticalOptions="Center"
                              Margin="20">
                     <Label Text="{Binding PlateNumber}"
-                           x:Name="TempName"
                            TextColor="{StaticResource BlueMediumColor}"
                            FontAttributes="Bold"
                            FontSize="17"/>

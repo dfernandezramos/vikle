@@ -76,5 +76,13 @@ namespace Vikle.Core.Interfaces
         /// <param name="token">The user token</param>
         /// <returns>The vehicle reparations information</returns>
         Task<HttpCallResult<List<Reparation>>> GetVehicleReparations (string plateNumber, string token);
+        
+        /// <summary>
+        /// Gets the provided user dates information from the web API.
+        /// </summary>
+        /// <param name="userId">The user identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The user dates information</returns>
+        Task<HttpCallResult<List<Date>>> GetUserDates (string userId, string token);
     }
 }

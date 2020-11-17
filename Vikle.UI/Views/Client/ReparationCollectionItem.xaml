@@ -51,7 +51,6 @@
                              VerticalOptions="Center"
                              Margin="20">
                     <Label Text="{Binding Type}"
-                           x:Name="TempName"
                            TextColor="{StaticResource BlueMediumColor}"
                            FontAttributes="Bold"
                            FontSize="17"/>

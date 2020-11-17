@@ -170,6 +170,22 @@ namespace Vikle.Core.Services
             
             return ToHttpCallResult (response);
         }
+        
+        /// <summary>
+        /// Gets the provided user dates information from the web API.
+        /// </summary>
+        /// <param name="userId">The user identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The user dates information</returns>
+        public async Task<HttpCallResult<List<Date>>> GetUserDates(string userId, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/dates", Method.GET);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("userId", userId, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync<List<Date>> (request);
+            
+            return ToHttpCallResult (response);
+        }
 
         HttpCallResult<TResponse> ToHttpCallResult<TResponse> (IRestResponse<TResponse> response)
         {
