@@ -42,7 +42,7 @@ namespace Vikle.Tests.ViewModels
         }
 		
         [Test]
-        public async Task InitializeReparationsVM_APICallFails_ErrorIsShown()
+        public async Task InitializeVehiclesVM_APICallFails_ErrorIsShown()
         {
             // Given
             _vehiclesServiceMock.Setup(m => m.GetUserVehicles())
@@ -57,7 +57,7 @@ namespace Vikle.Tests.ViewModels
         }
         
         [Test]
-        public async Task InitializeReparationsVM_APICallWorks_EditionModeChanged()
+        public async Task InitializeVehiclesVM_APICallWorks_EditionModeChanged()
         {
             // Given
             _vehiclesServiceMock.Setup(m => m.GetUserVehicles())
