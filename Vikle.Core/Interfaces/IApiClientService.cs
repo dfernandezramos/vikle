@@ -84,5 +84,12 @@ namespace Vikle.Core.Interfaces
         /// <param name="token">The user token</param>
         /// <returns>The user dates information</returns>
         Task<HttpCallResult<List<Date>>> GetUserDates (string userId, string token);
+        
+        /// <summary>
+        /// Updates the date data in the API
+        /// </summary>
+        /// <param name="date">The date to be updated</param>
+        /// <param name="token">The user token</param>
+        Task<HttpCallResult> UpdateDate(Date date, string token);
     }
 }

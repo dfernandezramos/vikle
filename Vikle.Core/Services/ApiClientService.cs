@@ -186,6 +186,25 @@ namespace Vikle.Core.Services
             
             return ToHttpCallResult (response);
         }
+        
+        /// <summary>
+        /// Updates the date data in the API
+        /// </summary>
+        /// <param name="date">The date to be updated</param>
+        /// <param name="token">The user token</param>
+        public async Task<HttpCallResult> UpdateDate(Date date, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/dates", Method.POST);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("reparationDate", date.ReparationDate, ParameterType.GetOrPost);
+            request.AddParameter ("plateNumber", date.PlateNumber, ParameterType.GetOrPost);
+            request.AddParameter ("reason", date.Reason, ParameterType.GetOrPost);
+            request.AddParameter ("idClient", date.IdClient, ParameterType.GetOrPost);
+            request.AddParameter ("status", date.Status, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync (request);
+            
+            return ToHttpCallResult (response);
+        }
 
         HttpCallResult<TResponse> ToHttpCallResult<TResponse> (IRestResponse<TResponse> response)
         {

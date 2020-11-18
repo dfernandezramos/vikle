@@ -49,10 +49,10 @@ namespace Vikle.UI.Views.Client
             ModelEntry.SetBinding(Entry.TextProperty, nameof(ViewModel.VehicleModel));
             ModelEntry.SetBinding(Entry.IsEnabledProperty, nameof(ViewModel.EditionMode));
             TBDSDate.BindingContext = ViewModel;
-            TBDSDate.SetBinding(DatePicker.DateProperty, nameof(ViewModel.LastTBDS.Date));
+            TBDSDate.SetBinding(DatePicker.DateProperty, nameof(ViewModel.LastTBDS));
             TBDSDate.SetBinding(DatePicker.IsEnabledProperty, nameof(ViewModel.EditionMode));
             ITVDate.BindingContext = ViewModel;
-            ITVDate.SetBinding(DatePicker.DateProperty, nameof(ViewModel.LastITV.Date));
+            ITVDate.SetBinding(DatePicker.DateProperty, nameof(ViewModel.LastITV));
             ITVDate.SetBinding(DatePicker.IsEnabledProperty, nameof(ViewModel.EditionMode));
             TypePicker.BindingContext = ViewModel;
             TypePicker.SetBinding(Picker.SelectedItemProperty, nameof(ViewModel.VehicleType));
