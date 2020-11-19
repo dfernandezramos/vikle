@@ -23,39 +23,40 @@ namespace Vikle.Tests.ViewModels
         protected override void AdditionalSetup()
         {
             base.AdditionalSetup();
-            _vehiclesServiceMock = new Mock<IVehiclesService> ();
-            Ioc.RegisterSingleton<IVehiclesService> (_vehiclesServiceMock.Object);
-            _navigationMock = new Mock<IMvxNavigationService> ();
+            _vehiclesServiceMock = new Mock<IVehiclesService>();
+            Ioc.RegisterSingleton<IVehiclesService>(_vehiclesServiceMock.Object);
+            _navigationMock = new Mock<IMvxNavigationService>();
             _vehiclesVM = new VehiclesVM(_navigationMock.Object, _vehiclesServiceMock.Object);
         }
-        
+
         [SetUp]
-        public void Init() {
+        public void Init()
+        {
             base.Setup();
         }
-        
-        [TearDown] 
+
+        [TearDown]
         public void Cleanup()
         {
             _vehiclesServiceMock.Reset();
             _navigationMock.Reset();
         }
-		
+
         [Test]
         public async Task InitializeVehiclesVM_APICallFails_ErrorIsShown()
         {
             // Given
             _vehiclesServiceMock.Setup(m => m.GetUserVehicles())
-                .ReturnsAsync(new Result<MvxObservableCollection<Vehicle>> { Error = true, Message = "Error" });
-            
+                .ReturnsAsync(new Result<MvxObservableCollection<Vehicle>> {Error = true, Message = "Error"});
+
             // When
             await _vehiclesVM.Initialize();
-            
+
             // Then
             Assert.IsTrue(_vehiclesVM.ShowVehiclesError);
             Assert.AreEqual("Error", _vehiclesVM.VehiclesError);
         }
-        
+
         [Test]
         public async Task InitializeVehiclesVM_APICallWorks_EditionModeChanged()
         {
@@ -63,12 +64,12 @@ namespace Vikle.Tests.ViewModels
             _vehiclesServiceMock.Setup(m => m.GetUserVehicles())
                 .ReturnsAsync(new Result<MvxObservableCollection<Vehicle>>
                 {
-                    Data = new MvxObservableCollection<Vehicle>()
+                    Data = new MvxObservableCollection<Vehicle>(),
                 });
-            
+
             // When
             await _vehiclesVM.Initialize();
-            
+
             // Then
             Assert.IsFalse(_vehiclesVM.ShowVehiclesError);
             Assert.IsNotNull(_vehiclesVM.Vehicles);
