@@ -41,7 +41,7 @@ namespace Vikle.Core.Services
                         result.Message = Strings.UserUnauthorised;
                         break;
                     case HttpStatusCode.BadRequest:
-                        result.Message = Strings.CarAlreadyWithDate;
+                        result.Message = Strings.VehicleAlreadyWithDate;
                         break;
                     default:
                         result.Message = Strings.ServerError;

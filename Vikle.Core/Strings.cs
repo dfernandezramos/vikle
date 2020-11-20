@@ -86,7 +86,7 @@ namespace Vikle.Core
         public static readonly string ServerError = "Server error. Try again later";
         public static readonly string EmailAlreadyInUse = "The email is already in use";
         public static readonly string UserUnauthorised = "Wrong credentials. Log in again";
-        public static readonly string CarAlreadyWithDate = "Selected car already has a date";
+        public static readonly string VehicleAlreadyWithDate = "Selected vehicle has a date already";
         public static readonly string DeleteThisCar = "Delete this car";
         public static readonly string EditThisCar = "Edit this car";
         public static readonly string OilFilter = "Oil filter";
