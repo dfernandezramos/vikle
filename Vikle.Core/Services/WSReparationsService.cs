@@ -38,8 +38,8 @@ namespace Vikle.Core.Services
             if (userData == null || userData.Error)
             {
                 result.Error = true;
-                result.Message = userData?.HttpStatusCode == HttpStatusCode.Forbidden
-                    ? Strings.IncorrectEmailOrPassword
+                result.Message = userData?.HttpStatusCode == HttpStatusCode.Unauthorized
+                    ? Strings.UserUnauthorised
                     : Strings.ServerError;
                 return result;
             }
