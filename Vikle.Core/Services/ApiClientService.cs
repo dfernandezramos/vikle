@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using MvvmCross;
 using RestSharp;
@@ -19,19 +20,20 @@ namespace Vikle.Core.Services
         {
             _client = Mvx.IoCProvider.Resolve<IRestClient>();
         }
-        
+
         /// <summary>
         /// Gets the user token from the web API.
         /// </summary>
         /// <param name="email">The user email</param>
         /// <param name="password">The user password</param>
+        /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>The login result data</returns>
-        public async Task<HttpCallResult<LoginData>> GetUserToken(string email, string password)
+        public async Task<HttpCallResult<LoginData>> GetUserToken(string email, string password, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/auth/", Method.GET);
             request.AddParameter ("email", email, ParameterType.GetOrPost);
             request.AddParameter ("password", password, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync<LoginData> (request);
+            var response = await _client.ExecuteAsync<LoginData> (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
@@ -41,13 +43,14 @@ namespace Vikle.Core.Services
         /// </summary>
         /// <param name="userId">The user identifier</param>
         /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>The user information</returns>
-        public async Task<HttpCallResult<User>> GetUserInformation(string userId, string token)
+        public async Task<HttpCallResult<User>> GetUserInformation(string userId, string token, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/user/", Method.GET);
             request.AddHeader ("Authorization", $"Token {token}");
             request.AddParameter ("userId", userId, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync<User> (request);
+            var response = await _client.ExecuteAsync<User> (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
@@ -56,11 +59,12 @@ namespace Vikle.Core.Services
         /// This method sends a recover password request to the API.
         /// </summary>
         /// <param name="email">The email the user wants to recover the password from</param>
-        public async Task<HttpCallResult> RecoverPassword(string email)
+        /// <param name="cancellationToken">The cancellation token</param>
+        public async Task<HttpCallResult> RecoverPassword(string email, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/user/", Method.POST);
             request.AddParameter ("email", email, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync (request);
+            var response = await _client.ExecuteAsync (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
@@ -69,7 +73,8 @@ namespace Vikle.Core.Services
         /// Sets the provided signup data in the API.
         /// </summary>
         /// <param name="data">The signup data to register in the API</param>
-        public async Task<HttpCallResult> Signup(SignupData data)
+        /// <param name="cancellationToken">The cancellation token</param>
+        public async Task<HttpCallResult> Signup(SignupData data, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/auth/", Method.PUT);
             request.AddParameter ("email", data.Email, ParameterType.GetOrPost);
@@ -77,7 +82,7 @@ namespace Vikle.Core.Services
             request.AddParameter ("name", data.Name, ParameterType.GetOrPost);
             request.AddParameter ("surname", data.Surname, ParameterType.GetOrPost);
             request.AddParameter ("phone", data.Phone, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync (request);
+            var response = await _client.ExecuteAsync (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
@@ -87,13 +92,14 @@ namespace Vikle.Core.Services
         /// </summary>
         /// <param name="userId">The user identifier</param>
         /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>The user vehicles information</returns>
-        public async Task<HttpCallResult<List<Vehicle>>> GetUserVehicles(string userId, string token)
+        public async Task<HttpCallResult<List<Vehicle>>> GetUserVehicles(string userId, string token, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/user/vehicles", Method.GET);
             request.AddHeader ("Authorization", $"Token {token}");
             request.AddParameter ("userId", userId, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync<List<Vehicle>> (request);
+            var response = await _client.ExecuteAsync<List<Vehicle>> (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
@@ -104,14 +110,15 @@ namespace Vikle.Core.Services
         /// <param name="userId">The user identifier</param>
         /// <param name="plateNumber">The vehicle identifier</param>
         /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
         /// <returns></returns>
-        public async Task<HttpCallResult> DeleteVehicle(string userId, string plateNumber, string token)
+        public async Task<HttpCallResult> DeleteVehicle(string userId, string plateNumber, string token, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/user/vehicles", Method.DELETE);
             request.AddHeader ("Authorization", $"Token {token}");
             request.AddParameter ("userId", userId, ParameterType.GetOrPost);
             request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync (request);
+            var response = await _client.ExecuteAsync (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
@@ -122,7 +129,8 @@ namespace Vikle.Core.Services
         /// <param name="plateNumber">The vehicle identifier</param>
         /// <param name="vehicle">The vehicle to be updated</param>
         /// <param name="token">The user token</param>
-        public async Task<HttpCallResult> UpdateVehicle(string plateNumber, Vehicle vehicle, string token)
+        /// <param name="cancellationToken">The cancellation token</param>
+        public async Task<HttpCallResult> UpdateVehicle(string plateNumber, Vehicle vehicle, string token, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/user/vehicles", Method.POST);
             request.AddHeader ("Authorization", $"Token {token}");
@@ -134,7 +142,7 @@ namespace Vikle.Core.Services
             request.AddParameter ("lastITV", vehicle.LastITV, ParameterType.GetOrPost);
             request.AddParameter ("lastTBDS", vehicle.LastTBDS, ParameterType.GetOrPost);
             request.AddParameter ("IdClient", vehicle.IdClient, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync (request);
+            var response = await _client.ExecuteAsync (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
@@ -144,55 +152,59 @@ namespace Vikle.Core.Services
         /// </summary>
         /// <param name="plateNumber">The vehicle identifier</param>
         /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>The current vehicle reparation</returns>
-        public async Task<HttpCallResult<Reparation>> GetCurrentReparation(string plateNumber, string token)
+        public async Task<HttpCallResult<Reparation>> GetCurrentReparation(string plateNumber, string token, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/user/reparations/current", Method.GET);
             request.AddHeader ("Authorization", $"Token {token}");
             request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync<Reparation> (request);
+            var response = await _client.ExecuteAsync<Reparation> (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
-        
+
         /// <summary>
         /// Gets the provided vehicle reparations information from the web API.
         /// </summary>
         /// <param name="plateNumber">The user identifier</param>
         /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>The vehicle reparations information</returns>
-        public async Task<HttpCallResult<List<Reparation>>> GetVehicleReparations(string plateNumber, string token)
+        public async Task<HttpCallResult<List<Reparation>>> GetVehicleReparations(string plateNumber, string token, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/vehicle/reparations", Method.GET);
             request.AddHeader ("Authorization", $"Token {token}");
             request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync<List<Reparation>> (request);
+            var response = await _client.ExecuteAsync<List<Reparation>> (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
-        
+
         /// <summary>
         /// Gets the provided user dates information from the web API.
         /// </summary>
         /// <param name="userId">The user identifier</param>
         /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>The user dates information</returns>
-        public async Task<HttpCallResult<List<Date>>> GetUserDates(string userId, string token)
+        public async Task<HttpCallResult<List<Date>>> GetUserDates(string userId, string token, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/user/dates", Method.GET);
             request.AddHeader ("Authorization", $"Token {token}");
             request.AddParameter ("userId", userId, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync<List<Date>> (request);
+            var response = await _client.ExecuteAsync<List<Date>> (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
-        
+
         /// <summary>
         /// Updates the date data in the API
         /// </summary>
         /// <param name="date">The date to be updated</param>
         /// <param name="token">The user token</param>
-        public async Task<HttpCallResult> UpdateDate(Date date, string token)
+        /// <param name="cancellationToken">The cancellation token</param>
+        public async Task<HttpCallResult> UpdateDate(Date date, string token, CancellationToken cancellationToken = default)
         {
             RestRequest request = new RestRequest ("api/user/dates", Method.POST);
             request.AddHeader ("Authorization", $"Token {token}");
@@ -201,7 +213,24 @@ namespace Vikle.Core.Services
             request.AddParameter ("reason", date.Reason, ParameterType.GetOrPost);
             request.AddParameter ("idClient", date.IdClient, ParameterType.GetOrPost);
             request.AddParameter ("status", date.Status, ParameterType.GetOrPost);
-            var response = await _client.ExecuteAsync (request);
+            var response = await _client.ExecuteAsync (request, cancellationToken);
+            
+            return ToHttpCallResult (response);
+        }
+
+        /// <summary>
+        /// Gets the provided workshop current reparations
+        /// </summary>
+        /// <param name="workshopId">The workshop identifier</param>
+        /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        /// <returns></returns>
+        public async Task<HttpCallResult<List<Reparation>>> GetWorkshopReparations(string workshopId, string token, CancellationToken cancellationToken = default)
+        {
+            RestRequest request = new RestRequest ("api/workshop/reparations", Method.GET);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("workshopId", workshopId, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync<List<Reparation>> (request, cancellationToken);
             
             return ToHttpCallResult (response);
         }
