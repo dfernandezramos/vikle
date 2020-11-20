@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using MvvmCross;
@@ -76,6 +77,130 @@ namespace Vikle.Core.Services
             request.AddParameter ("name", data.Name, ParameterType.GetOrPost);
             request.AddParameter ("surname", data.Surname, ParameterType.GetOrPost);
             request.AddParameter ("phone", data.Phone, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync (request);
+            
+            return ToHttpCallResult (response);
+        }
+
+        /// <summary>
+        /// Gets the provided user vehicles information from the web API.
+        /// </summary>
+        /// <param name="userId">The user identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The user vehicles information</returns>
+        public async Task<HttpCallResult<List<Vehicle>>> GetUserVehicles(string userId, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/vehicles", Method.GET);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("userId", userId, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync<List<Vehicle>> (request);
+            
+            return ToHttpCallResult (response);
+        }
+
+        /// <summary>
+        /// Deletes the vehicle related to the calling user.
+        /// </summary>
+        /// <param name="userId">The user identifier</param>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns></returns>
+        public async Task<HttpCallResult> DeleteVehicle(string userId, string plateNumber, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/vehicles", Method.DELETE);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("userId", userId, ParameterType.GetOrPost);
+            request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync (request);
+            
+            return ToHttpCallResult (response);
+        }
+
+        /// <summary>
+        /// Updates the vehicle data in the API
+        /// </summary>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="vehicle">The vehicle to be updated</param>
+        /// <param name="token">The user token</param>
+        public async Task<HttpCallResult> UpdateVehicle(string plateNumber, Vehicle vehicle, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/vehicles", Method.POST);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("oldPlateNumber", plateNumber, ParameterType.GetOrPost);
+            request.AddParameter ("newPlateNumber", vehicle.PlateNumber, ParameterType.GetOrPost);
+            request.AddParameter ("model", vehicle.Model, ParameterType.GetOrPost);
+            request.AddParameter ("vehicleType", vehicle.VehicleType, ParameterType.GetOrPost);
+            request.AddParameter ("year", vehicle.Year, ParameterType.GetOrPost);
+            request.AddParameter ("lastITV", vehicle.LastITV, ParameterType.GetOrPost);
+            request.AddParameter ("lastTBDS", vehicle.LastTBDS, ParameterType.GetOrPost);
+            request.AddParameter ("IdClient", vehicle.IdClient, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync (request);
+            
+            return ToHttpCallResult (response);
+        }
+
+        /// <summary>
+        /// Gets the current reparation related to he provided vehicle identifier
+        /// </summary>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The current vehicle reparation</returns>
+        public async Task<HttpCallResult<Reparation>> GetCurrentReparation(string plateNumber, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/reparations/current", Method.GET);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync<Reparation> (request);
+            
+            return ToHttpCallResult (response);
+        }
+        
+        /// <summary>
+        /// Gets the provided vehicle reparations information from the web API.
+        /// </summary>
+        /// <param name="plateNumber">The user identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The vehicle reparations information</returns>
+        public async Task<HttpCallResult<List<Reparation>>> GetVehicleReparations(string plateNumber, string token)
+        {
+            RestRequest request = new RestRequest ("api/vehicle/reparations", Method.GET);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync<List<Reparation>> (request);
+            
+            return ToHttpCallResult (response);
+        }
+        
+        /// <summary>
+        /// Gets the provided user dates information from the web API.
+        /// </summary>
+        /// <param name="userId">The user identifier</param>
+        /// <param name="token">The user token</param>
+        /// <returns>The user dates information</returns>
+        public async Task<HttpCallResult<List<Date>>> GetUserDates(string userId, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/dates", Method.GET);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("userId", userId, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync<List<Date>> (request);
+            
+            return ToHttpCallResult (response);
+        }
+        
+        /// <summary>
+        /// Updates the date data in the API
+        /// </summary>
+        /// <param name="date">The date to be updated</param>
+        /// <param name="token">The user token</param>
+        public async Task<HttpCallResult> UpdateDate(Date date, string token)
+        {
+            RestRequest request = new RestRequest ("api/user/dates", Method.POST);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("reparationDate", date.ReparationDate, ParameterType.GetOrPost);
+            request.AddParameter ("plateNumber", date.PlateNumber, ParameterType.GetOrPost);
+            request.AddParameter ("reason", date.Reason, ParameterType.GetOrPost);
+            request.AddParameter ("idClient", date.IdClient, ParameterType.GetOrPost);
+            request.AddParameter ("status", date.Status, ParameterType.GetOrPost);
             var response = await _client.ExecuteAsync (request);
             
             return ToHttpCallResult (response);

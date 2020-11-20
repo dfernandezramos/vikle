@@ -5,6 +5,15 @@ namespace Vikle.UI.Views
     /// </summary>
     public partial class SecondaryHeader
     {
+        /// <summary>
+        /// Gets or sets the header title text
+        /// </summary>
+        public string Title
+        {
+            get => HeaderTitle.Text;
+            set => HeaderTitle.Text = value;
+        }
+        
         public SecondaryHeader()
         {
             InitializeComponent();

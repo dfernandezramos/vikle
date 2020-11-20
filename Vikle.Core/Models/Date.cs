@@ -32,5 +32,10 @@ namespace Vikle.Core.Models
         /// Gets or sets the client identifier who requested the date.
         /// </summary>
         public string IdClient { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the reparation status related to this date.
+        /// </summary>
+        public ReparationStatus Status { get; set; }
     }
 }

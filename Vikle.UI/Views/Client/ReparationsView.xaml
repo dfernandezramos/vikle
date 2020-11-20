@@ -7,6 +7,7 @@
                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                            xmlns:local="clr-namespace:Vikle.UI"
                            xmlns:views="clr-namespace:Vikle.UI.Views"
+                           xmlns:clientviews="clr-namespace:Vikle.UI.Views.Client"
                            xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
                            x:Class="Vikle.UI.Views.Client.ReparationsView"
                            Title="{x:Static core:Strings.Reparations}">
@@ -25,15 +26,23 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <views:SecondaryHeader IsVisible="True"/>
-            <CollectionView Margin="25,30,25,25" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                            SelectionMode="None" ItemsSource="{Binding Reparations}">
+            <views:SecondaryHeader x:Name="PlateHeader"/>
+            <Label x:Name="ErrorLabel"
+                   Margin="25,30,25,25"
+                   FontAttributes="Bold"
+                   TextColor="Red"
+                   HorizontalTextAlignment="Center"/>
+            <CollectionView x:Name="HistoryCollection"
+                            Margin="25,30,25,25"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            SelectionMode="Single">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <views:CollectionItem/>
+                        <clientviews:ReparationCollectionItem/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

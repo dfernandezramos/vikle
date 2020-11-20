@@ -16,6 +16,7 @@ namespace Vikle.Core
         public static readonly string SignupConfirmationViewTitle = "Signup successful!";
         public static readonly string SignupConfirmationViewSubtitle = "We have sent you a confirmation e-mail but you can now log in";
         public static readonly string NewReparation = "New reparation";
+        public static readonly string NewVehicle = "New vehicle";
         public static readonly string TapHereToAdd = "Tap here to add";
         public static readonly string ReparationDetails = "Reparation details:";
         public static readonly string Plate = "Plate:";
@@ -39,7 +40,8 @@ namespace Vikle.Core
         public static readonly string ArrangeAppointmentsTitle = "Arrange appointments";
         public static readonly string ArrangeAppointmentsSubtitle = "Arrange an appointment to bring your vehicle to the workshop";
         public static readonly string RegisteredVehicles = "Registered vehicles:";
-        public static readonly string Vehicle = "Vehicle:";
+        public static readonly string Vehicle = "Vehicle";
+        public static readonly string VehicleDoublePeriod = "Vehicle:";
         public static readonly string DateDetails = "Date details:";
         public static readonly string NextDates = "Next dates:";
         public static readonly string Login = "Login";
@@ -70,15 +72,29 @@ namespace Vikle.Core
         public static readonly string Worker = "Worker";
         public static readonly string Client = "Client";
         public static readonly string Repairing = "Repairing";
+        public static readonly string Pending = "Pending";
+        public static readonly string Repaired = "Repaired";
         public static readonly string Vehicles = "Vehicles";
         public static readonly string Dates = "Dates";
         public static readonly string NewDate = "New date";
         public static readonly string Reparation = "Reparation";
         public static readonly string Reparations = "Reparations";
+        public static readonly string ReparationStatus = "Reparation status";
         public static readonly string OnRepair = "On repair";
         public static readonly string Contact = "Contact";
         public static readonly string IncorrectEmailOrPassword = "Incorrect e-mail or password";
         public static readonly string ServerError = "Server error. Try again later";
         public static readonly string EmailAlreadyInUse = "The email is already in use";
+        public static readonly string UserUnauthorised = "Wrong credentials. Log in again";
+        public static readonly string VehicleAlreadyWithDate = "Selected vehicle has a date already";
+        public static readonly string DeleteThisCar = "Delete this car";
+        public static readonly string EditThisCar = "Edit this car";
+        public static readonly string OilFilter = "Oil filter";
+        public static readonly string AirFilter = "Air filter";
+        public static readonly string GasFilter = "Gas filter";
+        public static readonly string Liquids = "Liquids";
+        public static readonly string ITV = "ITV";
+        public static readonly string TBDS = "TBDS";
+        public static readonly string NoVehicles = "User has no vehicles";
     }
 }

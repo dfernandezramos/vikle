@@ -18,9 +18,9 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Image Grid.Row="0"
-                   Source="{local:ImageResource Vikle.UI.Images.dot.png}" />
+                   x:Name="DotImage"/>
             <Label Grid.Row="1"
-                   Text="element"
+                   x:Name="TitleLabel"
                    TextColor="{StaticResource YellowStrongColor}"
                    HorizontalOptions="CenterAndExpand"/>
         </Grid>

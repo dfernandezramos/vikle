@@ -8,6 +8,7 @@
                            x:Class="Vikle.UI.Views.Client.DatesView"
                            xmlns:local="clr-namespace:Vikle.UI"
                            xmlns:views="clr-namespace:Vikle.UI.Views"
+                           xmlns:clientviews="clr-namespace:Vikle.UI.Views.Client"
                            xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
                            Title="{x:Static core:Strings.Dates}">
     <ContentPage.Resources>
@@ -24,13 +25,14 @@
     <NavigationPage.HasBackButton>False</NavigationPage.HasBackButton>
     
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <views:NewCollectionItem Grid.Row="0"
+                                     x:Name="NewDateButton"
                                      Margin="25,25,25,0"
                                      HorizontalOptions="FillAndExpand"
                                      VerticalOptions="FillAndExpand"/>
@@ -39,8 +41,13 @@
                    TextColor="{StaticResource BlueStrongColor}"
                    FontSize="Large"
                    Padding="40,40,0,0"/>
+            <Label Grid.Row="2"
+                   x:Name="ErrorLabel"
+                   FontAttributes="Bold"
+                   TextColor="Red"
+                   HorizontalTextAlignment="Center"/>
             <CollectionView Grid.Row="2"
-                            x:Name="DatesCollectionView"
+                            x:Name="DatesCollection"
                             Margin="25,0,25,25"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand"
@@ -50,7 +57,7 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <views:CollectionItem/>
+                        <clientviews:DateCollectionItem/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

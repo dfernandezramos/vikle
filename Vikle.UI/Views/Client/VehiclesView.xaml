@@ -6,7 +6,8 @@
                            xmlns="http://xamarin.com/schemas/2014/forms"
                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                            xmlns:local="clr-namespace:Vikle.UI"
-                           xmlns:views="clr-namespace:Vikle.UI.Views"
+                           xmlns:views="clr-namespace:Vikle.UI.Views;assembly=Vikle.UI"
+                           xmlns:clientviews="clr-namespace:Vikle.UI.Views.Client;assembly=Vikle.UI"
                            xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
                            Title="{x:Static core:Strings.Vehicles}"
                            x:Class="Vikle.UI.Views.Client.VehiclesView">
@@ -29,8 +30,10 @@
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <views:NewCollectionItem Grid.Row="0"
+                                     x:Name="NewVehicleButton"
                                      Margin="25,25,25,0"
                                      HorizontalOptions="FillAndExpand"
                                      VerticalOptions="FillAndExpand"/>
@@ -39,14 +42,23 @@
                    TextColor="{StaticResource BlueStrongColor}"
                    FontSize="Large"
                    Padding="40,40,0,0"/>
-            <CollectionView Grid.Row="2" Margin="25,0,25,25" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
-                            SelectionMode="None" ItemsSource="{Binding Vehicles}">
+            <Label Grid.Row="2"
+                   x:Name="ErrorLabel"
+                   FontAttributes="Bold"
+                   TextColor="Red"
+                   HorizontalTextAlignment="Center"/>
+            <CollectionView Grid.Row="2"
+                            x:Name="VehiclesCollection"
+                            Margin="25,0,25,25"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            SelectionMode="Single">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <views:CollectionItem/>
+                        <clientviews:VehicleCollectionItem/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

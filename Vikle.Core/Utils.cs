@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using Vikle.Core.Enums;
 using Xamarin.Forms;
 
 namespace Vikle.Core
@@ -61,6 +62,23 @@ namespace Vikle.Core
             else if(Application.Current.MainPage is NavigationPage navigationPage && navigationPage.CurrentPage is MasterDetailPage nestedMasterDetail)
             {
                 nestedMasterDetail.IsPresented = false;
+            }
+        }
+
+        /// <summary>
+        /// Gets the vehicle image resource name with the provided vehicle type
+        /// </summary>
+        /// <returns></returns>
+        public static string GetVehicleImageName(VehicleType vehicleType)
+        {
+            switch (vehicleType)
+            {
+                default:
+                    return "Vikle.UI.Images.blue_car.png";
+                case VehicleType.MotorCycle:
+                    return "Vikle.UI.Images.blue_motorbike.png";
+                case VehicleType.Truck:
+                    return "Vikle.UI.Images.blue_truck.png";
             }
         }
     }

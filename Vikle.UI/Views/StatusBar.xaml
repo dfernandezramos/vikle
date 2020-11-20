@@ -30,9 +30,12 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <views:StatusElementView Grid.Column="0"/>
-                <views:StatusElementView Grid.Column="1"/>
-                <views:StatusElementView Grid.Column="2"/>
+                <views:StatusElementView Grid.Column="0"
+                                         x:Name="PendingElement"/>
+                <views:StatusElementView Grid.Column="1"
+                                         x:Name="RepairingElement"/>
+                <views:StatusElementView Grid.Column="2"
+                                         x:Name="RepairedElement"/>
             </Grid>
         </Grid>
     </ContentView.Content>

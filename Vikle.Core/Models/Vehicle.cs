@@ -27,7 +27,7 @@ namespace Vikle.Core.Models
         /// <summary>
         /// Gets or sets the year of the vehicle.
         /// </summary>
-        public int Year { get; set; }
+        public int Year { get; set; } = DateTime.Today.Year;
         
         /// <summary>
         /// Gets or sets the last TBDS date of the vehicle.
@@ -48,5 +48,11 @@ namespace Vikle.Core.Models
         /// Gets or sets the identifiers of the vehicle additional drivers.
         /// </summary>
         public List<string> IdDrivers { get; set; }
+
+        /// <summary>
+        /// Gets a value indicating if this model has all required fields properly filled
+        /// </summary>
+        public bool IsComplete => !string.IsNullOrEmpty(Model) &&
+                                  !string.IsNullOrEmpty(PlateNumber);
     }
 }

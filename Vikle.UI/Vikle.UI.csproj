@@ -29,6 +29,10 @@
         <DependentUpon>NewCollectionItem.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\Client\VehicleCollectionItem.xaml.cs">
+        <DependentUpon>CollectionItem.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -73,6 +77,12 @@
       <EmbeddedResource Include="Images\telephone.png" />
       <None Remove="Images\plus.png" />
       <EmbeddedResource Include="Images\plus.png" />
+      <None Remove="Images\blue_car.png" />
+      <EmbeddedResource Include="Images\blue_car.png" />
+      <None Remove="Images\blue_motorbike.png" />
+      <EmbeddedResource Include="Images\blue_motorbike.png" />
+      <None Remove="Images\blue_truck.png" />
+      <EmbeddedResource Include="Images\blue_truck.png" />
     </ItemGroup>
 
     <ItemGroup>
