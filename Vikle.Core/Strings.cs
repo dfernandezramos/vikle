@@ -68,7 +68,7 @@ namespace Vikle.Core
         public static readonly string WelcomeToVikle = "Welcome to Vikle!";
         public static readonly string YourWorkshopHelper = "Your workshop helper";
         public static readonly string SwipeToSee = "Swipe to see what can you do with this app";
-        public static readonly string VehiclesOnRepair = "VehiclesOnRepair";
+        public static readonly string VehiclesOnRepair = "Vehicles on repair";
         public static readonly string Worker = "Worker";
         public static readonly string Client = "Client";
         public static readonly string Repairing = "Repairing";
