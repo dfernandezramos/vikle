@@ -24,7 +24,7 @@
     <NavigationPage.HasBackButton>False</NavigationPage.HasBackButton>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="White">
             <Grid RowSpacing="0" ColumnSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="220" />

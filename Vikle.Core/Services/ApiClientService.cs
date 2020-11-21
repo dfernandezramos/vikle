@@ -235,6 +235,25 @@ namespace Vikle.Core.Services
             return ToHttpCallResult (response);
         }
 
+        /// <summary>
+        /// Updates the reparation data in the API
+        /// </summary>
+        /// <param name="reparation">The reparation to be updated</param>
+        /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        public async Task<HttpCallResult> UpdateReparation(Reparation reparation, string token, CancellationToken cancellationToken = default)
+        {
+            RestRequest request = new RestRequest ("api/workshop/reparations", Method.POST);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("reparationDate", reparation.Date, ParameterType.GetOrPost);
+            request.AddParameter ("plateNumber", reparation.PlateNumber, ParameterType.GetOrPost);
+            request.AddParameter ("status", reparation.Status, ParameterType.GetOrPost);
+            request.AddParameter ("reparationType", reparation.Type, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync (request, cancellationToken);
+            
+            return ToHttpCallResult (response);
+        }
+
         HttpCallResult<TResponse> ToHttpCallResult<TResponse> (IRestResponse<TResponse> response)
         {
             return new HttpCallResult<TResponse>

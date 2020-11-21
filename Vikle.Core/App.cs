@@ -62,6 +62,7 @@ namespace Vikle.Core
             Mvx.IoCProvider.RegisterType<IDatesService, DatesService> ();
             Mvx.IoCProvider.RegisterType<IDateDetailsService, DateDetailsService> ();
             Mvx.IoCProvider.RegisterType<IWSReparationsService, WSReparationsService> ();
+            Mvx.IoCProvider.RegisterType<IWSReparationDetailService, WSReparationDetailService> ();
 
             Mvx.IoCProvider.RegisterSingleton<IRestClient> (new RestClient(Constants.API_BASE_URI));
             Mvx.IoCProvider.RegisterSingleton<IApiClientService> (new ApiClientService ());

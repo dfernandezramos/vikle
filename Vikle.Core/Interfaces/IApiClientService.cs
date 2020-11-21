@@ -112,5 +112,13 @@ namespace Vikle.Core.Interfaces
         /// <param name="cancellationToken">The cancellation token</param>
         /// <returns></returns>
         Task<HttpCallResult<List<Reparation>>> GetWorkshopReparations(string workshopId, string token, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Updates the reparation data in the API
+        /// </summary>
+        /// <param name="reparation">The reparation to be updated</param>
+        /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        Task<HttpCallResult> UpdateReparation(Reparation reparation, string token, CancellationToken cancellationToken = default);
     }
 }
