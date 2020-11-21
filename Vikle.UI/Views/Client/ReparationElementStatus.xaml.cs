@@ -1,7 +1,7 @@
 using Vikle.Core;
 using Xamarin.Forms;
 
-namespace Vikle.UI.Views
+namespace Vikle.UI.Views.Client
 {
     /// <summary>
     /// This class contains the definition of the reparation element status view.

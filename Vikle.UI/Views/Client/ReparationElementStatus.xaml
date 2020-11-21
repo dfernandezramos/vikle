@@ -3,7 +3,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vikle.UI"
-             x:Class="Vikle.UI.Views.VikleFlyoutHeader">
+             x:Class="Vikle.UI.Views.Client.ReparationElementStatus">
     <ContentView.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,15 +12,17 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentView.Content>
-        <Grid RowSpacing="0" ColumnSpacing="0">
+        <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0"
-                  BackgroundColor="{StaticResource BlueSoftColor}">
-                <Image Source="{local:ImageResource Vikle.UI.Images.logo.png}"
-                       Margin="30"/>
-            </Grid>
+            <Image Grid.Row="0"
+                   x:Name="DotImage"/>
+            <Label Grid.Row="1"
+                   x:Name="TitleLabel"
+                   TextColor="{StaticResource YellowStrongColor}"
+                   HorizontalOptions="CenterAndExpand"/>
         </Grid>
     </ContentView.Content>
 </ContentView>

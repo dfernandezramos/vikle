@@ -33,6 +33,10 @@
         <DependentUpon>CollectionItem.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\Client\ReparationElementStatus.xaml.cs">
+        <DependentUpon>ReparationElementStatus.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
