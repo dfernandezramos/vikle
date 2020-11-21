@@ -68,7 +68,7 @@ namespace Vikle.Core
         public static readonly string WelcomeToVikle = "Welcome to Vikle!";
         public static readonly string YourWorkshopHelper = "Your workshop helper";
         public static readonly string SwipeToSee = "Swipe to see what can you do with this app";
-        public static readonly string VehiclesOnRepair = "VehiclesOnRepair";
+        public static readonly string VehiclesOnRepair = "Vehicles on repair";
         public static readonly string Worker = "Worker";
         public static readonly string Client = "Client";
         public static readonly string Repairing = "Repairing";
@@ -96,5 +96,10 @@ namespace Vikle.Core
         public static readonly string ITV = "ITV";
         public static readonly string TBDS = "TBDS";
         public static readonly string NoVehicles = "User has no vehicles";
+        public static readonly string WrongNumber = "Wrong phone number";
+        public static readonly string CallsNotSupported = "Phone calls not supported";
+        public static readonly string CouldNotCall = "Could not make the call";
+        public static readonly string EmailsNotSupported = "Emails not supported";
+        public static readonly string CouldNotSendEmail = "Could not send the email";
     }
 }

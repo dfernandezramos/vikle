@@ -24,86 +24,100 @@
     <NavigationPage.HasBackButton>False</NavigationPage.HasBackButton>
     
     <ContentPage.Content>
-        <StackLayout>
-            <views:SecondaryHeader IsVisible="True"/>
-            <Label Text="{x:Static core:Strings.ReparationDetails}"
-                   FontAttributes="Bold"
-                   TextColor="{StaticResource BlueStrongColor}"
-                   FontSize="Large"
-                   Padding="50,50,0,10"/>
-            <Grid RowSpacing="0" ColumnSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="75" />
-                    <RowDefinition Height="75" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0"
-                       Padding="50,20,0,0"
-                       Style="{StaticResource BlueLabel}"
-                       Text="{x:Static core:Strings.Plate}" IsVisible="True"/>
-                <Entry Grid.Row="0" Grid.Column="1"
-                       Margin="20,20,20,0"
-                       Style="{StaticResource VikleEntry}"
-                       Placeholder="{x:Static core:Strings.PlateNumber}"
-                       IsVisible="True"/>
-                <Label Grid.Row="1" Grid.Column="0"
-                       Padding="50,30,0,0"
-                       Style="{StaticResource BlueLabel}"
-                       Text="{x:Static core:Strings.Status}"/>
-                <Picker Grid.Row="1" Grid.Column="1"
-                        Margin="20,30,20,0"
-                        Style="{StaticResource ViklePicker}"
-                        x:Name="StatusPicker"/>
-                <Label Grid.Row="2" Grid.Column="0"
-                       Padding="50,30,0,0"
-                       Style="{StaticResource BlueLabel}"
-                       Text="{x:Static core:Strings.Reason}"/>
-                <Picker Grid.Row="2" Grid.Column="1"
-                       Margin="20,30,20,0"
-                       Style="{StaticResource ViklePicker}"
-                       x:Name="ReasonPicker"/>
-                <Label Grid.Row="3" Grid.Column="0"
-                       Padding="50,30,0,0"
-                       Style="{StaticResource BlueLabel}"
-                       Text="{x:Static core:Strings.Date}"/>
-                <DatePicker Grid.Row="3" Grid.Column="1"
-                       Margin="20,30,20,0"
-                       HorizontalOptions="CenterAndExpand"
-                       Style="{StaticResource VikleDatePicker}"/>
-            </Grid>
-            <Grid RowSpacing="40">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0"
-                        Style="{StaticResource YellowButton}"
-                        Margin="0,50,0,0"
-                        HorizontalOptions="Center"
-                        WidthRequest="200"
-                        HeightRequest="75"
-                        Text="{x:Static core:Strings.Continue}"/>
-                <Button Grid.Row="1"
-                        Style="{StaticResource WhiteButton}"
-                        BorderWidth="1"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="200"
-                        HeightRequest="75"
-                        IsVisible="False"
-                        Text="{x:Static core:Strings.ContactOwner}"/>
-            </Grid>
-            <Label HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   TextDecorations="Underline"
-                   TextColor="{StaticResource BlueStrongColor}"
-                   FontAttributes="Bold"
-                   Text="{x:Static core:Strings.Cancel}"/>
+        <StackLayout BackgroundColor="White">
+            <views:SecondaryHeader x:Name="SecondaryHeader"/>
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="{x:Static core:Strings.ReparationDetails}"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource BlueStrongColor}"
+                           FontSize="Large"
+                           Padding="50,35,0,10"/>
+                    <Label x:Name="ErrorLabel"
+                           FontAttributes="Bold"
+                           TextColor="Red"
+                           TextDecorations="Underline"
+                           HorizontalOptions="Center"/>
+                    <Grid RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="75" />
+                            <RowDefinition Height="75" />
+                            <RowDefinition Height="75" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0"
+                               Padding="50,20,0,0"
+                               Style="{StaticResource BlueLabel}"
+                               Text="{x:Static core:Strings.Plate}"
+                               x:Name="PlateNumberLabel"/>
+                        <Entry Grid.Row="0" Grid.Column="1"
+                               Margin="20,20,20,0"
+                               Style="{StaticResource VikleEntry}"
+                               Placeholder="{x:Static core:Strings.PlateNumber}"
+                               x:Name="PlateNumberEntry"/>
+                        <Label Grid.Row="1" Grid.Column="0"
+                               Padding="50,30,0,0"
+                               Style="{StaticResource BlueLabel}"
+                               Text="{x:Static core:Strings.Status}"/>
+                        <Picker Grid.Row="1" Grid.Column="1"
+                                Margin="20,30,20,0"
+                                Style="{StaticResource ViklePicker}"
+                                x:Name="StatusPicker"/>
+                        <Label Grid.Row="2" Grid.Column="0"
+                               Padding="50,30,0,0"
+                               Style="{StaticResource BlueLabel}"
+                               Text="{x:Static core:Strings.Reason}"/>
+                        <Picker Grid.Row="2" Grid.Column="1"
+                               Margin="20,30,20,0"
+                               Style="{StaticResource ViklePicker}"
+                               x:Name="ReasonPicker"/>
+                        <Label Grid.Row="3" Grid.Column="0"
+                               Padding="50,30,0,0"
+                               Style="{StaticResource BlueLabel}"
+                               Text="{x:Static core:Strings.Date}"/>
+                        <DatePicker Grid.Row="3" Grid.Column="1"
+                                    x:Name="ReparationDatePicker"
+                                    Margin="20,30,20,0"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Style="{StaticResource VikleDatePicker}"/>
+                    </Grid>
+                    <Grid RowSpacing="40">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0"
+                                Style="{StaticResource YellowButton}"
+                                Margin="0,50,0,0"
+                                HorizontalOptions="Center"
+                                WidthRequest="200"
+                                HeightRequest="75"
+                                x:Name="ContinueButton"
+                                Text="{x:Static core:Strings.Continue}"/>
+                        <Button Grid.Row="1"
+                                Style="{StaticResource WhiteButton}"
+                                BorderWidth="1"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="200"
+                                HeightRequest="75"
+                                x:Name="ContactButton"
+                                Text="{x:Static core:Strings.ContactOwner}"/>
+                    </Grid>
+                    <Label HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextDecorations="Underline"
+                           TextColor="{StaticResource BlueStrongColor}"
+                           FontAttributes="Bold"
+                           x:Name="CancelLabel"
+                           Margin="0,50,0,30"
+                           Text="{x:Static core:Strings.Cancel}"/>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </crossviews:MvxContentPage>

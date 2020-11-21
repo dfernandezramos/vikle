@@ -7,6 +7,7 @@
                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                            xmlns:local="clr-namespace:Vikle.UI"
                            xmlns:views="clr-namespace:Vikle.UI.Views"
+                           xmlns:wsviews="clr-namespace:Vikle.UI.Views.Worker"
                            xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
                            Title="{x:Static core:Strings.OnRepair}"
                            x:Class="Vikle.UI.Views.Worker.WSReparationsView">
@@ -24,13 +25,15 @@
     <NavigationPage.HasBackButton>False</NavigationPage.HasBackButton>
     
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <views:NewCollectionItem Grid.Row="0"
+                                     x:Name="NewReparationButton"
+                                     Title="{x:Static core:Strings.NewReparation}"
                                      Margin="25,25,25,0"
                                      HorizontalOptions="FillAndExpand"
                                      VerticalOptions="FillAndExpand"/>
@@ -39,18 +42,24 @@
                    TextColor="{StaticResource BlueStrongColor}"
                    FontSize="Large"
                    Padding="40,40,0,0"/>
+            <Label Grid.Row="2"
+                   x:Name="ErrorLabel"
+                   Margin="25,30,25,25"
+                   FontAttributes="Bold"
+                   TextColor="Red"
+                   HorizontalTextAlignment="Center"/>
             <CollectionView Grid.Row="2"
-                            x:Name="ReparationsCollectionView"
+                            x:Name="ReparationsCollection"
                             Margin="25,0,25,25"
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand"
-                            SelectionMode="None">
+                            SelectionMode="Single">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <views:CollectionItem/>
+                        <wsviews:WSReparationCollectionItem/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

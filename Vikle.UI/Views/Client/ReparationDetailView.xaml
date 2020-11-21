@@ -7,6 +7,7 @@
                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                            xmlns:local="clr-namespace:Vikle.UI"
                            xmlns:views="clr-namespace:Vikle.UI.Views"
+                           xmlns:clientviews="clr-namespace:Vikle.UI.Views.Client"
                            xmlns:core="clr-namespace:Vikle.Core;assembly=Vikle.Core"
                            x:Class="Vikle.UI.Views.Client.ReparationDetailView"
                            Title="{x:Static core:Strings.Reparation}">
@@ -72,24 +73,24 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <views:ReparationElementStatus Grid.Column="0"
-                                                   x:Name="OilFilterElement"
-                                                   Title="{x:Static core:Strings.OilFilter}"/>
-                    <views:ReparationElementStatus Grid.Column="1"
-                                                   x:Name="AirFilterElement"
-                                                   Title="{x:Static core:Strings.AirFilter}"/>
-                    <views:ReparationElementStatus Grid.Column="2"
-                                                   x:Name="GasFilterElement"
-                                                   Title="{x:Static core:Strings.GasFilter}"/>
-                    <views:ReparationElementStatus Grid.Column="3"
-                                                   x:Name="LiquidsElement"
-                                                   Title="{x:Static core:Strings.Liquids}"/>
-                    <views:ReparationElementStatus Grid.Column="4"
-                                                   x:Name="ITVElement"
-                                                   Title="{x:Static core:Strings.ITV}"/>
-                    <views:ReparationElementStatus Grid.Column="5"
-                                                   x:Name="TBDSElement"
-                                                   Title="{x:Static core:Strings.TBDS}"/>
+                    <clientviews:ReparationElementStatus Grid.Column="0"
+                                                         x:Name="OilFilterElement"
+                                                         Title="{x:Static core:Strings.OilFilter}"/>
+                    <clientviews:ReparationElementStatus Grid.Column="1"
+                                                         x:Name="AirFilterElement"
+                                                         Title="{x:Static core:Strings.AirFilter}"/>
+                    <clientviews:ReparationElementStatus Grid.Column="2"
+                                                         x:Name="GasFilterElement"
+                                                         Title="{x:Static core:Strings.GasFilter}"/>
+                    <clientviews:ReparationElementStatus Grid.Column="3"
+                                                         x:Name="LiquidsElement"
+                                                         Title="{x:Static core:Strings.Liquids}"/>
+                    <clientviews:ReparationElementStatus Grid.Column="4"
+                                                         x:Name="ITVElement"
+                                                         Title="{x:Static core:Strings.ITV}"/>
+                    <clientviews:ReparationElementStatus Grid.Column="5"
+                                                         x:Name="TBDSElement"
+                                                         Title="{x:Static core:Strings.TBDS}"/>
                 </Grid>
             </Grid>
             <StackLayout>

@@ -61,9 +61,13 @@ namespace Vikle.Core
             Mvx.IoCProvider.RegisterType<IHistoryService, HistoryService> ();
             Mvx.IoCProvider.RegisterType<IDatesService, DatesService> ();
             Mvx.IoCProvider.RegisterType<IDateDetailsService, DateDetailsService> ();
+            Mvx.IoCProvider.RegisterType<IWSReparationsService, WSReparationsService> ();
+            Mvx.IoCProvider.RegisterType<IWSReparationDetailService, WSReparationDetailService> ();
+            Mvx.IoCProvider.RegisterType<IContactCustomerService, ContactCustomerService> ();
 
             Mvx.IoCProvider.RegisterSingleton<IRestClient> (new RestClient(Constants.API_BASE_URI));
             Mvx.IoCProvider.RegisterSingleton<IApiClientService> (new ApiClientService ());
+            Mvx.IoCProvider.RegisterSingleton<IXamarinEssentialsService> (new XamarinEssentialsService ());
             Mvx.IoCProvider.RegisterSingleton<ISecureStorageService> (_secureStorageService);
         }
     }
