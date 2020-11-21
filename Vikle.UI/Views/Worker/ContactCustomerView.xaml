@@ -31,10 +31,10 @@
                 </Grid.RowDefinitions>
                 <StackLayout Grid.Row="0">
                     <StackLayout BackgroundColor="{StaticResource BlueSoftColor}" HeightRequest="190">
-                        <Label Text="David"
+                        <Label x:Name="NameLabel"
                                Style="{StaticResource BigYellowLabel}"
                                Margin="20,40,0,0"/>
-                        <Label Text="Fernández Ramos"
+                        <Label x:Name="SurnameLabel"
                                Style="{StaticResource BigYellowLabel}"/>
                     </StackLayout>
                 </StackLayout>
@@ -50,10 +50,17 @@
                     </Grid.ColumnDefinitions>
                     <ImageButton Grid.Row="0"
                            Grid.Column="1"
+                           x:Name="CallButton"
                            BackgroundColor="Transparent"
                            Source="{local:ImageResource Vikle.UI.Images.telephone.png}" Aspect="AspectFill"/>
                 </Grid>
             </Grid>
+            <Label x:Name="ErrorLabel"
+                   Margin="0,20,0,0"
+                   FontAttributes="Bold"
+                   TextColor="Red"
+                   TextDecorations="Underline"
+                   HorizontalOptions="Center"/>
             <Grid RowSpacing="0" ColumnSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75" />
@@ -68,21 +75,21 @@
                        Padding="50,20,0,0"
                        Style="{StaticResource BlueLabel}"
                        FontAttributes="Bold"
-                       Text="{x:Static core:Strings.PhoneDoublePeriod}" IsVisible="True"/>
+                       Text="{x:Static core:Strings.PhoneDoublePeriod}" />
                 <Label Grid.Row="0" Grid.Column="1"
                        Margin="20,20,20,0"
                        Style="{StaticResource BlueLabel}"
-                       Text="123 456 789"/>
+                       x:Name="PhoneLabel" />
                 <BoxView Grid.Row="1" Grid.Column="1" BackgroundColor="{StaticResource BlueSoftColor}" Margin="-80,19,50,0"/>
                 <Label Grid.Row="2" Grid.Column="0"
                        Padding="50,20,0,0"
                        Style="{StaticResource BlueLabel}"
                        FontAttributes="Bold"
-                       Text="{x:Static core:Strings.EMailDoublePeriod}" IsVisible="True"/>
+                       Text="{x:Static core:Strings.EMailDoublePeriod}"/>
                 <Label Grid.Row="2" Grid.Column="1"
                        Margin="20,20,20,0"
                        Style="{StaticResource BlueLabel}"
-                       Text="email@email.com"/>
+                       x:Name="EmailLabel" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

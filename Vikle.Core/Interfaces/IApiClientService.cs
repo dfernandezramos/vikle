@@ -120,5 +120,14 @@ namespace Vikle.Core.Interfaces
         /// <param name="token">The user token</param>
         /// <param name="cancellationToken">The cancellation token</param>
         Task<HttpCallResult> UpdateReparation(Reparation reparation, string token, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Gets the user information from the provided plate number.
+        /// </summary>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        /// <returns>The user information</returns>
+        Task<HttpCallResult<User>> GetVehicleOwner (string plateNumber, string token, CancellationToken cancellationToken = default);
     }
 }

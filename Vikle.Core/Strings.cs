@@ -96,5 +96,10 @@ namespace Vikle.Core
         public static readonly string ITV = "ITV";
         public static readonly string TBDS = "TBDS";
         public static readonly string NoVehicles = "User has no vehicles";
+        public static readonly string WrongNumber = "Wrong phone number";
+        public static readonly string CallsNotSupported = "Phone calls not supported";
+        public static readonly string CouldNotCall = "Could not make the call";
+        public static readonly string EmailsNotSupported = "Emails not supported";
+        public static readonly string CouldNotSendEmail = "Could not send the email";
     }
 }

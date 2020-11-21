@@ -254,6 +254,23 @@ namespace Vikle.Core.Services
             return ToHttpCallResult (response);
         }
 
+        /// <summary>
+        /// Gets the user information from the provided plate number.
+        /// </summary>
+        /// <param name="plateNumber">The vehicle identifier</param>
+        /// <param name="token">The user token</param>
+        /// <param name="cancellationToken">The cancellation token</param>
+        /// <returns>The user information</returns>
+        public async Task<HttpCallResult<User>> GetVehicleOwner(string plateNumber, string token, CancellationToken cancellationToken = default)
+        {
+            RestRequest request = new RestRequest ("api/vehicle/owner", Method.GET);
+            request.AddHeader ("Authorization", $"Token {token}");
+            request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
+            var response = await _client.ExecuteAsync<User> (request, cancellationToken);
+            
+            return ToHttpCallResult (response);
+        }
+
         HttpCallResult<TResponse> ToHttpCallResult<TResponse> (IRestResponse<TResponse> response)
         {
             return new HttpCallResult<TResponse>
