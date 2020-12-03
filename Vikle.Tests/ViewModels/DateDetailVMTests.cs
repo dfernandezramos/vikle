@@ -145,7 +145,7 @@ namespace Vikle.Tests.ViewModels
             
             // Then
             Assert.IsFalse(_dateDetailVM.ShowDateDetailsError);
-            Assert.AreEqual("1234 ABC" , _dateDetailVM.PlateNumbers.First());
+            Assert.AreEqual("1234ABC" , _dateDetailVM.PlateNumbers.First());
         }
     }
 }

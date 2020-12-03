@@ -183,7 +183,7 @@ namespace Vikle.Tests.Services
             Assert.IsFalse(reparations.Error);
             Assert.IsNotEmpty(reparations.Data);
             var car = reparations.Data.First();
-            Assert.AreEqual("1234 ABC", car.PlateNumber);
+            Assert.AreEqual("1234ABC", car.PlateNumber);
             Assert.AreEqual("2", car.Id);
         }
     }

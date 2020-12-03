@@ -117,7 +117,7 @@ namespace Vikle.Tests.Services
             Assert.IsFalse(dates.Error);
             Assert.IsNotEmpty(dates.Data);
             var date = dates.Data.First();
-            Assert.AreEqual("5678 DEF", date.PlateNumber);
+            Assert.AreEqual("5678DEF", date.PlateNumber);
             Assert.AreEqual("1", date.IdClient);
         }
     }
