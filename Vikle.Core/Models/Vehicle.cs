@@ -9,11 +9,17 @@ namespace Vikle.Core.Models
     /// </summary>
     public class Vehicle
     {
+        private string _plateNumber;
+
         /// <summary>
         /// Gets or sets the plate number of the vehicle.
         /// </summary>
-        public string PlateNumber { get; set; }
-        
+        public string PlateNumber
+        {
+            get => _plateNumber;
+            set => _plateNumber = Utils.NormalizePlateNumber(value);
+        }
+
         /// <summary>
         /// Gets or sets the model of the vehicle.
         /// </summary>

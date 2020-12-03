@@ -8,6 +8,8 @@ namespace Vikle.Core.Models
     /// </summary>
     public class Date
     {
+        private string _plateNumber;
+
         /// <summary>
         /// Gets or sets the identifier of the date.
         /// </summary>
@@ -22,12 +24,16 @@ namespace Vikle.Core.Models
         /// Gets or sets the reason of the date.
         /// </summary>
         public ReparationType Reason { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the plate number of the car of the date.
         /// </summary>
-        public string PlateNumber { get; set; }
-        
+        public string PlateNumber
+        {
+            get => _plateNumber;
+            set => _plateNumber = Utils.NormalizePlateNumber(value);
+        }
+
         /// <summary>
         /// Gets or sets the client identifier who requested the date.
         /// </summary>
