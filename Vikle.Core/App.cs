@@ -20,6 +20,9 @@ namespace Vikle.Core
         {
             _secureStorageService = new SecureStorageService();
             
+            // Trust all certificates
+            System.Net.ServicePointManager.ServerCertificateValidationCallback =
+                (sender, certificate, chain, sslPolicyErrors) => true;
             RegisterServices();
 
             if (UserHasToken())
