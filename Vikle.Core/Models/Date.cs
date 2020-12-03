@@ -14,6 +14,11 @@ namespace Vikle.Core.Models
         /// Gets or sets the identifier of the date.
         /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the workshop identifier of the date.
+        /// </summary>
+        public string WorkshopId { get; set; }
         
         /// <summary>
         /// Gets or sets the reparation datetime of the date.

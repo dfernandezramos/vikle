@@ -150,6 +150,7 @@ namespace Vikle.Core.ViewModels
             base.Prepare(reparation);
 
             Model = reparation;
+            Model.WorkshopId = "1";
             NewReparation = string.IsNullOrEmpty(Model.PlateNumber);
         }
         

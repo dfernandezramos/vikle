@@ -136,7 +136,8 @@ namespace Vikle.Core.ViewModels
                 ReparationDate = ReparationDate,
                 Reason = ReparationReason,
                 PlateNumber = SelectedVehiclePlateNumber,
-                Status = ReparationStatus.Pending
+                Status = ReparationStatus.Pending,
+                WorkshopId = "1"
             };
 
             Result result = await _datesService.SaveDate(date);
