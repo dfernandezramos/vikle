@@ -23,7 +23,7 @@ namespace Vikle.Core.Models
         /// <summary>
         /// Gets or sets the reparation datetime of the date.
         /// </summary>
-        public DateTime ReparationDate { get; set; }
+        public DateTime ReparationDate { get; set; } = DateTime.UtcNow;
         
         /// <summary>
         /// Gets or sets the reason of the date.
