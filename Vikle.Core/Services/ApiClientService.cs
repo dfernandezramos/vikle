@@ -30,7 +30,7 @@ namespace Vikle.Core.Services
         /// <returns>The login result data</returns>
         public async Task<HttpCallResult<LoginData>> GetUserToken(string email, string password, CancellationToken cancellationToken = default)
         {
-            RestRequest request = new RestRequest ("auth/", Method.GET);
+            RestRequest request = new RestRequest ("auth", Method.GET);
             request.AddParameter ("email", email, ParameterType.GetOrPost);
             request.AddParameter ("password", password, ParameterType.GetOrPost);
             var response = await _client.ExecuteAsync<LoginData> (request, cancellationToken);
@@ -47,7 +47,7 @@ namespace Vikle.Core.Services
         /// <returns>The user information</returns>
         public async Task<HttpCallResult<User>> GetUserInformation(string userId, string token, CancellationToken cancellationToken = default)
         {
-            RestRequest request = new RestRequest ("user/", Method.GET);
+            RestRequest request = new RestRequest ("user", Method.GET);
             request.AddHeader ("Authorization", $"Bearer {token}");
             request.AddParameter ("userId", userId, ParameterType.GetOrPost);
             var response = await _client.ExecuteAsync<User> (request, cancellationToken);
@@ -62,7 +62,7 @@ namespace Vikle.Core.Services
         /// <param name="cancellationToken">The cancellation token</param>
         public async Task<HttpCallResult> RecoverPassword(string email, CancellationToken cancellationToken = default)
         {
-            RestRequest request = new RestRequest ("auth/", Method.POST);
+            RestRequest request = new RestRequest ("auth", Method.POST);
             request.AddJsonBody(email);
             var response = await _client.ExecuteAsync (request, cancellationToken);
             
@@ -76,7 +76,7 @@ namespace Vikle.Core.Services
         /// <param name="cancellationToken">The cancellation token</param>
         public async Task<HttpCallResult> Signup(SignupData data, CancellationToken cancellationToken = default)
         {
-            RestRequest request = new RestRequest ("auth/", Method.PUT);
+            RestRequest request = new RestRequest ("auth", Method.PUT);
             request.AddJsonBody(data);
             var response = await _client.ExecuteAsync (request, cancellationToken);
             
