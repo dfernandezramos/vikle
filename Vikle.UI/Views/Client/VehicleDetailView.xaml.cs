@@ -83,11 +83,11 @@ namespace Vikle.UI.Views.Client
         void SetGestureRecognizers()
         {
             var cancelTapGestureRecognizer = new TapGestureRecognizer();
-            cancelTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync();
+            cancelTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync(false);
             CancelLabel.GestureRecognizers.Add(cancelTapGestureRecognizer);
             
             var editTapGestureRecognizer = new TapGestureRecognizer();
-            editTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync();
+            editTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync(false);
             EditLabel.GestureRecognizers.Add(editTapGestureRecognizer);
             
             var deleteTapGestureRecognizer = new TapGestureRecognizer();
