@@ -19,6 +19,7 @@ namespace Vikle.Core.ViewModels
         private string _detailError;
         private string oldPlateNumber;
         private bool _editionMode;
+        private ReparationStatus? _reparationStatus;
 
         /// <summary>
         /// Gets or sets the vehicle data model.
@@ -116,12 +117,23 @@ namespace Vikle.Core.ViewModels
         /// <summary>
         /// Gets or sets a boolean indicating if the car is being repaired or not
         /// </summary>
-        public bool ShowReparationStatus => ReparationStatus != null && !EditionMode;
+        public bool ShowReparationStatus => ReparationStatus != null &&
+                                            ReparationStatus != Enums.ReparationStatus.Rejected &&
+                                            !EditionMode;
 
         /// <summary>
         /// Gets or sets the car reparation status in case the car is being repaired
         /// </summary>
-        public ReparationStatus? ReparationStatus { get; set; }
+        public ReparationStatus? ReparationStatus
+        {
+            get => _reparationStatus;
+            set
+            {
+                _reparationStatus = value;
+                RaisePropertyChanged(()=> ReparationStatus);
+                RaisePropertyChanged(()=> ShowReparationStatus);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the Delete car command
