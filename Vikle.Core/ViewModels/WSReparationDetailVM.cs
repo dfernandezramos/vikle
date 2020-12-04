@@ -29,6 +29,7 @@ namespace Vikle.Core.ViewModels
             set
             {
                 _model = value;
+                RaiseAllPropertiesChanged();
                 RaisePropertyChanged(() => Model);
             }
         }
