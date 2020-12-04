@@ -90,6 +90,11 @@ namespace Vikle.Core
         /// <returns>The normalized plate number</returns>
         public static string NormalizePlateNumber(string plateNumber)
         {
+            if (string.IsNullOrEmpty(plateNumber.Trim()))
+            {
+                return string.Empty;
+            }
+            
             plateNumber = plateNumber.Replace('-', ' ');
             plateNumber = String.Concat(plateNumber.Where(c => !Char.IsWhiteSpace(c)));
             return plateNumber;
