@@ -145,7 +145,7 @@ namespace Vikle.Core.Services
         /// <returns>The current vehicle reparation</returns>
         public async Task<HttpCallResult<Reparation>> GetCurrentReparation(string plateNumber, string token, CancellationToken cancellationToken = default)
         {
-            RestRequest request = new RestRequest ("vehicle/reparations/current", Method.GET);
+            RestRequest request = new RestRequest ("vehicle/current", Method.GET);
             request.AddHeader ("Authorization", $"Bearer {token}");
             request.AddParameter ("plateNumber", plateNumber, ParameterType.GetOrPost);
             var response = await _client.ExecuteAsync<Reparation> (request, cancellationToken);
