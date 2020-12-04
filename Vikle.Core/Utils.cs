@@ -97,7 +97,7 @@ namespace Vikle.Core
             
             plateNumber = plateNumber.Replace('-', ' ');
             plateNumber = String.Concat(plateNumber.Where(c => !Char.IsWhiteSpace(c)));
-            return plateNumber;
+            return plateNumber.ToUpper();
         }
     }
 }
