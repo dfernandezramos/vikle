@@ -224,7 +224,8 @@ namespace Vikle.Core.ViewModels
                 ShowDetailError = true;
                 return;
             }
-            
+
+            oldPlateNumber ??= Model.PlateNumber;
             Result result = await _vehicleDetailService.UpdateVehicle(oldPlateNumber, Model);
             
             if (result.Error)
