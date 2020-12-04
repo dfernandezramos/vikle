@@ -20,11 +20,21 @@ namespace Vikle.Core.ViewModels
         private string oldPlateNumber;
         private bool _editionMode;
         private ReparationStatus? _reparationStatus;
+        private Vehicle _model;
 
         /// <summary>
         /// Gets or sets the vehicle data model.
         /// </summary>
-        public Vehicle Model { get; set; }
+        public Vehicle Model
+        {
+            get => _model;
+            set
+            {
+                _model = value;
+                RaisePropertyChanged(() => Model);
+                RaiseAllPropertiesChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether the view will be in edition mode or not.

@@ -1,5 +1,6 @@
 using Vikle.Core;
 using Vikle.Core.Enums;
+using Xamarin.Forms;
 
 namespace Vikle.UI.Views
 {
@@ -9,6 +10,9 @@ namespace Vikle.UI.Views
     public partial class StatusBar
     {
         private ReparationStatus? _status;
+
+        public static readonly BindableProperty StatusProperty =
+            BindableProperty.Create (nameof(Status), typeof(ReparationStatus), typeof(StatusBar), null, BindingMode.OneWay, propertyChanged: StatusPropertyChanged);
 
         /// <summary>
         /// Gets or sets the reparation status to display it in the bar.
@@ -54,6 +58,12 @@ namespace Vikle.UI.Views
                     RepairedElement.Active = true;
                     break;
             }
+        }
+        
+        static void StatusPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var control = (StatusBar)bindable;
+            control.Status = (ReparationStatus)newValue;
         }
     }
 }
