@@ -129,6 +129,7 @@ namespace Vikle.Core.ViewModels
         /// </summary>
         public bool ShowReparationStatus => ReparationStatus != null &&
                                             ReparationStatus != Enums.ReparationStatus.Rejected &&
+                                            ReparationStatus != Enums.ReparationStatus.Completed &&
                                             !EditionMode;
 
         /// <summary>
