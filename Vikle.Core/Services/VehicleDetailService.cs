@@ -33,10 +33,14 @@ namespace Vikle.Core.Services
             
             if (reparationResult.Error)
             {
-                result.Error = true;
-                result.Message = reparationResult?.HttpStatusCode == HttpStatusCode.Unauthorized
-                    ? Strings.UserUnauthorised
-                    : Strings.ServerError;
+                if (reparationResult.HttpStatusCode != HttpStatusCode.NoContent)
+                {
+                    result.Error = true;
+                    result.Message = reparationResult?.HttpStatusCode == HttpStatusCode.Unauthorized
+                        ? Strings.UserUnauthorised
+                        : Strings.ServerError;
+                }
+
                 return result;
             }
             

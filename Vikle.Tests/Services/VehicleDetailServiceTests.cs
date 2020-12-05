@@ -192,6 +192,24 @@ namespace Vikle.Tests.Services
         }
         
         [Test]
+        public async Task GetReparationStatus_NoContentError_NoErrorReturned()
+        {
+            // Given
+            _restClientMock.Setup(
+                m => m.ExecuteAsync<Reparation>(It.IsAny<RestRequest>(), 
+                    It.IsAny<CancellationToken>())).ReturnsAsync(new RestResponse<Reparation>
+            {
+                StatusCode = HttpStatusCode.NoContent
+            });
+            
+            // When
+            var details = await _vehicleDetailService.GetReparationStatus(model.PlateNumber);
+
+            // Then
+            Assert.IsFalse(details.Error);
+        }
+        
+        [Test]
         public async Task GetReparationStatus_UserUnauthorised_ErrorReturned()
         {
             // Given
