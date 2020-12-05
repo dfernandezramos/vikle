@@ -103,7 +103,6 @@ namespace Vikle.Tests.Services
                         IdClient = "1",
                         ReparationDate = DateTime.Today.AddMonths(1).AddDays(1),
                         PlateNumber = "5678 DEF",
-                        Id = "2",
                         Status = ReparationStatus.Repairing
                     }
                 }
