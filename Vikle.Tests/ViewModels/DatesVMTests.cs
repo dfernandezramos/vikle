@@ -49,8 +49,10 @@ namespace Vikle.Tests.ViewModels
                 .ReturnsAsync(new Result<MvxObservableCollection<Date>> { Error = true, Message = "Error" });
             
             // When
-            await _datesVM.Initialize();
-            
+            _datesVM.CallingAPI = true;
+            _datesVM.ViewAppearing();
+            while (_datesVM.CallingAPI){ }
+
             // Then
             Assert.IsTrue(_datesVM.ShowDatesError);
             Assert.AreEqual("Error", _datesVM.DatesError);
@@ -67,7 +69,9 @@ namespace Vikle.Tests.ViewModels
                 });
             
             // When
-            await _datesVM.Initialize();
+            _datesVM.CallingAPI = true;
+            _datesVM.ViewAppearing();
+            while (_datesVM.CallingAPI){ }
             
             // Then
             Assert.IsFalse(_datesVM.ShowDatesError);

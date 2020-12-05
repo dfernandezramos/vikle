@@ -6,7 +6,8 @@ namespace Vikle.Core
     public static class Constants
     {
 #if DEBUG
-        public const string API_BASE_URI = "http://localhost:8080";
+        // Setup your machine local IP address in order to test it with emulators and also with a real device
+        public const string API_BASE_URI = "http://192.168.0.150:32003";
 #else
         public const string API_BASE_URI = "http://www.vikle.com";
 #endif

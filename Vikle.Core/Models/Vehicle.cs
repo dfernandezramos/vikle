@@ -9,11 +9,17 @@ namespace Vikle.Core.Models
     /// </summary>
     public class Vehicle
     {
+        private string _plateNumber;
+
         /// <summary>
         /// Gets or sets the plate number of the vehicle.
         /// </summary>
-        public string PlateNumber { get; set; }
-        
+        public string PlateNumber
+        {
+            get => _plateNumber;
+            set => _plateNumber = Utils.NormalizePlateNumber(value);
+        }
+
         /// <summary>
         /// Gets or sets the model of the vehicle.
         /// </summary>
@@ -32,12 +38,12 @@ namespace Vikle.Core.Models
         /// <summary>
         /// Gets or sets the last TBDS date of the vehicle.
         /// </summary>
-        public DateTime LastTBDS { get; set; }
+        public DateTime LastTBDS { get; set; } = DateTime.UtcNow;
         
         /// <summary>
         /// Gets or sets the last ITV date of the vehicle.
         /// </summary>
-        public DateTime LastITV { get; set; }
+        public DateTime LastITV { get; set; } = DateTime.UtcNow;
         
         /// <summary>
         /// Gets or sets the identifier of the vehicle owner.

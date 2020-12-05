@@ -126,7 +126,7 @@ namespace Vikle.Tests.ViewModels
             };
             _vehicleDetailVM.Prepare((vehicle, true));
             _vehicleDetailVM.PlateNumber = "5678 DEF";
-            _vehicleDetailServiceMock.Setup(m => m.UpdateVehicle("1234 ABC", _vehicleDetailVM.Model))
+            _vehicleDetailServiceMock.Setup(m => m.UpdateVehicle("1234ABC", _vehicleDetailVM.Model))
                 .ReturnsAsync(new Result ());
             
             // When
@@ -135,7 +135,7 @@ namespace Vikle.Tests.ViewModels
             // Then
             Assert.IsFalse(_vehicleDetailVM.EditionMode);
             Assert.IsFalse(_vehicleDetailVM.ShowDetailError);
-            Assert.AreEqual("5678 DEF", _vehicleDetailVM.PlateNumber);
+            Assert.AreEqual("5678DEF", _vehicleDetailVM.PlateNumber);
         }
         
         [Test]

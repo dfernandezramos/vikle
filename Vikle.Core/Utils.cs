@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Vikle.Core.Enums;
 using Xamarin.Forms;
@@ -80,6 +81,23 @@ namespace Vikle.Core
                 case VehicleType.Truck:
                     return "Vikle.UI.Images.blue_truck.png";
             }
+        }
+        
+        /// <summary>
+        /// This method normalizes the provided plate number.
+        /// </summary>
+        /// <param name="plateNumber">The plate number</param>
+        /// <returns>The normalized plate number</returns>
+        public static string NormalizePlateNumber(string plateNumber)
+        {
+            if (string.IsNullOrEmpty(plateNumber.Trim()))
+            {
+                return string.Empty;
+            }
+            
+            plateNumber = plateNumber.Replace('-', ' ');
+            plateNumber = String.Concat(plateNumber.Where(c => !Char.IsWhiteSpace(c)));
+            return plateNumber.ToUpper();
         }
     }
 }

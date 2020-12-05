@@ -60,8 +60,7 @@ namespace Vikle.Tests.Services
         {
             // Given
             _restClientMock.Setup(
-                m => m.ExecuteAsync(It.Is<RestRequest>(
-                        r => r.Parameters.Any (p => (string) p.Name == "email")), 
+                m => m.ExecuteAsync(It.IsAny<RestRequest>(), 
                     It.IsAny<CancellationToken>())).ReturnsAsync(new RestResponse
             {
                 StatusCode = HttpStatusCode.OK,
@@ -80,8 +79,7 @@ namespace Vikle.Tests.Services
         {
             // Given
             _restClientMock.Setup(
-                m => m.ExecuteAsync(It.Is<RestRequest>(
-                        r => r.Parameters.Any (p => (string) p.Name == "email")), 
+                m => m.ExecuteAsync(It.IsAny<RestRequest>(), 
                     It.IsAny<CancellationToken>())).ReturnsAsync(new RestResponse
             {
                 StatusCode = HttpStatusCode.InternalServerError

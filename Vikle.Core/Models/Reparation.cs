@@ -9,20 +9,26 @@ namespace Vikle.Core.Models
     /// </summary>
     public class Reparation
     {
+        private string _plateNumber;
+
         /// <summary>
-        /// Gets or sets the identifier of the reparation.
+        /// Gets or sets the identifier of the workshop.
         /// </summary>
-        public string Id { get; set; }
-        
+        public string WorkshopId { get; set; }
+
         /// <summary>
         /// Gets or sets the plate number of the repaired vehicle.
         /// </summary>
-        public string PlateNumber { get; set; }
-        
+        public string PlateNumber
+        {
+            get => _plateNumber;
+            set => _plateNumber = Utils.NormalizePlateNumber(value);
+        }
+
         /// <summary>
         /// Gets or sets the date of the reparation.
         /// </summary>
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.UtcNow;
         
         /// <summary>
         /// Gets or sets the type of the reparation.

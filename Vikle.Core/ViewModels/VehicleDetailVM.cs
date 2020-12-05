@@ -19,11 +19,22 @@ namespace Vikle.Core.ViewModels
         private string _detailError;
         private string oldPlateNumber;
         private bool _editionMode;
+        private ReparationStatus? _reparationStatus;
+        private Vehicle _model;
 
         /// <summary>
         /// Gets or sets the vehicle data model.
         /// </summary>
-        public Vehicle Model { get; set; }
+        public Vehicle Model
+        {
+            get => _model;
+            set
+            {
+                _model = value;
+                RaisePropertyChanged(() => Model);
+                RaiseAllPropertiesChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether the view will be in edition mode or not.
@@ -116,12 +127,24 @@ namespace Vikle.Core.ViewModels
         /// <summary>
         /// Gets or sets a boolean indicating if the car is being repaired or not
         /// </summary>
-        public bool ShowReparationStatus => ReparationStatus != null && !EditionMode;
+        public bool ShowReparationStatus => ReparationStatus != null &&
+                                            ReparationStatus != Enums.ReparationStatus.Rejected &&
+                                            ReparationStatus != Enums.ReparationStatus.Completed &&
+                                            !EditionMode;
 
         /// <summary>
         /// Gets or sets the car reparation status in case the car is being repaired
         /// </summary>
-        public ReparationStatus? ReparationStatus { get; set; }
+        public ReparationStatus? ReparationStatus
+        {
+            get => _reparationStatus;
+            set
+            {
+                _reparationStatus = value;
+                RaisePropertyChanged(()=> ReparationStatus);
+                RaisePropertyChanged(()=> ShowReparationStatus);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the Delete car command
@@ -141,7 +164,7 @@ namespace Vikle.Core.ViewModels
         /// <summary>
         /// Gets or sets the edit car command
         /// </summary>
-        public MvxAsyncCommand EditVehicleCommand { get; set; }
+        public MvxAsyncCommand<bool> EditVehicleCommand { get; set; }
         
         /// <summary>
         /// Gets or sets the detail error message.
@@ -179,7 +202,7 @@ namespace Vikle.Core.ViewModels
             _vehicleDetailService = vehicleDetailService;
             UpdateVehicleCommand = new MvxAsyncCommand(UpdateVehicle);
             DeleteVehicleCommand = new MvxAsyncCommand(DeleteVehicle);
-            EditVehicleCommand = new MvxAsyncCommand(ChangeEditionMode);
+            EditVehicleCommand = new MvxAsyncCommand<bool>(ChangeEditionMode);
             ReparationsHistoryCommand = new MvxAsyncCommand(ShowHistory);
         }
 
@@ -224,7 +247,8 @@ namespace Vikle.Core.ViewModels
                 ShowDetailError = true;
                 return;
             }
-            
+
+            oldPlateNumber ??= Model.PlateNumber;
             Result result = await _vehicleDetailService.UpdateVehicle(oldPlateNumber, Model);
             
             if (result.Error)
@@ -251,17 +275,17 @@ namespace Vikle.Core.ViewModels
             }
             else
             {
-                await ChangeEditionMode();
+                await ChangeEditionMode(true);
             }
         }
 
-        async Task ChangeEditionMode()
+        async Task ChangeEditionMode(bool closeView = false)
         {
             ShowDetailError = false;
             EditionMode = !EditionMode;
             await RaisePropertyChanged(() => ShowDeleteOption);
             
-            if (string.IsNullOrEmpty(oldPlateNumber))
+            if (closeView)
             {
                 await _mvxNavigationService.Close(this);
             }

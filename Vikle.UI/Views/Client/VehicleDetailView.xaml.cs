@@ -62,6 +62,7 @@ namespace Vikle.UI.Views.Client
             YearPicker.SetBinding(Picker.IsEnabledProperty, nameof(ViewModel.EditionMode));
             StatusBar.BindingContext = ViewModel;
             StatusBar.SetBinding(Picker.IsVisibleProperty, nameof(ViewModel.ShowReparationStatus));
+            StatusBar.SetBinding(StatusBar.StatusProperty, nameof(ViewModel.ReparationStatus));
             ConfirmButton.BindingContext = ViewModel;
             ConfirmButton.SetBinding(Button.IsVisibleProperty, nameof(ViewModel.EditionMode));
             CancelLabel.BindingContext = ViewModel;
@@ -77,17 +78,16 @@ namespace Vikle.UI.Views.Client
             ErrorLabel.SetBinding(Label.TextProperty, nameof(ViewModel.DetailError));
             HistoryButton.Command = ViewModel.ReparationsHistoryCommand;
             ConfirmButton.Command = ViewModel.UpdateVehicleCommand;
-            StatusBar.Status = ViewModel.ReparationStatus;
         }
 
         void SetGestureRecognizers()
         {
             var cancelTapGestureRecognizer = new TapGestureRecognizer();
-            cancelTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync();
+            cancelTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync(false);
             CancelLabel.GestureRecognizers.Add(cancelTapGestureRecognizer);
             
             var editTapGestureRecognizer = new TapGestureRecognizer();
-            editTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync();
+            editTapGestureRecognizer.Tapped += async (sender, args) => await ViewModel.EditVehicleCommand.ExecuteAsync(false);
             EditLabel.GestureRecognizers.Add(editTapGestureRecognizer);
             
             var deleteTapGestureRecognizer = new TapGestureRecognizer();

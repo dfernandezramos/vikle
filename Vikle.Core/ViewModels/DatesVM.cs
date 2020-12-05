@@ -62,6 +62,11 @@ namespace Vikle.Core.ViewModels
         /// Gets or sets the command to show the create a new date
         /// </summary>
         public MvxAsyncCommand NewDateDetailsCommand { get; set; }
+        
+        /// <summary>
+        /// Gets or sets a boolean indicating whether this viewmodel is calling the API or not
+        /// </summary>
+        public bool CallingAPI { get; set; }
 
         public DatesVM(IMvxNavigationService mvxNavigationService, IDatesService datesService) : base(mvxNavigationService)
         {
@@ -69,15 +74,16 @@ namespace Vikle.Core.ViewModels
             NewDateDetailsCommand = new MvxAsyncCommand(NewDateNavigation);
             _datesService = datesService;
         }
-        
-        public override async Task Initialize()
+
+        public override void ViewAppearing()
         {
-            await base.Initialize();
-            await GetDates ();
+            base.ViewAppearing();
+            Task.Run(GetDates);
         }
-        
+
         async Task GetDates()
         {
+            CallingAPI = true;
             ShowDatesError = false;
             Result<MvxObservableCollection<Date>> result = await _datesService.GetUserDates();
 
@@ -90,6 +96,7 @@ namespace Vikle.Core.ViewModels
             {
                 Dates = result.Data;
             }
+            CallingAPI = false;
         }
 
         async Task NewDateNavigation(CancellationToken cancellationToken)

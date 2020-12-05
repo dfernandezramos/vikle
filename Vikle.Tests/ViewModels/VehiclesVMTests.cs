@@ -50,7 +50,9 @@ namespace Vikle.Tests.ViewModels
                 .ReturnsAsync(new Result<MvxObservableCollection<Vehicle>> {Error = true, Message = "Error"});
 
             // When
-            await _vehiclesVM.Initialize();
+            _vehiclesVM.CallingAPI = true;
+            _vehiclesVM.ViewAppearing();
+            while (_vehiclesVM.CallingAPI){ }
 
             // Then
             Assert.IsTrue(_vehiclesVM.ShowVehiclesError);
@@ -68,7 +70,9 @@ namespace Vikle.Tests.ViewModels
                 });
 
             // When
-            await _vehiclesVM.Initialize();
+            _vehiclesVM.CallingAPI = true;
+            _vehiclesVM.ViewAppearing();
+            while (_vehiclesVM.CallingAPI){ }
 
             // Then
             Assert.IsFalse(_vehiclesVM.ShowVehiclesError);

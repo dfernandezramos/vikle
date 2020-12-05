@@ -49,8 +49,10 @@ namespace Vikle.Tests.ViewModels
                 .ReturnsAsync(new Result<string> { Error = true, Message = "Error" });
             
             // When
-            await _reparationsVM.Initialize();
-            
+            _reparationsVM.CallingAPI = true;
+            _reparationsVM.ViewAppearing();
+            while (_reparationsVM.CallingAPI) { }
+
             // Then
             Assert.IsTrue(_reparationsVM.ShowReparationsError);
             Assert.AreEqual("Error", _reparationsVM.ReparationsError);
@@ -69,7 +71,9 @@ namespace Vikle.Tests.ViewModels
                 .ReturnsAsync(new Result<MvxObservableCollection<Reparation>> { Error = true, Message = "Error" });
             
             // When
-            await _reparationsVM.Initialize();
+            _reparationsVM.CallingAPI = true;
+            _reparationsVM.ViewAppearing();
+            while (_reparationsVM.CallingAPI) { }
             
             // Then
             Assert.IsTrue(_reparationsVM.ShowReparationsError);
@@ -92,7 +96,9 @@ namespace Vikle.Tests.ViewModels
                 });
             
             // When
-            await _reparationsVM.Initialize();
+            _reparationsVM.CallingAPI = true;
+            _reparationsVM.ViewAppearing();
+            while (_reparationsVM.CallingAPI) { }
             
             // Then
             Assert.IsFalse(_reparationsVM.ShowReparationsError);

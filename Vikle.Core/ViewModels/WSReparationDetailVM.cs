@@ -29,6 +29,7 @@ namespace Vikle.Core.ViewModels
             set
             {
                 _model = value;
+                RaiseAllPropertiesChanged();
                 RaisePropertyChanged(() => Model);
             }
         }
@@ -150,6 +151,7 @@ namespace Vikle.Core.ViewModels
             base.Prepare(reparation);
 
             Model = reparation;
+            Model.WorkshopId = "1";
             NewReparation = string.IsNullOrEmpty(Model.PlateNumber);
         }
         

@@ -165,7 +165,6 @@ namespace Vikle.Tests.Services
                 ResponseStatus = ResponseStatus.Completed,
                 Data = new List<Reparation> {
                     new Reparation {
-                        Id = "2",
                         PlateNumber = "1234 ABC",
                         Liquids = true,
                         ITV = true,
@@ -183,8 +182,7 @@ namespace Vikle.Tests.Services
             Assert.IsFalse(reparations.Error);
             Assert.IsNotEmpty(reparations.Data);
             var car = reparations.Data.First();
-            Assert.AreEqual("1234 ABC", car.PlateNumber);
-            Assert.AreEqual("2", car.Id);
+            Assert.AreEqual("1234ABC", car.PlateNumber);
         }
     }
 }

@@ -20,7 +20,8 @@ namespace Vikle.Core.Enums
         Pending = 0,
         Repairing = 1,
         Repaired =2,
-        Rejected = 3
+        Rejected = 3,
+        Completed = 4
     }
 
     /// <summary>

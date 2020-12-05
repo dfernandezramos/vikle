@@ -24,12 +24,21 @@ namespace Vikle.Core.ViewModels
         private string _selectedVehiclePlateNumber;
         private ReparationType _reparationReason;
         private DateTime _reparationDate;
+        private List<string> _plateNumbers;
 
         /// <summary>
         /// Gets or sets the plate numbers of the client vehicles.
         /// </summary>
-        public List<string> PlateNumbers { get; set; }
-        
+        public List<string> PlateNumbers
+        {
+            get => _plateNumbers;
+            set
+            {
+                _plateNumbers = value;
+                RaisePropertyChanged(() => PlateNumbers);
+            }
+        }
+
         /// <summary>
         /// Gets or sets the date details error message.
         /// </summary>
@@ -136,7 +145,8 @@ namespace Vikle.Core.ViewModels
                 ReparationDate = ReparationDate,
                 Reason = ReparationReason,
                 PlateNumber = SelectedVehiclePlateNumber,
-                Status = ReparationStatus.Pending
+                Status = ReparationStatus.Pending,
+                WorkshopId = "1"
             };
 
             Result result = await _datesService.SaveDate(date);
@@ -171,11 +181,14 @@ namespace Vikle.Core.ViewModels
                 }
                 else
                 {
+                    var plates = new List<string>();
+                    
                     foreach (var vehicle in result.Data)
                     {
-                        PlateNumbers.Add(vehicle.PlateNumber);
+                        plates.Add(vehicle.PlateNumber);
                     }
 
+                    PlateNumbers = plates;
                     SelectedVehiclePlateNumber = result.Data.First().PlateNumber;
                 }
             }

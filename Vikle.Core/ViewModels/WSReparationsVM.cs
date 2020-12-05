@@ -63,6 +63,11 @@ namespace Vikle.Core.ViewModels
         }
         
         /// <summary>
+        /// Gets or sets a boolean indicating whether this viewmodel is calling the API or not
+        /// </summary>
+        public bool CallingAPI { get; set; }
+        
+        /// <summary>
         /// Gets or sets the reparation detail navigation command
         /// </summary>
         public MvxAsyncCommand<Reparation> ReparationDetailNavigationCommand { get; set; }
@@ -72,16 +77,23 @@ namespace Vikle.Core.ViewModels
             _wsReparationsService = wsReparationsService;
             ReparationDetailNavigationCommand = new MvxAsyncCommand<Reparation>(ReparationDetailNavigation);
         }
-        
-        public override async Task Initialize()
+
+        public override void ViewAppearing()
         {
-            await base.Initialize();
-            
+            base.ViewAppearing();
+            Task.Run(GetWorkshopReparations);
+        }
+
+        async Task GetWorkshopReparations()
+        {
+            CallingAPI = true;
             var workshopId = await GetWorkshopId();
             if (!string.IsNullOrEmpty(workshopId))
             {
                 await GetReparations(workshopId);
             }
+
+            CallingAPI = false;
         }
 
         async Task<string> GetWorkshopId()

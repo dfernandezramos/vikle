@@ -38,7 +38,7 @@ namespace Vikle.Core.ViewModels
 
         async Task HomeNavigation(CancellationToken cancellationToken)
         {
-            await _mvxNavigationService.Navigate<VehiclesVM>(cancellationToken: cancellationToken);
+            await _mvxNavigationService.Navigate<WSReparationsVM>(cancellationToken: cancellationToken);
         }
 
         public override void Prepare(T param)

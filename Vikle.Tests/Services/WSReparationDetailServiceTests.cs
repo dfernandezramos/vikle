@@ -40,7 +40,6 @@ namespace Vikle.Tests.Services
             base.Setup();
             model = new Reparation
             {
-                Id = "1",
                 Status = ReparationStatus.Pending,
                 PlateNumber = "1234 ABC",
                 Type = ReparationType.Maintenance,
