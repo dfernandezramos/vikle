@@ -61,21 +61,27 @@ namespace Vikle.Core.ViewModels
                 RaisePropertyChanged(() => ShowVehiclesError);
             }
         }
+        
+        /// <summary>
+        /// Gets or sets a boolean indicating whether this viewmodel is calling the API or not
+        /// </summary>
+        public bool CallingAPI { get; set; }
 
         public VehiclesVM(IMvxNavigationService mvxNavigationService, IVehiclesService vehiclesService) : base(mvxNavigationService)
         {
             _vehiclesService = vehiclesService;
             ShowVehicleDetailsCommand = new MvxAsyncCommand<(Vehicle, bool)>(ShowVehicleDetails);
         }
-        
-        public override async Task Initialize()
+
+        public override void ViewAppearing()
         {
-            await base.Initialize();
-            await GetVehicles ();
+            base.ViewAppearing();
+            Task.Run(GetVehicles);
         }
-        
+
         async Task GetVehicles()
         {
+            CallingAPI = true;
             ShowVehiclesError = false;
             Result<MvxObservableCollection<Vehicle>> result = await _vehiclesService.GetUserVehicles();
 
@@ -88,6 +94,7 @@ namespace Vikle.Core.ViewModels
             {
                 Vehicles = result.Data;
             }
+            CallingAPI = false;
         }
 
         async Task ShowVehicleDetails((Vehicle, bool) vehicle, CancellationToken cancellationToken = default)
