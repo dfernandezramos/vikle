@@ -5,6 +5,7 @@ using RestSharp;
 using Vikle.Core.Interfaces;
 using Vikle.Core.Services;
 using Vikle.Core.ViewModels;
+using Xamarin.Forms;
 
 namespace Vikle.Core
 {
@@ -18,7 +19,23 @@ namespace Vikle.Core
         
         public override void Initialize()
         {
+            // FIXME: This is a workaround for using the iOS emulator. iOS emulators need a keychain-access-groups key in
+            // the entitlements.plist file in order to enable the keychain and then use the secure storage service. To be
+            // able to use a custom entitlements.plist file you need a provisioning profile. For getting a provisioning
+            // profile you need an Apple Developer program enrollment. For that you need to pay 100 euros per year.
+            // https://docs.microsoft.com/en-us/xamarin/essentials/secure-storage?tabs=ios
+#if DEBUG
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                _secureStorageService = new DummySecureStorageService();
+            }
+            else
+            {
+                _secureStorageService = new SecureStorageService();
+            }
+#else
             _secureStorageService = new SecureStorageService();
+#endif
             
             // Trust all certificates
             System.Net.ServicePointManager.ServerCertificateValidationCallback =

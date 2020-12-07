@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Vikle.Core.Interfaces;
-using Vikle.Core.Services;
 
-namespace Vikle.Tests
+namespace Vikle.Core.Services
 {
     /// <summary>
     /// This service implements a dummy secure storage implementation for unit tests purposes.
