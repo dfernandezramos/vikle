@@ -19,6 +19,7 @@ namespace Vikle.Core.Services
         public ApiClientService ()
         {
             _client = Mvx.IoCProvider.Resolve<IRestClient>();
+            _client.AddHandler("application/json", () => NewtonsoftJsonSerializer.Default);
         }
 
         /// <summary>
