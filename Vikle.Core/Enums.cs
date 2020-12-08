@@ -17,10 +17,10 @@ namespace Vikle.Core.Enums
     /// </summary>
     public enum ReparationStatus
     {
-        Pending = 0,
-        Repairing = 1,
-        Repaired =2,
-        Rejected = 3,
+        Rejected = 0,
+        Pending = 1,
+        Repairing = 2,
+        Repaired = 3,
         Completed = 4
     }
 
