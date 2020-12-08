@@ -1,7 +1,9 @@
+using System;
 using MvvmCross.Forms.Presenters.Attributes;
 using MvvmCross.Forms.Views;
 using Vikle.Core;
 using Vikle.Core.ViewModels;
+using Vikle.UI.Converters;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,7 +27,7 @@ namespace Vikle.UI.Views.Client
 
             TitleView.HomeButtonCommand = ViewModel.HomeNavigationCommand;
             PlateNumberLabel.Text = ViewModel.Model.PlateNumber;
-            DateLabel.Text = $"{ViewModel.Model.Date:d MMM yyyy}";
+            DateLabel.Text = $"{new DateTime(ViewModel.Model.Date).ToLocalTime():d MMM yyyy}";
             OilFilterElement.Enabled = ViewModel.Model.OilFilter;
             GasFilterElement.Enabled = ViewModel.Model.GasFilter;
             AirFilterElement.Enabled = ViewModel.Model.AirFilter;
