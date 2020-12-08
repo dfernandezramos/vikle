@@ -12,6 +12,11 @@ namespace Vikle.Core.Models
         private string _plateNumber;
 
         /// <summary>
+        /// Gets or sets the identifier of the reparation.
+        /// </summary>
+        public string Id { get; set; }
+        
+        /// <summary>
         /// Gets or sets the identifier of the workshop.
         /// </summary>
         public string WorkshopId { get; set; }
