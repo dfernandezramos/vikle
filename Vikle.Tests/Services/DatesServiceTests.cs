@@ -101,7 +101,7 @@ namespace Vikle.Tests.Services
                 {
                     new Date {
                         IdClient = "1",
-                        ReparationDate = DateTime.Today.AddMonths(1).AddDays(1),
+                        ReparationDate = DateTime.Today.AddMonths(1).AddDays(1).Ticks,
                         PlateNumber = "5678 DEF",
                         Status = ReparationStatus.Repairing
                     }

@@ -142,7 +142,7 @@ namespace Vikle.Core.ViewModels
             ShowDateDetailsError = false;
             Date date = new Date
             {
-                ReparationDate = ReparationDate,
+                ReparationDate = ReparationDate.Ticks,
                 Reason = ReparationReason,
                 PlateNumber = SelectedVehiclePlateNumber,
                 Status = ReparationStatus.Pending,

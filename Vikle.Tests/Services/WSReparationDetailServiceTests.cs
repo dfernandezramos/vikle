@@ -43,7 +43,7 @@ namespace Vikle.Tests.Services
                 Status = ReparationStatus.Pending,
                 PlateNumber = "1234 ABC",
                 Type = ReparationType.Maintenance,
-                Date = DateTime.UtcNow
+                Date = DateTime.UtcNow.Ticks
             };
         }
 

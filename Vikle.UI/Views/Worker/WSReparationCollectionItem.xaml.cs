@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Vikle.Core;
 using Vikle.Core.Enums;
 using Vikle.Core.Models;
+using Vikle.UI.Converters;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,6 +22,9 @@ namespace Vikle.UI.Views.Worker
         {
             InitializeComponent();
             this.PropertyChanged += OnPropertyChanged;
+            
+            TopDateLabel.SetBinding(Label.TextProperty, "Date", BindingMode.Default, new LongToDateTimeConverter(), stringFormat: "{0:dd}");
+            BottomDateLabel.SetBinding(Label.TextProperty, "Date", BindingMode.Default, new LongToDateTimeConverter(), stringFormat: "{0:MMMM}");
         }
 
         void OnPropertyChanged(object sender, PropertyChangedEventArgs e)

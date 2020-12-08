@@ -52,10 +52,10 @@ namespace Vikle.Core.ViewModels
         /// </summary>
         public DateTime ReparationDate
         {
-            get => Model.Date;
+            get => new DateTime(Model.Date).ToLocalTime();
             set
             {
-                Model.Date = value;
+                Model.Date = value.Ticks;
                 RaisePropertyChanged(() => ReparationDate);
             }
         }

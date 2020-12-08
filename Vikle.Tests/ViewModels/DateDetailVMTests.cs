@@ -130,8 +130,8 @@ namespace Vikle.Tests.ViewModels
                         {
                             IdClient = "1",
                             IdDrivers = new List<string> (),
-                            LastITV = DateTime.Today,
-                            LastTBDS = DateTime.Today,
+                            LastITV = DateTime.Today.Ticks,
+                            LastTBDS = DateTime.Today.Ticks,
                             Model = "Vespino",
                             PlateNumber = "1234 ABC",
                             VehicleType = VehicleType.MotorCycle,

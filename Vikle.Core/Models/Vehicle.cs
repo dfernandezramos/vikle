@@ -38,12 +38,12 @@ namespace Vikle.Core.Models
         /// <summary>
         /// Gets or sets the last TBDS date of the vehicle.
         /// </summary>
-        public DateTime LastTBDS { get; set; } = DateTime.UtcNow;
+        public long LastTBDS { get; set; } = DateTime.UtcNow.Ticks;
         
         /// <summary>
         /// Gets or sets the last ITV date of the vehicle.
         /// </summary>
-        public DateTime LastITV { get; set; } = DateTime.UtcNow;
+        public long LastITV { get; set; } = DateTime.UtcNow.Ticks;
         
         /// <summary>
         /// Gets or sets the identifier of the vehicle owner.

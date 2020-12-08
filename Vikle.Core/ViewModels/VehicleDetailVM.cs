@@ -103,10 +103,10 @@ namespace Vikle.Core.ViewModels
         /// </summary>
         public DateTime LastTBDS
         {
-            get => Model.LastTBDS;
+            get => new DateTime(Model.LastTBDS).ToLocalTime();
             set
             {
-                Model.LastTBDS = value;
+                Model.LastTBDS = value.Ticks;
                 RaisePropertyChanged(() => LastTBDS);
             }
         }
@@ -116,10 +116,10 @@ namespace Vikle.Core.ViewModels
         /// </summary>
         public DateTime LastITV
         {
-            get => Model.LastITV;
+            get => new DateTime(Model.LastITV).ToLocalTime();
             set
             {
-                Model.LastITV = value;
+                Model.LastITV = value.Ticks;
                 RaisePropertyChanged(() => LastITV);
             }
         }

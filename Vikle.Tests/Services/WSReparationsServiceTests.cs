@@ -168,7 +168,7 @@ namespace Vikle.Tests.Services
                         PlateNumber = "1234 ABC",
                         Liquids = true,
                         ITV = true,
-                        Date = DateTime.Today,
+                        Date = DateTime.Today.Ticks,
                         Type = ReparationType.Reparation
                     }
                 }

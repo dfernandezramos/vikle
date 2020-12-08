@@ -34,10 +34,12 @@
                 <StackLayout HorizontalOptions="Center"
                              VerticalOptions="Center">
                     <Label Text="{Binding Date, StringFormat='{0:dd}'}"
+                           x:Name="TopDateLabel"
                            TextColor="{StaticResource BlueMediumColor}"
                            FontSize="27" 
                            HorizontalOptions="Center"/>
                     <Label Text="{Binding Date, StringFormat='{0:MMMM}'}"
+                           x:Name="BottomDateLabel"
                            TextColor="{StaticResource BlueMediumColor}"
                            FontSize="10" 
                            HorizontalOptions="Center"
